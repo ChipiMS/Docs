@@ -1,0 +1,163 @@
+article{
+	padding-top: 49px;
+}
+body{
+	padding: 0;
+}
+#CloseSidebar{
+	display: block;
+	color: rgb(8,48,51);
+	font-size: 21px;
+}
+footer{
+	
+}
+.FooterCopyright{
+	font-size: 11px;
+}
+.FooterItem{
+	font-size: 13px;
+}
+.FooterMenu{
+	
+}
+.MainPage{
+	
+}
+.Navigation{
+	border-bottom-color: rgba(0,0,0,0.1);
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	height: 48px;
+	left: 0;
+	right: 0;
+	top: 0;
+	width: 100%;
+}
+.NavigationBlocker{
+	background-color: rgba(0,0,0,0.1);
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 110;
+}
+.NavigationCenter{
+	left: -300px;
+	background-color: #fff;
+	height: 100%;
+	width: 257px;
+	overflow-x: hidden;
+	padding-left: 20px;
+	position: fixed;
+	top: 0;
+    box-shadow: 0 5px 10px rgba(14,48,75,0.2);
+	z-index: 111;
+	transition: .5s left;
+}
+@keyframes CenterSmallShow{
+	from{
+		left: -300px;
+	}
+	to{
+		left: 0px;
+	}
+}
+.NavigationCenterSmall{
+	left: 0px;
+	animation-name: CenterSmallShow;
+	animation-duration: .5s;
+}
+.NavigationItem{
+	border-bottom-color: #f2f4f6;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    color: #576f7f;
+    display: block;
+    font-size: 16px;
+    padding-bottom: 0;
+    padding-top: 0;
+    text-shadow: none;
+    -webkit-transition: none;
+    transition: none;
+    height: 48px;
+    line-height: 48px;
+    text-align: left;
+    padding-left: 0px;
+}
+.NavigationItemMore{
+	border-bottom-color: #f2f4f6;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    color: #576f7f;
+    display: block;
+    font-size: 16px;
+    text-shadow: none;
+    -webkit-transition: none;
+    transition: none;
+    height: 48px;
+    line-height: 48px;
+    text-align: left;
+    padding: 0;
+    margin: 0;
+}
+.NavigationLeft{
+	height: 48px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+.NavigationLeft img{
+	height: 36px;
+	margin-top: 6px;
+	width: 36px;
+}
+.NavigationLeft span{
+	
+}
+.NavigationMore{
+	display: block;
+}
+.NavigationMore .NavigationItem{
+	display: none;
+}
+.NavigationMoreList{
+	margin-top: 0;
+	padding-left: 0;
+    width: 100%;
+    box-shadow: none;
+    border: none;
+    overflow: visible;
+}
+.NavigationMoreList{
+	display: block;
+}
+.NavigationSmallButton{
+	display: block;
+	height: 48px;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 48px;
+}
+.NavigationSmallButton .fa{
+	line-height: 48px;
+	padding-left: 17.1405px
+}
+.Subnavigation{
+	
+}
+.Subnavigation ul{
+	
+}
+.SubnavigationItem{
+	margin-left: 10px;
+	margin-right: 10px;
+	font-size: 14px;
+}
+.SubnavigationItemSelected{
+	
+}
+main{
+	
+}
