@@ -19,9 +19,51 @@ app.use(methodOverride());
 	
 
 // application -------------------------------------------------------------
-	app.get('*', function(req, res) {
-		res.sendfile('./public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
-	});
+	
+app.get("/",function(req, res) {
+  // Use res.sendfile, as it streams instead of reading the file into memory.
+  res.sendfile(__dirname + '/public/home.html');
+});
+app.get("/solutions",function(req, res) {
+  // Use res.sendfile, as it streams instead of reading the file into memory.
+  res.sendfile(__dirname + '/public/solutions.html');
+});
+app.get("/products",function(req, res) {
+  // Use res.sendfile, as it streams instead of reading the file into memory.
+  res.sendfile(__dirname + '/public/products.html');
+});
+app.get("/docs",function(req, res) {
+  // Use res.sendfile, as it streams instead of reading the file into memory.
+  res.sendfile(__dirname + '/public/docs.html');
+});
+app.get("/company",function(req, res) {
+  // Use res.sendfile, as it streams instead of reading the file into memory.
+  res.sendfile(__dirname + '/public/company.html');
+});
+app.get("/contact",function(req, res) {
+  // Use res.sendfile, as it streams instead of reading the file into memory.
+  res.sendfile(__dirname + '/public/contact.html');
+});
+app.get("/security",function(req, res) {
+  // Use res.sendfile, as it streams instead of reading the file into memory.
+  res.sendfile(__dirname + '/public/security.html');
+});
+app.get("/blog",function(req, res) {
+  // Use res.sendfile, as it streams instead of reading the file into memory.
+  res.sendfile(__dirname + '/public/blog.html');
+});
+app.get("/fin",function(req, res) {
+  // Use res.sendfile, as it streams instead of reading the file into memory.
+  res.sendfile(__dirname + '/public/fin.html');
+});
+app.get("/legal",function(req, res) {
+  // Use res.sendfile, as it streams instead of reading the file into memory.
+  res.sendfile(__dirname + '/public/legal.html');
+});
+app.get("/status",function(req, res) {
+  // Use res.sendfile, as it streams instead of reading the file into memory.
+  res.sendfile(__dirname + '/public/status.html');
+});
 
 // listen (start app with node server.js) ======================================
 app.listen(8080);

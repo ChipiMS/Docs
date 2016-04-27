@@ -1,0 +1,77 @@
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="Plaid">
+<head>
+	<!-- META -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+	<title>Paybook - Blog</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="bigStyle.css">
+	<link rel="stylesheet" media="screen and (max-width: 1025px)" href="mediumStyle.css">
+	<link rel="stylesheet" media="screen and (max-width: 715px)" href="smallStyle.css">
+
+	<!-- SPELLS -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script><!-- load angular -->
+	<script src="core.js"></script>
+
+</head>
+<body ng-controller="main" ng-click="closeAll()">
+	<main>
+		<nav class="Navigation">
+			<div ng-click="showSmallViews($event)" class="NavigationSmallButton">
+				<div class="fa fa-bars"></div>
+			</div>
+			<div class="NavigationLeft">
+				<a href="/">
+					<img src="icon.jpeg">
+				</a>
+				<a href="/">
+					<span>Paybook</span>
+				</a>
+			</div>
+			<ul class="NavigationCenter">
+				<li class="NavigationItem" id="CloseSidebar" ng-click="closeAll()"><div class="fa fa-times"></div></li>
+				<li class="NavigationItem"><a href="/solutions">Solutions</a></li>
+				<li class="NavigationItem"><a href="/products">Products</a></li>
+				<li class="NavigationItem"><a href="/docs">Docs</a></li>
+				<li class="NavigationMore">
+					<div class="NavigationItem" ng-click="navbarShowMore($event)">
+						<span>More</span>
+						<div class="fa fa-chevron-down"></div>
+					</div>
+					<ul class="NavigationMoreList">
+						<li class="NavigationMoreItem"><a href="/company">Company</a></li>
+						<li class="NavigationMoreItem"><a href="/contact">Contact</a></li>
+						<li class="NavigationMoreItem"><a href="/security">Security</a></li>
+						<li class="NavigationMoreItem"><a href="/blog">Blog</a></li>
+						<li class="NavigationMoreItem"><a href="/fin">Fin</a></li>
+					</ul>
+				</li>
+			</ul>
+			<div class="NavigationBlocker"></div>
+		</nav>
+		<article class="Blog">
+			<h1>Blog</h1>
+		</article>
+	</main>
+
+	<!-- FOOTER -->
+	<footer>
+		<ul class="FooterMenu">
+			<li class="FooterItem"><a href="/docs">FAQ</a></li>
+			<li class="FooterItem"><a href="/blog">Blog</a></li>
+			<li class="FooterItem"><a href="/legal">Terms and Privacy</a></li>
+			<li class="FooterItem"<a href="/status">Status</a></li>
+			<li class="FooterItem"><a href="/contact">Contact</a></li>
+			<li class="FooterItem"><a href="/fin">Fin</a></li>
+		</ul>
+		<p class="FooterCopyright">2016 CTAM</p>
+	</footer>
+</body>
+</html>
