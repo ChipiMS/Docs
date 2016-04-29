@@ -7,19 +7,19 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
 
-	<title>Paybook - Docs</title>
+	<title>Paybook - Quickstart</title>
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<link rel="stylesheet" type="text/css" href="bigStyle.css">
-	<link rel="stylesheet" media="screen and (max-width: 1025px)" href="mediumStyle.css">
-	<link rel="stylesheet" media="screen and (max-width: 715px)" href="smallStyle.css">
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<link rel="stylesheet" type="text/css" href="../css/bigStyle.css">
+	<link rel="stylesheet" media="screen and (max-width: 1025px)" href="../css/mediumStyle.css">
+	<link rel="stylesheet" media="screen and (max-width: 715px)" href="../css/smallStyle.css">
 
 	<!-- SPELLS -->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script><!-- load angular -->
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-sanitize.js"></script>
-	<script src="docs.js"></script>
+	<script src="../js/quickstart.js"></script>
 
 </head>
 <body ng-controller="main" ng-click="closeAll()">
@@ -30,7 +30,7 @@
 			</div>
 			<div class="NavigationLeft">
 				<a href="/">
-					<img src="icon.jpeg">
+					<img src="../img/icon.jpeg">
 				</a>
 				<a href="/">
 					<span>Paybook</span>
@@ -58,52 +58,28 @@
 			<div class="NavigationBlocker"></div>
 		</nav>
 		<article class="Docs">
-			<div id="DocsMain" ng-show="view=='Main'">
-				<h1>Build the future<br>of financial technology</h1>
-				<h2>Delight your customers with Plaid’s custom bank access,<br>rich transaction data, and robust security</h2>
-				<div id="DocsCards">
-					<div id="DocsCardsContainer">
-						<div class="DocsCard">
-							<div class="DocsCardIcon"></div>
-							<h3 class="DocsCardTitle">Quickstart</h3>
-							<p class="DocsCardContent">Start building on Plaid by integrating with Plaid Link</p>
-							<div class="DocsCardAction" ng-click="goToView('Quickstart')">Start</div>
-						</div>
-						<div class="DocsCard">
-							<div class="DocsCardIcon"></div>
-							<h3 class="DocsCardTitle">Documentation</h3>
-							<p class="DocsCardContent">Explore the Plaid API with our comprehensive docs</p>
-							<div class="DocsCardAction" ng-click="goToView('Documentation')">View</div>
-						</div>
-						<div class="DocsCard">
-							<div class="DocsCardIcon"></div>
-							<h3 class="DocsCardTitle">Resources</h3>
-							<p class="DocsCardContent">Access libraries and code samples that help work with Plaid</p>
-							<div class="DocsCardAction" ng-click="goToView('Resources')">Explore</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div id="DocsContent" ng-hide="view=='Main'">
+			<div id="DocsContent">
 				<!-- SUBNAVIGATION -->
-				<nav class="Subnavigation">
-					<div>{{view}}</div>
+				<div class="Subnavigation">
+					<div class="SubnavigationSelected" ng-click="showSmallSubviews($event)">
+						<span>{{view}}</span>
+						<div class="fa fa-chevron-down"></div>
+					</div>
 					<ul>
-						<li class='{{(view==="Quickstart"?"SubnavigationItem SubnavigationItemSelected":"SubnavigationItem")}}' ng-click="goToView('Quickstart')">Quickstart</li>
-						<li class="{{view==='Documentation'?'SubnavigationItem SubnavigationItemSelected':'SubnavigationItem'}}" ng-click="goToView('Documentation')">Documentation</li>
-						<li class="{{view==='Resources'?'SubnavigationItem SubnavigationItemSelected':'SubnavigationItem'}}" ng-click="goToView('Resources')">Resources</li>
-						<li class="{{view==='FAQ'?'SubnavigationItem SubnavigationItemSelected':'SubnavigationItem'}}" ng-click="goToView('FAQ')">FAQ</li>
+						<li class="SubnavigationItem SubnavigationItemSelected">Quickstart<div style="display: none;" class="fa fa-chevron-up"></div></li>
+						<li class="SubnavigationItem"><a href="/docs/documentation">Documentation</a></li>
+						<li class="SubnavigationItem"><a href="/docs/resources">Resources</a></li>
+						<li class="SubnavigationItem"><a href="/docs/faq">FAQ</a></li>
 					</ul>
-				</nav>
-				<!-- QUICKSTART -->
-				<div ng-show="view=='Quickstart'">
+				</div>
+				<div>
 					<div>
-						<div ng-repeat="topic in quickstart">
+						<div ng-repeat="topic in info">
 							{{topic.title}}
 						</div>
 					</div>
 					<div>
-						<div ng-repeat="topic in quickstart">
+						<div ng-repeat="topic in info">
 							<h1>{{topic.title}}</h1>
 							<div ng-bind-html-unsafe="topic.body"></div>
 							<div ng-repeat="subtopic in topic.subtopics">
@@ -120,10 +96,10 @@
 	<!-- FOOTER -->
 	<footer>
 		<ul class="FooterMenu">
-			<li class="FooterItem"><a href="/docs">FAQ</a></li>
+			<li class="FooterItem"><a href="/docs/faq">FAQ</a></li>
 			<li class="FooterItem"><a href="/blog">Blog</a></li>
 			<li class="FooterItem"><a href="/legal">Terms and Privacy</a></li>
-			<li class="FooterItem"<a href="/status">Status</a></li>
+			<li class="FooterItem"><a href="/status">Status</a></li>
 			<li class="FooterItem"><a href="/contact">Contact</a></li>
 			<li class="FooterItem"><a href="/fin">Fin</a></li>
 		</ul>

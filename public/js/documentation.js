@@ -5,20 +5,22 @@ Plaid.controller("main",function main($scope,$http){
 		$(".NavigationMoreList").removeClass("NavigationMoreListVisible");
 		$(".NavigationBlocker").css("display","");
 		$(".NavigationCenter").removeClass("NavigationCenterSmall");
+		$(".Subnavigation ul").removeClass("SubnaviationShowUl");
 	};
 	$scope.navbarShowMore=function(event){
 		event.stopPropagation();
 		$(".NavigationMoreList").addClass("NavigationMoreListVisible");
-	};
-	$scope.goToView=function(aux){
-		$scope.view=aux;
 	};
 	$scope.showSmallViews=function(event){
 		event.stopPropagation();
 		$(".NavigationCenter").addClass("NavigationCenterSmall");
 		$(".NavigationBlocker").css("display","block");
 	};
-	$scope.quickstart=[
+	$scope.showSmallSubviews=function(event){
+		event.stopPropagation();
+		$(".Subnavigation ul").addClass("SubnaviationShowUl");
+	};
+	$scope.info=[
 		{
 			title: "Introduction",
 			body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",

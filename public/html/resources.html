@@ -7,18 +7,19 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
 
-	<title>Paybook - Company</title>
+	<title>Paybook - Resources</title>
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<link rel="stylesheet" type="text/css" href="bigStyle.css">
-	<link rel="stylesheet" media="screen and (max-width: 1025px)" href="mediumStyle.css">
-	<link rel="stylesheet" media="screen and (max-width: 715px)" href="smallStyle.css">
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<link rel="stylesheet" type="text/css" href="../css/bigStyle.css">
+	<link rel="stylesheet" media="screen and (max-width: 1025px)" href="../css/mediumStyle.css">
+	<link rel="stylesheet" media="screen and (max-width: 715px)" href="../css/smallStyle.css">
 
 	<!-- SPELLS -->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script><!-- load angular -->
-	<script src="core.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-sanitize.js"></script>
+	<script src="../js/resources.js"></script>
 
 </head>
 <body ng-controller="main" ng-click="closeAll()">
@@ -29,7 +30,7 @@
 			</div>
 			<div class="NavigationLeft">
 				<a href="/">
-					<img src="icon.jpeg">
+					<img src="../img/icon.jpeg">
 				</a>
 				<a href="/">
 					<span>Paybook</span>
@@ -56,18 +57,49 @@
 			</ul>
 			<div class="NavigationBlocker"></div>
 		</nav>
-		<article class="Company">
-			<h1>Company</h1>
+		<article class="Docs">
+			<div id="DocsContent">
+				<!-- SUBNAVIGATION -->
+				<div class="Subnavigation">
+					<div class="SubnavigationSelected" ng-click="showSmallSubviews($event)">
+						<span>{{view}}</span>
+						<div class="fa fa-chevron-down"></div>
+					</div>
+					<ul>
+						<li class="SubnavigationItem"><a href="/docs/quickstart">Quickstart</a><div style="display: none;" class="fa fa-chevron-up"></div></li>
+						<li class="SubnavigationItem"><a href="/docs/documentation">Documentation</a></li>
+						<li class="SubnavigationItem SubnavigationItemSelected">Resources</li>
+						<li class="SubnavigationItem"><a href="/docs/faq">FAQ</a></li>
+					</ul>
+				</div>
+				<div id="ContainerLeftRight">
+					<div id="TopicsLeft">
+						<div ng-repeat="topic in info">
+							{{topic.title}}
+						</div>
+					</div>
+					<div id="ContentRight">
+						<div ng-repeat="topic in info">
+							<h1>{{topic.title}}</h1>
+							<div ng-bind-html-unsafe="topic.body"></div>
+							<div ng-repeat="subtopic in topic.subtopics">
+								<h1>{{subtopic.title}}</h1>
+								<div ng-bind-html="subtopic.body"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</article>
 	</main>
 
 	<!-- FOOTER -->
 	<footer>
 		<ul class="FooterMenu">
-			<li class="FooterItem"><a href="/docs">FAQ</a></li>
+			<li class="FooterItem"><a href="/docs/faq">FAQ</a></li>
 			<li class="FooterItem"><a href="/blog">Blog</a></li>
 			<li class="FooterItem"><a href="/legal">Terms and Privacy</a></li>
-			<li class="FooterItem"<a href="/status">Status</a></li>
+			<li class="FooterItem"><a href="/status">Status</a></li>
 			<li class="FooterItem"><a href="/contact">Contact</a></li>
 			<li class="FooterItem"><a href="/fin">Fin</a></li>
 		</ul>

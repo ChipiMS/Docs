@@ -1,0 +1,108 @@
+article{
+	
+}
+footer{
+	
+}
+.FooterCopyright{
+	
+}
+.FooterItem{
+	
+}
+.FooterMenu{
+	
+}
+.MainPage{
+	
+}
+.Navigation{
+
+}
+.NavigationLeft{
+
+}
+.NavigationCenter{
+	
+}
+.NavigationLeft img{
+
+}
+.NavigationLeft span{
+	
+}
+.NavigationItem{
+	
+}
+.Subnavigation{
+	position: relative;
+}
+.Subnavigation div{
+	display: block;
+	position: relative;
+}
+.Subnavigation .fa{
+	position: absolute;
+	right: 16px;
+	height: 48px;
+	line-height: 48px;
+	display: inline-block;
+	color: rgb(169,184,193);
+	display: inline-block !important;
+}
+.Subnavigation ul{
+	position: absolute;
+	top: 0;
+	height: 0px;
+	overflow: hidden;
+	width: 100%;
+	padding: 0 !important;
+	transition: height .35s;
+	z-index: 1;
+}
+.SubnavigationItem{
+	font-size: 16px;
+	padding-left: 16px;
+	padding-right: 16px;
+	width: calc(100% - 32px);
+	height: 48px;
+	line-height: 48px;
+	color: #576f7f;
+	margin: 0;
+	display: block;
+	background-color: rgb(242,244,246);
+	z-index: 1;
+}
+.SubnavigationItem:hover{
+	background-color: rgb(230,234,237);
+	color: #0e304b;
+}
+.SubnavigationItemSelected{
+	box-shadow: none;
+	background-color: rgb(230,234,237);
+	color: #0e304b;
+}
+.SubnavigationSelected{
+	padding-left: 16px;
+	padding-right: 16px;
+	width: calc(100% - 32px);
+	height: 48px;
+	line-height: 48px;
+	color: #0e304b;
+}
+@keyframes ShowUl{
+	from{
+		height: 0;
+	}
+	to{
+		height: 200px;
+	}
+}
+.SubnaviationShowUl{
+	animation-name: ShowUl;
+	animation-duration: .35s;
+	height: 200px !important;
+}
+main{
+	
+}
