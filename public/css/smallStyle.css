@@ -2,6 +2,12 @@
 	width: 100%;
 	margin-left: 0px;
 }
+.ContentRightContainer h1{
+	padding-top: 32px;
+}
+.ContentRightContainer h2{
+	padding-top: 10px;
+}
 .Subnavigation{
 	position: relative;
 }

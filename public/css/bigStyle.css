@@ -53,6 +53,22 @@ body{
 	margin-left: 247px;
 	position: relative;
 }
+.ContentRightContainer{
+	width: 640px;
+	text-align: left;
+}
+.ContentRightContainer h1{
+	padding-top: 120px;
+	margin-bottom: 16px;
+	font-size: 35px;
+	color: #0e304b;
+}
+.ContentRightContainer h2{
+	padding-top: 40px;
+	margin-bottom: 16px;
+	font-size: 22px;
+	color: #0e304b;
+}
 .DocsCard{
 	border-color: rgba(0,39,69,0.11);
 	border-radius: 4px;

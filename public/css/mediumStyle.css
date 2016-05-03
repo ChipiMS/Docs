@@ -15,6 +15,26 @@ body{
 	color: rgb(8,48,51);
 	font-size: 21px;
 }
+#ContentRight{
+	margin-left: 187px;
+	width: calc(100% - 187px);
+}
+.ContentRightContainer{
+	width: calc(100% - 32px);
+	padding-left: 16px;
+	padding-right: 16px;
+	font-size: 15px;
+}
+.ContentRightContainer h1{
+	padding-top: 96px;
+	margin-bottom: 13px;
+	font-size: 28px;
+}
+.ContentRightContainer h2{
+	padding-top: 36px;
+	margin-bottom: 13px;
+	font-size: 17px;
+}
 .DocsCard{
 	margin-left: 16px;
 	margin-right: 16px;
@@ -170,6 +190,10 @@ body{
 }
 .TopicLeft{
 	font-size: 15px;
+}
+#TopicsLeft{
+	width: 128px;
+	padding: 29px;
 }
 .TopicsLeftMiddle{
 	left: 0;
