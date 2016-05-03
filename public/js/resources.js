@@ -41,7 +41,6 @@ Plaid.controller("main",function main($scope,$http){
 		}
 		$scope.$apply();
 	});
-	$scope.view="Main";
 	$scope.closeAll=function(){
 		$(".NavigationMoreList").removeClass("NavigationMoreListVisible");
 		$(".NavigationBlocker").css("display","");

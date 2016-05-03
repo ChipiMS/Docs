@@ -7,6 +7,9 @@ article.Company{
 article.Contact{
 	padding-top: 224px;
 }
+article.Docs{
+	padding-top: 144px;
+}
 article.Fin{
 	padding-top: 224px;
 }
@@ -103,9 +106,6 @@ body{
 	width: 951px;
 	margin-left: auto;
 	margin-right: auto;
-}
-#DocsContent{
-	padding-top: 114px;
 }
 #DocsMain{
 	padding-top: 224px;
@@ -279,6 +279,9 @@ main{
 .NavigationSmallButton{
 	display: none;
 }
+.NextToWhiteTopic{
+	padding-top: 202px !important;
+}
 .Subnavigation{
 	background: #e6eaed;
 	height: 48px;
@@ -345,10 +348,23 @@ main{
 .WhiteBlueGroup .White{
 	float: left;
 	overflow: hidden;
-	width: 45%;
+	width: calc(45% - 60px);
+	padding: 30px;
 }
 .WhiteBlueGroup .Blue{
 	color: #f7f8f9;
 	margin-left: 45%;
 	position: relative;
+	padding: 30px;
+}
+.WhiteSubtopic{
+	font-size: 22px;
+	color: #0e304b;
+	margin-bottom: 16px;
+}
+.WhiteTopic{
+	padding-top: 90px;
+	font-size: 35px;
+	color: #0e304b;
+	margin-bottom: 30px;
 }

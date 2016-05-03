@@ -1,6 +1,12 @@
 article{
 	padding-top: 49px;
 }
+article.Docs{
+	padding-top: 49px;
+}
+#Blue{
+	display: none;
+}
 body{
 	padding: 0;
 }
@@ -16,38 +22,17 @@ body{
 	width: initial;
 	display: block;
 }
-.DocsCardAction{
-	
-}
-.DocsCardContent{
-	
-}
-.DocsCardIcon{
-	
-}
-.DocsCardTitle{
-	
-}
 #DocsCardsContainer{
 	width: 100%;
 }
 #DocsContent{
 	padding-top: 0;
 }
-footer{
-	
-}
 .FooterCopyright{
 	font-size: 11px;
 }
 .FooterItem{
 	font-size: 13px;
-}
-.FooterMenu{
-	
-}
-.MainPage{
-	
 }
 .Navigation{
 	border-bottom-color: rgba(0,0,0,0.1);
@@ -137,9 +122,6 @@ footer{
 	margin-top: 6px;
 	width: 36px;
 }
-.NavigationLeft span{
-	
-}
 .NavigationMore{
 	display: block;
 }
@@ -169,20 +151,56 @@ footer{
 	line-height: 48px;
 	padding-left: 17.1405px
 }
-.Subnavigation{
-	
+.NextToWhiteTopic{
+	padding-left: 24px !important;
+	padding-right: 24px !important;
+	padding-bottom: 32px !important;
+	padding-top: 56px !important;
 }
 .Subnavigation ul{
-	
+	padding-left: 2.1rem;
 }
 .SubnavigationItem{
 	margin-left: 10px;
 	margin-right: 10px;
 	font-size: 14px;
 }
-.SubnavigationItemSelected{
-	
+.SubtopicLeft{
+	font-size: 15px;
 }
-main{
-	
+.TopicLeft{
+	font-size: 15px;
+}
+.TopicsLeftMiddle{
+	left: 0;
+}
+.WhiteBlueGroup{
+	font-size: 15px;
+}
+.WhiteBlueGroup .White{
+	float: initial;
+	padding-left: 16px;
+	padding-right: 16px;
+	padding-bottom: 24px;
+	padding-top: 24px;
+	width: initial;
+}
+.WhiteBlueGroup .Blue{
+	margin-left: 0;
+	padding-left: 24px;
+	padding-right: 24px;
+	padding-bottom: 32px;
+	padding-top: 56px;
+	margin-bottom: 16px;
+	background-color: rgb(14,48,75);
+}
+.WhiteSubtopic{
+	font-size: 17px;
+	margin-bottom: 12px;
+	margin-top: 9px;
+}
+.WhiteTopic{
+	padding-top: 72px;
+	font-size: 28px;
+	padding-left: 8px;
 }

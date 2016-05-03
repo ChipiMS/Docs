@@ -1,38 +1,6 @@
-article{
-	
-}
-footer{
-	
-}
-.FooterCopyright{
-	
-}
-.FooterItem{
-	
-}
-.FooterMenu{
-	
-}
-.MainPage{
-	
-}
-.Navigation{
-
-}
-.NavigationLeft{
-
-}
-.NavigationCenter{
-	
-}
-.NavigationLeft img{
-
-}
-.NavigationLeft span{
-	
-}
-.NavigationItem{
-	
+#ContentRight{
+	width: 100%;
+	margin-left: 0px;
 }
 .Subnavigation{
 	position: relative;
@@ -49,6 +17,7 @@ footer{
 	display: inline-block;
 	color: rgb(169,184,193);
 	display: inline-block !important;
+	top: 0;
 }
 .Subnavigation ul{
 	position: absolute;
@@ -73,14 +42,10 @@ footer{
 	background-color: rgb(242,244,246);
 	z-index: 1;
 }
-.SubnavigationItem:hover{
+.SubnavigationItem:hover, .SubnavigationItemSelected{
 	background-color: rgb(230,234,237);
 	color: #0e304b;
-}
-.SubnavigationItemSelected{
 	box-shadow: none;
-	background-color: rgb(230,234,237);
-	color: #0e304b;
 }
 .SubnavigationSelected{
 	padding-left: 16px;
@@ -103,6 +68,13 @@ footer{
 	animation-duration: .35s;
 	height: 200px !important;
 }
-main{
-	
+#TopicsLeft{
+	display: none;
+}
+.WhiteBlueGroup .Blue{
+	padding-top: 33px !important;
+}
+.WhiteTopic{
+	padding-top: 12px;
+	font-size: 28px;
 }
