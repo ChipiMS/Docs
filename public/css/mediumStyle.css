@@ -15,6 +15,10 @@ body{
 	color: rgb(8,48,51);
 	font-size: 21px;
 }
+#ContactSupport{
+	font-size: 14px;
+	top: 13.5px;
+}
 #ContentRight{
 	margin-left: 187px;
 	width: calc(100% - 187px);

@@ -45,6 +45,17 @@ body{
 #CloseSidebar{
 	display: none;
 }
+#ContactSupport{
+	display: block;
+	position: absolute;
+	top: 12px;
+	right: 42px;
+}
+#ContactSupport a{
+	display: initial;
+	color: #0e304b;
+	text-decoration: underline;
+}
 #ContainerLeftRight{
 	position: relative;
 }
@@ -303,6 +314,7 @@ main{
 	padding-top: 202px !important;
 }
 .Subnavigation{
+	position: relative;
 	background: #e6eaed;
 	height: 48px;
 	white-space: nowrap;
