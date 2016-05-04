@@ -58,43 +58,45 @@
 			<div class="NavigationBlocker"></div>
 		</nav>
 		<article class="Docs">
-			<div id="DocsContent">
-				<!-- SUBNAVIGATION -->
-				<div class="Subnavigation">
-					<div class="SubnavigationSelected" ng-click="showSmallSubviews($event)">
-						<span>FAQ</span>
-						<div class="fa fa-chevron-down"></div>
-					</div>
-					<ul>
-						<li class="SubnavigationItem"><a href="/docs/quickstart">Quickstart</a><div style="display: none;" class="fa fa-chevron-up"></div></li>
-						<li class="SubnavigationItem"><a href="/docs/documentation">Documentation</a></li>
-						<li class="SubnavigationItem"><a href="/docs/resources">Resources</a></li>
-						<li class="SubnavigationItem SubnavigationItemSelected">FAQ</li>
-					</ul>
+			<!-- SUBNAVIGATION -->
+			<div class="Subnavigation">
+				<div class="SubnavigationSelected" ng-click="showSmallSubviews($event)">
+					<span>FAQ</span>
+					<div class="fa fa-chevron-down"></div>
 				</div>
-				<div id="ContainerLeftRight">
-					<div id="TopicsLeft">
-						<div ng-repeat="topic in info">
-							<div class="{{actualTopic==$index&&actualSubtopic==-1?'TopicsLeftSelected TopicLeft':'TopicLeft'}}" ng-click="scrollToTopic($index)">{{topic.title}}</div>
-							<div ng-repeat="subtopic in topic.subtopics">
-								<h1 class="{{actualTopic==$parent.$index&&actualSubtopic==$index?'TopicsLeftSelected SubtopicLeft':'SubtopicLeft'}}" ng-show="$parent.$index==actualTopic" ng-click="scrollToSubtopic($parent.$index,$index)">{{subtopic.title}}</h1>
-							</div>
+				<ul>
+					<li class="SubnavigationItem"><a href="/docs/quickstart">Quickstart</a><div style="display: none;" class="fa fa-chevron-up"></div></li>
+					<li class="SubnavigationItem"><a href="/docs/documentation">Documentation</a></li>
+					<li class="SubnavigationItem"><a href="/docs/resources">Resources</a></li>
+					<li class="SubnavigationItem SubnavigationItemSelected">FAQ</li>
+				</ul>
+				<div id="ContactSupport">
+					<span>Questions or comments?</span>
+					<a href="/contact">Contact support</a>
+				</div>
+			</div>
+			<div id="ContainerLeftRight">
+				<div id="TopicsLeft">
+					<div ng-repeat="topic in info">
+						<div class="{{actualTopic==$index&&actualSubtopic==-1?'TopicsLeftSelected TopicLeft':'TopicLeft'}}" ng-click="scrollToTopic($index)">{{topic.title}}</div>
+						<div ng-repeat="subtopic in topic.subtopics">
+							<h1 class="{{actualTopic==$parent.$index&&actualSubtopic==$index?'TopicsLeftSelected SubtopicLeft':'SubtopicLeft'}}" ng-show="$parent.$index==actualTopic" ng-click="scrollToSubtopic($parent.$index,$index)">{{subtopic.title}}</h1>
 						</div>
 					</div>
-					<div id="ContentRight">
-						<center>
-							<div class="ContentRightContainer">
-								<div ng-repeat="topic in info">
-									<h1 id='{{"Topic"+$index}}'>{{topic.title}}</h1>
-									<div ng-bind-html="topic.body"></div>
-									<div ng-repeat="subtopic in topic.subtopics">
-										<h2 id='{{"Topic"+$parent.$index+"_"+$index}}'>{{subtopic.title}}</h2>
-										<div ng-bind-html="subtopic.body"></div>
-									</div>
+				</div>
+				<div id="ContentRight">
+					<center>
+						<div class="ContentRightContainer">
+							<div ng-repeat="topic in info">
+								<h1 id='{{"Topic"+$index}}'>{{topic.title}}</h1>
+								<div ng-bind-html="topic.body"></div>
+								<div ng-repeat="subtopic in topic.subtopics">
+									<h2 id='{{"Topic"+$parent.$index+"_"+$index}}'>{{subtopic.title}}</h2>
+									<div ng-bind-html="subtopic.body"></div>
 								</div>
 							</div>
-						</center>
-					</div>
+						</div>
+					</center>
 				</div>
 			</div>
 		</article>
