@@ -163,10 +163,10 @@ main{
 	height: 80px;
 	left: 32px;
 	position: absolute;
-	right: 32px;
-	top: 32px;
+	right: 48px;
+	top: 48px;
 	white-space: nowrap;
-	width: calc(100% - 64px);
+	width: calc(100% - 96px);
 	z-index: 11;
 }
 .NavigationBlocker{
@@ -207,6 +207,10 @@ main{
 }
 .NavigationLeft span{
 	cursor: pointer;
+	position: absolute;
+    line-height: 40px;
+    font-size: 25px;
+    font-weight: bolder;
 }
 .NavigationItem{
 	display: inline-block;

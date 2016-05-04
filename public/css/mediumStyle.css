@@ -142,6 +142,10 @@ body{
 	margin-top: 6px;
 	width: 36px;
 }
+.NavigationLeft span{
+	top: 5px;
+	font-size: 21px;
+}
 .NavigationMore{
 	display: block;
 }
