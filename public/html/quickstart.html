@@ -22,7 +22,7 @@
 	<script src="../js/quickstart.js"></script>
 
 </head>
-<body ng-controller="main" ng-click="closeAll()">
+<body ng-controller="main" data-ng-init="init()" ng-click="closeAll()">
 	<main>
 		<nav class="Navigation">
 			<div ng-click="showSmallViews($event)" class="NavigationSmallButton">
