@@ -9,6 +9,7 @@ article.Docs{
 }
 body{
 	padding: 0;
+	background-color: white;
 }
 #CloseSidebar{
 	display: block;
@@ -46,14 +47,45 @@ body{
 	width: initial;
 	display: block;
 }
+.DocsCardContent{
+	line-height: 22px;
+	font-size: 14px;
+}
+.DocsCardTitle{
+	line-height: 22px;
+	font-size: 14px;
+}
+#DocsCards{
+	margin-top: 32px;
+}
 #DocsCardsContainer{
 	width: 100%;
+}
+#DocsMain{
+	padding-top: 90px;
+	padding-bottom: 40px;
+}
+#DocsMain br{
+	display: none;
+}
+#DocsMain h1{
+	font-size: 32px;
+}
+#DocsMain h2{
+	font-size: 19px;
+}
+footer{
+	padding-bottom: 8px;
+	padding-top: 8px;
 }
 .FooterCopyright{
 	font-size: 11px;
 }
 .FooterItem{
 	font-size: 13px;
+}
+main{
+	box-shadow: none;
 }
 .Navigation{
 	border-bottom-color: rgba(0,0,0,0.1);
@@ -181,6 +213,12 @@ body{
 	padding-right: 24px !important;
 	padding-bottom: 32px !important;
 	padding-top: 56px !important;
+}
+.ResourcesCard{
+	display: block;
+	width: calc(100% - 40px);
+	margin-left: 0;
+	margin-right: 0;
 }
 .Subnavigation ul{
 	padding-left: 2.1rem;

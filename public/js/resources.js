@@ -1,32 +1,13 @@
 var Plaid=angular.module('Plaid',["ngSanitize"]);
 Plaid.controller("main",function main($scope,$http){
 	$scope.actualTopic;
-	$scope.actualSubtopic;
 	$(document).scroll(function(){
 		if(document.body.scrollTop<178){
 			$("#TopicsLeft").addClass("TopicsLeftTop");
 			$("#TopicsLeft").removeClass("TopicsLeftBottom");
 			$("#TopicsLeft").removeClass("TopicsLeftMiddle");
-			$scope.actualTopic=0;
-			$scope.actualSubtopic=-1;
 		}
 		else{
-			var notFound=true;
-			var scroll=document.body.scrollTop;
-			for(var i=$scope.info.length-1;i>=0&&notFound;i--){
-				for(var j=$scope.info[i].subtopics.length-1;j>=0&&notFound;j--){
-					if($("#Topic"+i+"_"+j).offset().top<scroll){
-						$scope.actualTopic=i;
-						$scope.actualSubtopic=j;
-						notFound=false;
-					}
-				}
-				if(notFound&&$("#Topic"+i).offset().top<scroll){
-					$scope.actualTopic=i;
-					$scope.actualSubtopic=-1;
-					notFound=false;
-				}
-			}
 			var bodyPadding=parseFloat($("body").css("padding-top"));
 			if(document.body.offsetHeight-document.body.scrollTop<$(window.top).height()+157+bodyPadding){
 				$("#TopicsLeft").addClass("TopicsLeftBottom");
@@ -37,6 +18,14 @@ Plaid.controller("main",function main($scope,$http){
 				$("#TopicsLeft").addClass("TopicsLeftMiddle");
 				$("#TopicsLeft").removeClass("TopicsLeftTop");
 				$("#TopicsLeft").removeClass("TopicsLeftBottom");
+			}
+		}
+		var notFound=true;
+		var scroll=document.body.scrollTop;
+		for(var i=$scope.info.length-1;i>=0&&notFound;i--){
+			if($("#Topic"+i).offset().top<scroll){
+				$scope.actualTopic=i;
+				notFound=false;
 			}
 		}
 		$scope.$apply();
@@ -52,26 +41,8 @@ Plaid.controller("main",function main($scope,$http){
 			$("#TopicsLeft").addClass("TopicsLeftTop");
 			$("#TopicsLeft").removeClass("TopicsLeftBottom");
 			$("#TopicsLeft").removeClass("TopicsLeftMiddle");
-			$scope.actualTopic=0;
-			$scope.actualSubtopic=-1;
 		}
 		else{
-			var notFound=true;
-			var scroll=document.body.scrollTop;
-			for(var i=$scope.info.length-1;i>=0&&notFound;i--){
-				for(var j=$scope.info[i].subtopics.length-1;j>=0&&notFound;j--){
-					if($("#Topic"+i+"_"+j).offset()<scroll){
-						$scope.actualTopic=i;
-						$scope.actualSubtopic=j;
-						notFound=false;
-					}
-				}
-				if(notFound&&$("#Topic"+i).offset().top<scroll){
-					$scope.actualTopic=i;
-					$scope.actualSubtopic=-1;
-					notFound=false;
-				}
-			}
 			var bodyPadding=parseFloat($("body").css("padding-top"));
 			if(document.body.offsetHeight-document.body.scrollTop<$(window.top).height()+157+bodyPadding){
 				$("#TopicsLeft").addClass("TopicsLeftBottom");
@@ -84,15 +55,20 @@ Plaid.controller("main",function main($scope,$http){
 				$("#TopicsLeft").removeClass("TopicsLeftBottom");
 			}
 		}
+		setTimeout(function(){
+			var notFound=true;
+			var scroll=document.body.scrollTop;
+			for(var i=$scope.info.length-1;i>=0&&notFound;i--){
+				if($("#Topic"+i).offset().top<scroll){
+					$scope.actualTopic=i;
+					notFound=false;
+				}
+			}
+		},500);
 	};
 	$scope.navbarShowMore=function(event){
 		event.stopPropagation();
 		$(".NavigationMoreList").addClass("NavigationMoreListVisible");
-	};
-	$scope.scrollToSubtopic=function(topic,subtopic){
-		$('html, body').animate({
-        	scrollTop: $("#Topic"+topic+"_"+subtopic).offset().top+1
-	    }, 1000);
 	};
 	$scope.scrollToTopic=function(topic){
 		$('html, body').animate({
@@ -111,243 +87,19 @@ Plaid.controller("main",function main($scope,$http){
 	$scope.info=[
 		{
 			title: "Introduction",
-			body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-			subtopics: [
-				{	
-					title: "Introduction",
-					body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-				}
-			]
+			body: "<p>All libraries for Plaid are listed below. If you've built anything that you'd be willing to share, please let us know and we'll link to it here (and send you a t-shirt)!</p>",
 		},
 		{
-			title: "Chipi",
-			body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-			subtopics: [
-				{	
-					title: "Introduction",
-					body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-				}
-			]
+			title: "Official libraries",
+			body: '<a href="https://github.com/Paybook/Lite.JS" class="ResourcesCard"><img src="../img/node.svg"><div><h3>Node</h3><p>paybook-node</p></div><div class="fa fa-chevron-right"></div></a><a href="https://github.com/Paybook/Lite.GO" class="ResourcesCard"><img src="../img/go.svg"><div><h3>Go</h3><p>paybook-go</p></div><div class="fa fa-chevron-right"></div></a><a href="https://github.com/Paybook/Lite.Py" class="ResourcesCard"><img src="../img/python.svg"><div><h3>Python</h3><p>paybook-python</p></div><div class="fa fa-chevron-right"></div></a>',
 		},
 		{
-			title: "Sol",
-			body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-			subtopics: [
-				{	
-					title: "Introduction",
-					body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-				}
-			]
+			title: "Community libraries",
+			body: '<a href="https://github.com/Paybook/Lite.GO" class="ResourcesCard"><img src="../img/ruby.svg"><div><h3>Ruby</h3><p>paybook-ruby</p></div><div class="fa fa-chevron-right"></div></a><a href="https://github.com/Paybook/Lite.GO" class="ResourcesCard"><img src="../img/java.svg"><div><h3>Java</h3><p>paybook-java</p></div><div class="fa fa-chevron-right"></div></a><a href="https://github.com/Paybook/Lite.GO" class="ResourcesCard"><img src="../img/php.svg"><div><h3>PHP</h3><p>paybook-php</p></div><div class="fa fa-chevron-right"></div></a><a href="https://github.com/Paybook/Lite.GO" class="ResourcesCard"><img src="../img/swift.svg"><div><h3>Swift</h3><p>paybook-swift</p></div><div class="fa fa-chevron-right"></div></a>',
 		},
 		{
-			title: "Introduction",
-			body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-			subtopics: [
-				{	
-					title: "Introduction",
-					body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-				}
-			]
-		},
-		{
-			title: "Chipi",
-			body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-			subtopics: [
-				{	
-					title: "Introduction",
-					body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-				}
-			]
-		},
-		{
-			title: "Sol",
-			body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-			subtopics: [
-				{	
-					title: "Introduction",
-					body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-				}
-			]
-		},
-		{
-			title: "Introduction",
-			body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-			subtopics: [
-				{	
-					title: "Introduction",
-					body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-				}
-			]
-		},
-		{
-			title: "Chipi",
-			body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-			subtopics: [
-				{	
-					title: "Introduction",
-					body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-				}
-			]
-		},
-		{
-			title: "Sol",
-			body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-			subtopics: [
-				{	
-					title: "Introduction",
-					body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-				}
-			]
-		},
-		{
-			title: "Introduction",
-			body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-			subtopics: [
-				{	
-					title: "Introduction",
-					body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-				}
-			]
-		},
-		{
-			title: "Chipi",
-			body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-			subtopics: [
-				{	
-					title: "Introduction",
-					body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-				}
-			]
-		},
-		{
-			title: "Sol",
-			body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-			subtopics: [
-				{	
-					title: "Introduction",
-					body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-				}
-			]
-		},
-		{
-			title: "Introduction",
-			body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-			subtopics: [
-				{	
-					title: "Introduction",
-					body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-				}
-			]
-		},
-		{
-			title: "Chipi",
-			body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-			subtopics: [
-				{	
-					title: "Introduction",
-					body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-				}
-			]
-		},
-		{
-			title: "Sol",
-			body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-			subtopics: [
-				{	
-					title: "Introduction",
-					body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-				}
-			]
-		},
-		{
-			title: "Introduction",
-			body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-			subtopics: [
-				{	
-					title: "Introduction",
-					body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-				}
-			]
-		},
-		{
-			title: "Chipi",
-			body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-			subtopics: [
-				{	
-					title: "Introduction",
-					body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-				}
-			]
-		},
-		{
-			title: "Sol",
-			body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-			subtopics: [
-				{	
-					title: "Introduction",
-					body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-				}
-			]
-		},
-		{
-			title: "Introduction",
-			body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-			subtopics: [
-				{	
-					title: "Introduction",
-					body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-				}
-			]
-		},
-		{
-			title: "Chipi",
-			body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-			subtopics: [
-				{	
-					title: "Introduction",
-					body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-				}
-			]
-		},
-		{
-			title: "Sol",
-			body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-			subtopics: [
-				{	
-					title: "Introduction",
-					body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-				}
-			]
-		},
-		{
-			title: "Introduction",
-			body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-			subtopics: [
-				{	
-					title: "Introduction",
-					body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-				}
-			]
-		},
-		{
-			title: "Chipi",
-			body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-			subtopics: [
-				{	
-					title: "Introduction",
-					body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-				}
-			]
-		},
-		{
-			title: "Sol",
-			body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-			subtopics: [
-				{	
-					title: "Introduction",
-					body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-				}
-			]
+			title: "Community Resources",
+			body: "<p>Ember component, by @jasonkriss</p><p>Example Angular/Ionic app, by @pbernasconi</p><p>Angular component, by @csbarnes</p>",
 		},
 	];
 });

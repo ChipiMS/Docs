@@ -4,12 +4,39 @@
 #ContentRight{
 	width: 100%;
 	margin-left: 0px;
+	padding-bottom: 40px;
 }
 .ContentRightContainer h1{
 	padding-top: 32px;
 }
 .ContentRightContainer h2{
 	padding-top: 10px;
+}
+#DocsMain h2{
+	padding-left: 16px;
+	padding-right: 16px;
+}
+.ResourcesCard{
+	padding: 16px;
+	height: 48px;
+	width: calc(100% - 32px);
+}
+.ResourcesCard div{
+	
+}
+.ResourcesCard .fa{
+	top: 34px;
+}
+.ResourcesCard h3{
+    line-height: 22px;
+    font-size: 14px;
+}
+.ResourcesCard img{
+	
+}
+.ResourcesCard p{
+	line-height: 20px;
+	font-size: 13px;
 }
 .Subnavigation{
 	position: relative;
