@@ -47,12 +47,13 @@ body{
 }
 .Code{
 	font-family: 'Monaco', 'Courier';
-    font-size: 15px;
+    font-size: 14px;
     line-height: 25px;
     background-color: #0e304b;
     border-radius: 4px;
     margin-bottom: 1.6rem;
     padding: 32px;
+    overflow-x: auto;
 }
 #ContactSupport{
 	display: block;
@@ -186,48 +187,6 @@ footer{
 }
 .FooterMenu{
 	margin-bottom: 16px;
-}
-.HTML{
-	color: white;
-}
-.HTML .Comment{
-	color: #576f7f;
-}
-.HTML .Comment:after{
-	content: " -->"
-}
-.HTML .Comment:before{
-	content: "<!-- "
-}
-.HTML .Property:after{
-	content: '"';
-}
-.HTML .Property:before{
-	content: " ";
-}
-.HTML .PropertyName{
-	color: #a6e22e;
-}
-.HTML .PropertyValue{
-	color: #e6db74;
-}
-.HTML .PropertyName:after{
-	content: '="';
-}
-.HTML .Tag:after{
-	content: ">"
-}
-.HTML .Tag:before{
-	content: "<"
-}
-.HTML .Tag .Content:after{
-	content: "</";
-}
-.HTML .Tag .Content:before{
-	content: ">"
-}
-.HTML .Tag .Type{
-	color: #f92672;
 }
 main{
 	background: #fff;

@@ -87,9 +87,6 @@
 				<div id="ContentRight">
 					<center>
 						<div class="ContentRightContainer">
-							<div class="Code HTML">
-								<div class="Comment">A hidden input named public_token will be appended to this form once the user has completed the Link flow. Link will then submit the form, sending the public_token to your server.</div><div class="Tag"><span class="Type">form</span><span class="Property"><span class="PropertyName">id</span><span class="PropertyValue">some-id</span></span><span class="Property"><span class="PropertyName">method</span><span class="PropertyValue">POST</span></span><span class="Property"><span class="PropertyName">action</span><span class="PropertyValue">/authenticate</span></span><span class="Content"></span><span class="Type">form</span></div><div class="Comment">To use Link with longtail institutions on Connect, set thedata-longtail attribute to \'true\'. See the Parameter Reference foradditional documentation.</div><div class="Tag"><span class="Type">script</span><span class="Property"><span class="PropertyName">src</span><span class="PropertyValue">https://cdn.plaid.com/link/stable/link-initialize.js</span></span><span class="Property"><span class="PropertyName">data-client-name</span><span class="PropertyValue">Client Name</span></span><span class="Property"><span class="PropertyName">data-form-id</span><span class="PropertyValue">some-id</span></span><span class="Property"><span class="PropertyName">data-key</span><span class="PropertyValue">test-key</span></span><span class="Property"><span class="PropertyName">data-product</span><span class="PropertyValue">auth</span></span><span class="Property"><span class="PropertyName">data-env</span><span class="PropertyValue">tartan</span></span><span class="Content"></span><span class="Type">script</span></div>
-							</div>
 							<div ng-repeat="topic in info">
 								<h1 id='{{"Topic"+$index}}'>{{topic.title}}</h1>
 								<div ng-bind-html="topic.body"></div>

@@ -18,6 +18,98 @@ body{
 	line-height: 1.5;
 	overflow-x: hidden;
 }
+.CSS{
+	color: white;
+}
+.CSS .Property{
+	padding-left: 12px;
+}
+.CSS .PropertyName{
+	color: #f92672;
+}
+.CSS .PropertyValue:after{
+	content: ";";
+}
+.CSS .PropertyValue:before{
+	content: ": ";
+}
+.CSS .Selector{
+	color: #a6e22e;
+}
+.CSS .Selector:after{
+	content: "{";
+	color: white;
+}
+.CSS .Structure:after{
+	content: "}"
+}
 html{
 	background: #f7f8f9;
+}
+.HTML{
+	color: white;
+}
+.HTML .Comment{
+	color: #576f7f;
+}
+.HTML .Comment:after{
+	content: " -->"
+}
+.HTML .Comment:before{
+	content: "<!-- "
+}
+.HTML .Property:after{
+	content: '"';
+}
+.HTML .Property:before{
+	content: " ";
+}
+.HTML .PropertyName{
+	color: #a6e22e;
+}
+.HTML .PropertyValue{
+	color: #e6db74;
+}
+.HTML .PropertyName:after{
+	content: '="';
+	color: white;
+}
+.HTML .Tag:after{
+	content: ">"
+}
+.HTML .Tag:before{
+	content: "<"
+}
+.HTML .Tag .Content:after{
+	content: "</";
+}
+.HTML .Tag .Content:before{
+	content: ">"
+}
+.HTML .Tag .Type{
+	color: #f92672;
+}
+.JS{
+	color: white;
+}
+.JS .Identation{
+	padding-left: 12px;
+}
+.JS .Comment{
+	color: slategray;
+}
+.JS .Comment:after{
+	content: none;
+}
+.JS .Comment:before{
+	content: "// ";
+}
+.JS .LightBlue{
+	color: #66d9ef;
+}
+.JS .Purple{
+	color: #ae81ff;
+}
+.JS .Yellow{
+	color: #e6db74;
 }
