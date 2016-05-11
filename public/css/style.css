@@ -18,6 +18,33 @@ body{
 	line-height: 1.5;
 	overflow-x: hidden;
 }
+code{
+	font-family: 'Monaco', 'Courier';
+    font-size: 15px;
+    line-height: 25px;
+    white-space: pre-wrap;
+    word-break: break-word;
+    word-spacing: normal;
+    background-color: #f7f8f9;
+    border: 1px solid #f2f4f6;
+    border-radius: 2px;
+    color: #576f7f;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+.Code{
+	font-family: 'Monaco', 'Courier';
+    font-size: 14px;
+    line-height: 25px;
+    background-color: #0e304b;
+    border-radius: 4px;
+    margin-bottom: 1.6rem;
+    padding: 32px;
+    overflow-x: auto;
+}
+.Console{
+	color: white;
+}
 .CSS{
 	color: white;
 }
@@ -112,4 +139,23 @@ html{
 }
 .JS .Yellow{
 	color: #e6db74;
+}
+td,th{
+	padding: 12px;
+	border-bottom: 1px solid #f2f4f6;
+}
+td:first-child{
+	text-align: right;
+}
+td:first-child,th:first-child{
+	padding-left: 0;
+}
+td:last-child,td:last-child{
+	padding-right: 0;
+}
+tr{
+	border-bottom: 1px solid #e6eaed;
+}
+th{
+	color: #576f7f;
 }

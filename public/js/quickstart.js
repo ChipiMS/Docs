@@ -168,19 +168,19 @@ Plaid.controller("main",function main($scope,$http){
 			title: "Reference",
 			body: '',
 			subtopics: [
-				{	
+				{
 					title: "/exchange_token Endpoint",
-					body: '<p></p>',
+					body: '<p>The /exchange_token endpoint is available in both the tartan (https://tartan.plaid.com) and production (https://api.plaid.com) environments.</p><table><thead><tr><th>METHOD</th><th>ENDPOINT</th><th>REQUIRED PARAMETERS</th><th>OPTIONAL PARAMETERS</th></tr></thead><tbody><tr><td>POST</td><td><code>/exchange_token</code></td><td><code>client_id, secret, public_token</code></td><td><code>account_id</code></td></tr></tbody></table><p>The /exchange_token endpoint has already been integrated into the plaid-node, plaid-go, plaid-ruby, and plaid-python client libraries. Support for plaid-java is coming soon.</p><p>If you are working with a library that does not yet support the /exchange_token endpoint you can simply make a standard HTTP request:</p><div class="Code Console"><div>$ curl -X POST https://tartan.plaid.com/exchange_token \</div><div>>   -d client_id="$plaid_client_id" \</div><div>>   -d secret="$plaid_secret" \</div><div>>   -d public_token="$public_token_from_plaid_link_module"</div></div>',
 				},
-				{	
+				{
 					title: "Simple integration",
 					body: '<p></p>',
 				},
-				{	
+				{
 					title: "Custom integration",
 					body: '<p></p>',
 				},
-				{	
+				{
 					title: "onSuccess Metadata",
 					body: '<p></p>',
 				},
