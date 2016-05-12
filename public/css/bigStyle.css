@@ -65,7 +65,7 @@ body{
 	position: relative;
 	padding-bottom: 120px;
 }
-#ContentRight p{
+#ContentRight p,#ContentRight table,#ContentRight ul{
 	margin-bottom: 16px;
 }
 .ContentRightContainer{
@@ -433,6 +433,13 @@ main{
 .TopicsLeftTop{
 	position: absolute;
 	left: 0;
+}
+ul ul{
+	padding-left: 10px;
+	margin-bottom: 0 !important;
+}
+ul ul ul{
+	padding-left: 20px;
 }
 .WhiteBlueGroup{
 	overflow: hidden;
