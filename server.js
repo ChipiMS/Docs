@@ -20,65 +20,53 @@ app.use(methodOverride());
 
 // application -------------------------------------------------------------
 	
-app.get("/",function(req, res) {
-  // Use res.sendfile, as it streams instead of reading the file into memory.
+app.get("/",function(req, res){
   res.sendfile(__dirname + '/public/html/home.html');
 });
-app.get("/solutions",function(req, res) {
-  // Use res.sendfile, as it streams instead of reading the file into memory.
+app.get("/solutions",function(req, res){
   res.sendfile(__dirname + '/public/html/solutions.html');
 });
-app.get("/products",function(req, res) {
-  // Use res.sendfile, as it streams instead of reading the file into memory.
+app.get("/products",function(req, res){
   res.sendfile(__dirname + '/public/html/products.html');
 });
-app.get("/docs",function(req, res) {
-  // Use res.sendfile, as it streams instead of reading the file into memory.
+app.get("/docs",function(req, res){
   res.sendfile(__dirname + '/public/html/docs.html');
 });
-app.get("/docs/quickstart",function(req, res) {
-  // Use res.sendfile, as it streams instead of reading the file into memory.
+app.get("/docs/quickstart",function(req, res){
   res.sendfile(__dirname + '/public/html/quickstart.html');
 });
-app.get("/docs/documentation",function(req, res) {
-  // Use res.sendfile, as it streams instead of reading the file into memory.
+app.get("/docs/documentation",function(req, res){
   res.sendfile(__dirname + '/public/html/documentation.html');
 });
-app.get("/docs/resources",function(req, res) {
-  // Use res.sendfile, as it streams instead of reading the file into memory.
+app.get("/docs/resources",function(req, res){
   res.sendfile(__dirname + '/public/html/resources.html');
 });
-app.get("/docs/faq",function(req, res) {
-  // Use res.sendfile, as it streams instead of reading the file into memory.
+app.get("/docs/faq",function(req, res){
   res.sendfile(__dirname + '/public/html/faq.html');
 });
-app.get("/company",function(req, res) {
-  // Use res.sendfile, as it streams instead of reading the file into memory.
+app.get("/company",function(req, res){
   res.sendfile(__dirname + '/public/html/company.html');
 });
-app.get("/contact",function(req, res) {
-  // Use res.sendfile, as it streams instead of reading the file into memory.
+app.get("/contact",function(req, res){
   res.sendfile(__dirname + '/public/html/contact.html');
 });
-app.get("/security",function(req, res) {
-  // Use res.sendfile, as it streams instead of reading the file into memory.
+app.get("/security",function(req, res){
   res.sendfile(__dirname + '/public/html/security.html');
 });
-app.get("/blog",function(req, res) {
-  // Use res.sendfile, as it streams instead of reading the file into memory.
+app.get("/blog",function(req, res){
   res.sendfile(__dirname + '/public/html/blog.html');
 });
-app.get("/fin",function(req, res) {
-  // Use res.sendfile, as it streams instead of reading the file into memory.
+app.get("/fin",function(req, res){
   res.sendfile(__dirname + '/public/html/fin.html');
 });
-app.get("/legal",function(req, res) {
-  // Use res.sendfile, as it streams instead of reading the file into memory.
+app.get("/legal",function(req, res){
   res.sendfile(__dirname + '/public/html/legal.html');
 });
-app.get("/status",function(req, res) {
-  // Use res.sendfile, as it streams instead of reading the file into memory.
+app.get("/status",function(req, res){
   res.sendfile(__dirname + '/public/html/status.html');
+});
+app.get("/Paybook",function(req, res){
+  res.sendfile(__dirname + '/public/html/Paybook.html');
 });
 
 // listen (start app with node server.js) ======================================
