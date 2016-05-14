@@ -110,199 +110,112 @@ Plaid.controller("main",function main($scope,$http){
 	};
 	$scope.info=[
 		{
-			title: "Overview",
-			body: "",
-			blue: "",
+			title: "Accounts",
+			body: '',
+			blue: '',
 			subtopics: [
 				{
-					title: "Introduction",
-					body: "<p>Welcome to Plaid! Here you will find information on how to integrate with and use the Plaid API. We've tried to make this documentation user-friendly and example-filled, but please drop us a line with any questions. If you're planning to use our API in production, you should take a look at our privacy policy.</p><p>The quickest way to get your integration up and running is to use Plaid Link: a secure, drop-in module that handles credential validation, multi-factor authentication, and error handling for each institution that we support, all while preventing credentials from ever hitting your server. Check out a demo.</p><p>The Plaid API is architected around REST, using standard HTTP verbs to communicate and HTTP response codes to indicate status and errors. All responses come in standard JSON. The Plaid API is served over HTTPS to ensure data privacy; HTTP is not supported. Every request must include your client_id and secret, except those sent to the Institution or Category endpoints. Request data can be included in either the body or query string, though using the body is recommended.</p>",
-					blue: "",
-				},
-				{
-					title: "Gaining Access",
-					body: "<p>To gain access to the Plaid API, please create an account on our website. Upon completion of the signup process and acknowledgement of our terms, you will be provided with a live client_id and secret on the dashboard.</p><p>Once you receive your client_id and secret, get started by adding a user and getting back transaction data. Simply send a request with the quickstart parameters, and you'll receive 30 days of transactions for the user.</p>",
-					blue: "Chipi sí sabe programar",
-				},
-				{
-					title: "Sandbox",
-					body: "<p>Our development environment works with both test user credentials and live accounts. The following test credentials allow access to the full API without the use of any real credentials:</p><p><strong>Credentials:</strong> The username plaid_test will return standard responses, and the username plaid_selections will force a selections MFA response for applicable institutions. All passwords except for plaid_good and plaid_locked will return as invalid. In certain cases, depending on the Financial Institution, you might be required to submit additional information in the credentials object such as a PIN number. For more details regarding these institution-specific requirements, check out our institutions endpoint.</p>",
-					blue: "Chipi sí sabe programar",
-				},
-				{
-					title: "Response Codes",
-					body: "<p>We use standard HTTP response codes for success and failure notifications, and our errors are further classified by block. In general, 200 HTTP codes respond to success, 40X codes are for client-related failures, and 50X codes are for Plaid-related issues. We're doing our best to maximize the former and diminish the latter; however, if you find consistent issues, please contact support immediately. For a full list of response codes, see response code detail below or visit our GitHub support page.</p>",
-					blue: "Chipi sí sabe programar",
-				},
-			]
-		},
-		{
-			title: "Chipi",
-			body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-			blue: "Chipi sí sabe programar",
-			subtopics: [
-				{	
-					title: "Introduction",
-					body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-					blue: "Chipi sí sabe programar",
+					title: "Request accounts for a specific user",
+					body: '<p><b>Parámetro</b></p><table><thead><tr><th>Campo</th><th>Tipo</th><th>Descripción</th></tr></thead><tbody><tr><td><code>id_account</code> (opcional)</td><td>String</td><td>Account ID.</td></tr><tr><td><code>id_credential</code> (opcional)</td><td>String</td><td>Credentials ID.</td></tr><tr><td><code>id_site</code> (opcional)</td><td>String</td><td>Site ID.</td></tr><tr><td><code>id_site_organization</code> (opcional)</td><td>String</td><td>Site Organization ID.</td></tr><tr><td><code>id_site_organization_type</code> (opcional)</td><td>String</td><td>Site Organization Type ID.</td></tr><tr><td><code>fields</code> (opcional)</td><td>String</td><td>Select fields to be returned.</td></tr><tr><td><code>limit</code> (opcional)</td><td>Number</td><td>Limit the number of rows to be returned.</td></tr><tr><td><code>skip</code> (opcional)</td><td>Number</td><td>Skip rows to be returned.</td></tr><tr><td><code>order</code> (opcional)</td><td>String</td><td>Order the rows to be returned.</td></tr><tr><td><code>api_key</code></td><td>String</td><td>Developer key.</td></tr><tr><td><code>id_user</code></td><td>String</td><td>User ID.</td></tr><tr><td><code>token</code></td><td>String</td><td>Session Token.</td></tr></tbody></table><p><b>Success 200</b></p><table><thead><tr><th>Campo</th><th>Tipo</th><th>Descripción</th></tr></thead><tbody><tr><td><code>id_account</code></td><td>String</td><td>Account ID.</td></tr><tr><td><code>id_user</code></td><td>String</td><td>User ID.</td></tr><tr><td><code>id_external</code></td><td>String</td><td>External ID.</td></tr><tr><td><code>id_credential</code></td><td>String</td><td>Credentials ID.</td></tr><tr><td><code>id_site</code></td><td>String</td><td>Site ID.</td></tr><tr><td><code>id_site_organization</code></td><td>String</td><td>Site Organization ID.</td></tr><tr><td><code>name</code></td><td>String</td><td>Account name.</td></tr><tr><td><code>number</code></td><td>Number</td><td>Account number.</td></tr><tr><td><code>balance</code></td><td>Number</td><td>Account balance.</td></tr><tr><td><code>site</code></td><td>Collection</td><td>[id_site: Site ID, name: Site name, avatar: Site avatar, cover: Site cover, small_cover: Site small cover].</td></tr><tr><td><code>dt_refresh</code></td><td>Timestamp</td><td>Date when account was last updated</td></tr></tbody></table>',
+					blue: '<p><b>Get</b></p><div class="Code Console GET">https://sync.paybook.com/v1/accounts</div><p><b>Success-Response:</b></p><div class="Code JS"><div>HTTP/<span class="LightBlue">1.1 200</span> OK</div><div>[</div><div class="Identation"><div> id_account: <span class="Green">"3406d3750b215b9a7f8b4523"</span>,</div><div>id_user: <span class="Green">"15f98da7784606ef028b4598"</span>,</div><div>id_external: <span class="Green">"37f98da4584806ef028b4567"</span>,</div><div>id_credential: <span class="Green">"4806d33c0b234af8028b478b"</span>,</div><div>id_site: <span class="Green">"98cf5728784839f72b8b449f"</span>,</div><div>id_site_organization: <span class="Green">"29cf4ff5784806152c8b4548"</span>,</div><div>name: <span class="Green">"My Bank Account"</span>,</div><div>number: <span class="Yellow">null</span>,</div><div>balance: <span class="LightBlue">1200</span>,</div><div>site: [</div><div class="Identation"><div>id_site: <span class="Green">"12cf5728784883f72b8b495f"</span>,</div><div>name: <span class="Green">"The Bank"</span>,</div><div>avatar: <span class="Green">"/images/8574c68f0b212a194a8c1819/avatar"</span>,</div><div>cover: <span class="Green">"/images/5944c68f0b212a194a8c3949/cover"</span>,</div><div>small_cover: <span class="Green">"/images/59454c68f0b212a194a8c5719/small_cover"</span></div></div><div>],</div><div>dt_refresh: <span class="LightBlue">1460816581</span></div></div><div>]</div></div>',
 				}
 			]
 		},
 		{
-			title: "Sol",
-			body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-			blue: "Chipi sí sabe programar",
+			title: "",
+			body: '',
+			blue: '',
 			subtopics: [
 				{	
-					title: "Introduction",
-					body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-					blue: "Chipi sí sabe programar",
+					title: "",
+					body: '',
+					blue: '',
 				}
 			]
 		},
 		{
-			title: "Introduction",
-			body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-			blue: "Chipi sí sabe programar",
+			title: "",
+			body: '',
+			blue: '',
 			subtopics: [
 				{	
-					title: "Introduction",
-					body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-					blue: "Chipi sí sabe programar",
+					title: "",
+					body: '',
+					blue: '',
 				}
 			]
 		},
 		{
-			title: "Chipi",
-			body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-			blue: "Chipi sí sabe programar",
+			title: "",
+			body: '',
+			blue: '',
 			subtopics: [
 				{	
-					title: "Introduction",
-					body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-					blue: "Chipi sí sabe programar",
+					title: "",
+					body: '',
+					blue: '',
 				}
 			]
 		},
 		{
-			title: "Sol",
-			body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-			blue: "Chipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programarChipi sí sabe programar",
+			title: "",
+			body: '',
+			blue: '',
 			subtopics: [
 				{	
-					title: "Introduction",
-					body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-					blue: "Chipi sí sabe programar",
+					title: "",
+					body: '',
+					blue: '',
 				}
 			]
 		},
 		{
-			title: "Introduction",
-			body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-			blue: "Chipi sí sabe programar",
+			title: "",
+			body: '',
+			blue: '',
 			subtopics: [
 				{	
-					title: "Introduction",
-					body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-					blue: "Chipi sí sabe programar",
+					title: "",
+					body: '',
+					blue: '',
 				}
 			]
 		},
 		{
-			title: "Chipi",
-			body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-			blue: "Chipi sí sabe programar",
+			title: "",
+			body: '',
+			blue: '',
 			subtopics: [
 				{	
-					title: "Introduction",
-					body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-					blue: "Chipi sí sabe programar",
+					title: "",
+					body: '',
+					blue: '',
 				}
 			]
 		},
 		{
-			title: "Sol",
-			body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-			blue: "Chipi sí sabe programar",
+			title: "",
+			body: '',
+			blue: '',
 			subtopics: [
 				{	
-					title: "Introduction",
-					body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-					blue: "Chipi sí sabe programar",
+					title: "",
+					body: '',
+					blue: '',
 				}
 			]
 		},
 		{
-			title: "Introduction",
-			body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-			blue: "Chipi sí sabe programar",
+			title: "",
+			body: '',
+			blue: '',
 			subtopics: [
 				{	
-					title: "Introduction",
-					body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-					blue: "Chipi sí sabe programar",
+					title: "",
+					body: '',
+					blue: '',
 				}
 			]
-		},
-		{
-			title: "Chipi",
-			body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-			blue: "Chipi sí sabe programar",
-			subtopics: [
-				{	
-					title: "Introduction",
-					body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-					blue: "Chipi sí sabe programar",
-				}
-			]
-		},
-		{
-			title: "Sol",
-			body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-			blue: "Chipi sí sabe programar",
-			subtopics: [
-				{	
-					title: "Introduction",
-					body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-					blue: "Chipi sí sabe programar",
-				}
-			]
-		},
-		{
-			title: "Introduction",
-			body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-			blue: "Chipi sí sabe programar",
-			subtopics: [
-				{	
-					title: "Introduction",
-					body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-					blue: "Chipi sí sabe programar",
-				}
-			]
-		},
-		{
-			title: "Chipi",
-			body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-			blue: "Chipi sí sabe programar",
-			subtopics: [
-				{	
-					title: "Introduction",
-					body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-					blue: "Chipi sí sabe programar",
-				}
-			]
-		},
-		{
-			title: "Sol",
-			body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-			blue: "Chipi sí sabe programar",
-			subtopics: [
-				{	
-					title: "Introduction",
-					body: "<p>The fastest way to get started with Plaid is by integrating with Plaid Link, a drop-in module that offers a secure, elegant authentication flow for each institution that Plaid supports. Read on to get started, or jump to the API reference, explore some sample apps, or tinker with the demo to see Link in action.</p>",
-					blue: "Chipi sí sabe programar",
-				}
-			]
-		},
+		}
 	];
 });

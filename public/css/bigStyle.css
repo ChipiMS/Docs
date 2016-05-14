@@ -458,7 +458,16 @@ ul ul ul{
 	color: #f7f8f9;
 	margin-left: 45%;
 	position: relative;
-	padding: 30px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+.WhiteBlueGroup .Blue .Code{
+	background-color: rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.1);
+}
+.WhiteBlueGroup .Blue p{
+	padding-left: 30px;
+	padding-right: 30px;
 }
 .WhiteSubtopic{
 	font-size: 22px;
