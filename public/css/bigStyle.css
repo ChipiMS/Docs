@@ -68,6 +68,9 @@ body{
 #ContentRight p,#ContentRight table,#ContentRight ul{
 	margin-bottom: 16px;
 }
+#ContentRight table{
+	width: 100%;
+}
 .ContentRightContainer{
 	width: 640px;
 	text-align: left;

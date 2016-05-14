@@ -150,7 +150,7 @@ td,th{
 	padding: 12px;
 	border-bottom: 1px solid #f2f4f6;
 }
-td:first-child{
+td:first-child,th:first-child{
 	text-align: right;
 }
 td:first-child,th:first-child{
