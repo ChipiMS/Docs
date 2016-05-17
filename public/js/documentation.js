@@ -269,26 +269,19 @@ Plaid.controller("main",function main($scope,$http){
 			]
 		},
 		{
-			title: "",
+			title: "Widget",
 			body: '',
 			blue: '',
 			subtopics: [
 				{
-					title: "",
-					body: '',
-					blue: '',
-				}
-			]
-		},
-		{
-			title: "",
-			body: '',
-			blue: '',
-			subtopics: [
+					title: "Link Bank Account",
+					body: '<p>If you want to link an account, first you should select an institution from the options below.</p><img src="../img/widget1.png"><p>Then if the institution has multiple options, select one of them.</p><img src="../img/widget2.png"><p>This is how it should look.</p><img src="../img/widget3.png"><p>Now you should set your credentials and proceed to the next step.</p><img src="../img/widget4.png"><p>The widgets is going to send your credentials in order to link you account.</p><img src="../img/widget5.png"><p>And finally if everything is ok, your account will be successfully linked.</p><img src="../img/widget6.png"><p>But if something went wrong.</p><img src="../img/widget7.png">',
+					blue: '<p><b>Head</b></p><div class="Code Console">https://sync.paybook.com/v1/</div>',
+				},
 				{
-					title: "",
-					body: '',
-					blue: '',
+					title: "Link Tributary Services",
+					body: '<p>If you want to link a tributary service account, first you should switch to Tributary Services.</p><img src="../img/widget1.png"><p>Then select your tributary institution.</p><img src="../img/widget8.png"><p>This is how it should look.</p><img src="../img/widget9.png"><p>ow you should set your credentials and proceed to the next step.</p><img src="../img/widget10.png"><p>The widgets is going to send your credentials in order to link you account.</p><img src="../img/widget11.png"><p>And finally if everything is ok, your account will be successfully linked.</p><img src="../img/widget6.png">',
+					blue: '<p><b>Head</b></p><div class="Code Console">https://sync.paybook.com/v1/</div>',
 				}
 			]
 		}

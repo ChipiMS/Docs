@@ -454,6 +454,9 @@ ul ul ul{
 	width: calc(45% - 60px);
 	padding: 30px;
 }
+.WhiteBlueGroup .White img{
+	width: 100%;
+}
 .WhiteBlueGroup .Blue{
 	color: #f7f8f9;
 	margin-left: 45%;

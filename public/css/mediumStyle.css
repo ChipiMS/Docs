@@ -254,12 +254,14 @@ main{
 }
 .WhiteBlueGroup .Blue{
 	margin-left: 0;
-	padding-left: 24px;
-	padding-right: 24px;
 	padding-bottom: 32px;
 	padding-top: 56px;
 	margin-bottom: 16px;
 	background-color: rgb(14,48,75);
+}
+.WhiteBlueGroup .Blue>*{
+	padding-left: 24px;
+	padding-right: 24px;
 }
 .WhiteSubtopic{
 	font-size: 17px;

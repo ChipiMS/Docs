@@ -90,9 +90,9 @@
 						<div class="WhiteBlueGroup">
 							<div class="White">
 								<h1 class="WhiteTopic" id='{{"Topic"+$index}}'>{{topic.title}}</h1>
-								<div ng-bind-html="topic.body"></div>
+								<div ng-bind-html="topic.body" ng-hide="topic.body==''"></div>
 							</div>
-							<div class="Blue NextToWhiteTopic">
+							<div class="Blue NextToWhiteTopic" ng-hide="topic.blue==''">
 								<div ng-bind-html="topic.blue"></div>
 							</div>
 						</div>
