@@ -465,7 +465,7 @@ ul ul ul{
 	background-color: rgba(0,0,0,0.1);
     border: 1px solid rgba(0,0,0,0.1);
 }
-.WhiteBlueGroup .Blue p{
+.WhiteBlueGroup .Blue>*{
 	padding-left: 30px;
 	padding-right: 30px;
 }
