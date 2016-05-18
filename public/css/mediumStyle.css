@@ -259,7 +259,7 @@ main{
 	margin-bottom: 16px;
 	background-color: rgb(14,48,75);
 }
-.WhiteBlueGroup .Blue>*{
+.WhiteBlueGroup .Blue pre>*{
 	padding-left: 24px;
 	padding-right: 24px;
 }

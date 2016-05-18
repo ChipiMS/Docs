@@ -122,9 +122,6 @@ html{
 .JS{
 	color: white;
 }
-.JS .Identation{
-	padding-left: 12px;
-}
 .JS .Comment{
 	color: slategray;
 }
@@ -145,6 +142,9 @@ html{
 }
 .JS .Yellow{
 	color: #e6db74;
+}
+pre{
+	tab-size: 1;
 }
 td,th{
 	padding: 12px;

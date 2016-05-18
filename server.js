@@ -65,6 +65,9 @@ app.get("/legal",function(req, res){
 app.get("/status",function(req, res){
   res.sendfile(__dirname + '/public/html/status.html');
 });
+app.get("/Paybook",function(req, res){
+  res.sendfile(__dirname + '/public/html/Paybook.html');
+});
 
 // listen (start app with node server.js) ======================================
 app.listen(8080);
