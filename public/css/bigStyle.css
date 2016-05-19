@@ -33,11 +33,11 @@ article.Legal{
 }
 #Blue{
 	height: 100%;
-    position: absolute;
-    top: 0;
-    right: 0;
-    background-color: rgb(14,48,75);
-    width: 55%;
+	position: absolute;
+	top: 0;
+	right: 0;
+	background-color: rgb(14,48,75);
+	width: 55%;
 }
 body{
 	padding: 1.2vw;
@@ -65,7 +65,7 @@ body{
 	position: relative;
 	padding-bottom: 120px;
 }
-#ContentRight p,#ContentRight table,#ContentRight ul{
+#ContentRight ol,#ContentRight p,#ContentRight table,#ContentRight ul{
 	margin-bottom: 16px;
 }
 #ContentRight table{
@@ -74,6 +74,12 @@ body{
 .ContentRightContainer{
 	width: 640px;
 	text-align: left;
+}
+.ContentRightContainer a{
+	color: #0e304b;
+	display: initial;
+	text-decoration: underline;
+	cursor: pointer;
 }
 .ContentRightContainer h1{
 	padding-top: 120px;
@@ -86,6 +92,9 @@ body{
 	margin-bottom: 16px;
 	font-size: 22px;
 	color: #0e304b;
+}
+.ContentRightContainer img{
+	width: 100%;
 }
 .DocsCard{
 	border-color: rgba(0,39,69,0.11);
@@ -181,6 +190,51 @@ footer{
 .FooterMenu{
 	margin-bottom: 16px;
 }
+.Libraries{
+	position: absolute;
+	padding-left: 0;
+	box-shadow: 0 0 5px rgba(19,49,69,0.1);
+	background-color: #008ae0;
+	color: white;
+	width: 0;
+	height: 0;
+	overflow: hidden;
+	transition: .35s width, .35s height;
+}
+.Libraries h5{
+	font-size: 25px;
+	display: inline-block;
+	line-height: 30px;
+	position: relative;
+	top: -7px;
+}
+.Libraries img{
+	display: inline-block;
+	width: 30px;
+}
+.Libraries li{
+	padding-left: 13px;
+	padding-top: 13px;
+	padding-bottom: 13px;
+	border-top: 1px solid white;
+	height: 30px;
+}
+@keyframes ShowLibraries{
+	from{
+		width: 0px;
+		height: 0px;
+	}
+	to{
+		width: 183px;
+		height: 342px;
+	}
+}
+.LibrariesVisible{
+	width: 215px;
+	height: 342px;
+	animation-name: ShowLibraries;
+	animation-duration: .35s;
+}
 main{
 	background: #fff;
 	border-radius: 4px;
@@ -237,9 +291,9 @@ main{
 .NavigationLeft span{
 	cursor: pointer;
 	position: absolute;
-    line-height: 40px;
-    font-size: 25px;
-    font-weight: bolder;
+	line-height: 40px;
+	font-size: 25px;
+	font-weight: bolder;
 }
 .NavigationItem{
 	display: inline-block;
@@ -333,14 +387,14 @@ main{
 }
 .ResourcesCard{
 	border: 1px solid #f2f4f6;
-    border-radius: 4px;
-    box-shadow: 0 0 5px rgba(19,49,69,0.1);
-    display: inline-block;
-    padding: 20px;
-    height: 54px;
-    position: relative;
-    text-decoration: none;
-    transition: box-shadow 300ms cubic-bezier(0.23, 1.2, 0.32, 1);
+	border-radius: 4px;
+	box-shadow: 0 0 5px rgba(19,49,69,0.1);
+	display: inline-block;
+	padding: 20px;
+	height: 54px;
+	position: relative;
+	text-decoration: none;
+	transition: box-shadow 300ms cubic-bezier(0.23, 1.2, 0.32, 1);
 	margin-left: 8px;
 	margin-right: 8px;
 	margin-bottom: 16px;
@@ -365,17 +419,45 @@ main{
 }
 .ResourcesCard img{
 	float: left;
-    height: 50px;
-    margin-right: 2rem;
-    min-width: 50px;
+	height: 50px;
+	margin-right: 2rem;
+	min-width: 50px;
 }
 .ResourcesCard p{
 	font-family: 'Monaco', 'Courier';
-    font-size: 16px;
-    white-space: pre-wrap;
-    word-break: break-word;
-    word-spacing: normal;
-    color: #576f7f;
+	font-size: 16px;
+	white-space: pre-wrap;
+	word-break: break-word;
+	word-spacing: normal;
+	color: #576f7f;
+}
+.SelectLibrary{
+	font-weight: lighter;
+	background-color: #008ae0;
+	color: white;
+	padding: 10px;
+}
+.SelectLibrary h5{
+	font-size: 25px;
+	display: inline-block;
+	line-height: 30px;
+	position: relative;
+	top: -7px;
+}
+.SelectLibrary h6{
+	font-size: 11px;
+	padding-left: 5px;
+	line-height: 22px;
+}
+.SelectLibrary img{
+	width: 30px;
+	height: 30px;
+	display: inline-block;
+}
+.SelectLibrary span{
+	position: relative;
+	font-size: 13px;
+	top: -7px;
 }
 .Subnavigation{
 	position: relative;
@@ -466,7 +548,7 @@ ul ul ul{
 }
 .WhiteBlueGroup .Blue .Code{
 	background-color: rgba(0,0,0,0.1);
-    border: 1px solid rgba(0,0,0,0.1);
+	border: 1px solid rgba(0,0,0,0.1);
 }
 .WhiteBlueGroup .Blue pre>*{
 	padding-left: 30px;

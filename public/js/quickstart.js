@@ -2,6 +2,15 @@ var Plaid=angular.module('Plaid',["ngSanitize"]);
 Plaid.controller("main",function main($scope,$http){
 	$scope.actualTopic;
 	$scope.actualSubtopic;
+	$scope.selectedLibrary={title: "Ruby",img: "ruby.png"};
+	$scope.libraries=[
+		{title: "Ruby",img: "ruby.png"},
+		{title: "PHP",img: "php.png"},
+		{title: "Java",img: "java.png"},
+		{title: ".NET",img: "dotnet.png"},
+		{title: "Node.js",img: "nodejs.png"},
+		{title: "Python",img: "python.png"}
+	]
 	$(document).scroll(function(){
 		if(document.body.scrollTop<178){
 			$("#TopicsLeft").addClass("TopicsLeftTop");
@@ -46,6 +55,7 @@ Plaid.controller("main",function main($scope,$http){
 		$(".NavigationBlocker").css("display","");
 		$(".NavigationCenter").removeClass("NavigationCenterSmall");
 		$(".Subnavigation ul").removeClass("SubnaviationShowUl");
+		$(".Libraries").removeClass("LibrariesVisible");
 	};
 	$scope.init=function(){
 		if(document.body.scrollTop<178){
@@ -99,6 +109,14 @@ Plaid.controller("main",function main($scope,$http){
         	scrollTop: $("#Topic"+topic).offset().top+1
 	    }, 1000);
 	};
+	$scope.selectLibrary=function(pos){
+		$scope.selectedLibrary=$scope.libraries[pos];
+		//aquí hago los cambios
+	};
+	$scope.showLibraries=function(event){
+		event.stopPropagation();
+		$(".Libraries").addClass("LibrariesVisible");
+	};
 	$scope.showSmallViews=function(event){
 		event.stopPropagation();
 		$(".NavigationCenter").addClass("NavigationCenterSmall");
@@ -110,32 +128,68 @@ Plaid.controller("main",function main($scope,$http){
 	};
 	$scope.info=[
 		{
-			title: "Overview",
-			body: '<p>Sync API is architected around REST, using standard HTTP verbs to communicate and HTTP response codes to indicate status and errors. All responses come in standard JSON. It is served over HTTPS to ensure data privacy; HTTP is not supported.</p><div class="Code Console">https://sync.paybook.com/v1/</div>',
+			title: "Requerimientos",
+			body: ['<ul><li>Manejo básico de linea de comandos</li><li>Tener el comando <a href="https://curl.haxx.se/docs/manpage.html">cURL</a> instalado en linea de comandos</li><li>Un API KEY de <a href="https://www.paybook.com/syncdocs#api-Overview-Overview">Sync API</a></li></ul>'],
 			subtopics: []
 		},
 		{
-			title: "Request",
-			body: '',
-			subtopics: [
-				{	
-					title: "Parameters",
-					body: '<p>Parameters can be send on via the query string or encoded in the payload body of the request. They are not enforce to use on a particular way of sending it, but if the parameter is absent it can trigger a status 400 response. When sending parameters via the payload body the request content type must be set to the following:</p><p><b>application/json :</b></p><p>when sending a JSON structure, the JSON key must match the parameter name in order to make them match, example: POST /some-path HTTP/1.1</p><div class="Code Console">Content-Type: application/json [ "token" : "56280b1578480664048b456b", "id_user" : "56280b2178480661048b4569" ]</div><p><b>multipart/form-data or application/x-www-form-urlencoded :</b></p><p>when sending form data</p><div class="Code Console">POST /some-path HTTP/1.1 Content-Type: application/x-www-form-urlencoded token=5620b1578480664048b456b&id_user=56280b2178480661048b4569</div><div class="Code Console">https://sync.paybook.com/v1/</div>',
-				},
-				{	
-					title: "Authentication",
-					body: '<p>Some resources can be authenticated in two ways:</p><ul><li>api_key and id_user : Developer key and User ID</li><li>token : Session token</li></ul><p>On more specific developer endpoints only the api_key will be required.</p><div class="Code Console">https://sync.paybook.com/v1/</div>',
-				}
-			]
-		},
-		{
-			title: "Response",
-			body: '<p>Almost every response body returns a JSON structure (unless specified). There are four main keys:</p><ul><li><b>code</b>: This is the same as the HTTP Response code. Expect any of the following codes:<ul><li>200: <b>Success</b> (request finished correctly)</li><li>400: <b>Bad Request</b> Invalid parameter (missing a parameter or invalid value for a parameter)</li><li>401: <b>Unauthorized</b> (invalid API Key or Session Token)</li><li>402: <b>Payment Required</b> (the API Key has a pending payment)</li><li>403: <b>Forbidden</b> (the authorization parameters are invalid for that specific endpoint)</li><li>404: <b>Not Found</b> (end point was not found)</li><li>500: <b>Internal Server Error</b> (server error)</li><li>503: <b>Service Unavailable</b> (schedule maintenance)</li></ul></li><li><b>status</b>: Boolean value that indicates if the request finished correctly or not:<ul><li>true : if response code is 200 and the request finish correctly</li><li>false :<ul><li>if response code is 400, 401, 402, 403, 404, 500, 503 expect this value to be false</li><li>if response code is 200, and the current operation didn\'t finish correctly, Example: trying to delete an invalid id of a given resource</li></ul></li></ul></li><li><b>message</b>: String error message for that specific request. Expect this to be null if no error was thrown.</li><li><b>response</b>: This is the response of the request, the default value is null, but it can also be an array or scalar variable depending on the end point.</li></ul><div class="Code Console">https://sync.paybook.com/v1/</div>',
+			title: "Gestión de Usuarios",
+			body: ['<p>Lo primero que tienes que hacer para sincronizar una institución por medio de Sync API es la gestión de usuarios. La estructura en Sync es la siguiente:</p><img src="../img/quickstart1.png"><p>Es decir tu podrás registrar muchos usuarios por medio de tu <b>API_KEY</b> y, a su vez, cada uno de estos usuarios registrará cuentas de las instituciones que desea sincronizar. Al final todas las cuentas sincronizadas de cada una de las instituciones que un usuario dio de alta estarán ligadas a tu <b>API_KEY</b>.</p>'],
 			subtopics: []
 		},
 		{
-			title: "Quickstart",
-			body: '<p>The first thing you will need is to manager your users, you can do this by interacting with the /users endpoints</p><p>Create user</p><div class="Code Console">/v1/users?_method=post&api_key=[api_key]&name=Test</div><p>View users</p><div class="Code Console">/v1/users?api_key=[api_key]</div><p>Delete a user</p><div class="Code Console">/v1/users/[id_user]?api_key=[api_key]</div><p>It is a best practice to create session for your users with the /sessions endpoints (this is recommended in order to not make your api_key public)</p><p>Create session</p><div class="Code Console">/v1/session?_method=post&api_key=[api_key]&id_user=[id_user]</div><p>Check if a session is valid</p><div class="Code Console">/v1/session/[token]/verify</div><p>Delete a session</p><div class="Code Console">/v1/session/[token]?_method=delete</div><p>Next you will need to get or display the site catalogue with the /catalogues endpoints (accept a user session (token) or the api_key)</p><p>View sites group by organizations</p><div class="Code Console">/v1/catalogues/organizations/sites?api_key=[api_key]</div><p>View sites (ungrouped)</p><div class="Code Console">/v1/catalogues/sites?token=[token]</div><p>Next you will need to manage the user credentials with the /credentials endpoints (accept a user session (token) or the api_key)</p><p>Create credentials</p><div class="Code Console">/v1/credentials?_method=post&api_key=[api_key]&id_user=[id_user]&id_site=[id_site]&credentials%5Busername%5D=[value]&credentials%5Bpassword%5D=[value]</div><p>Note: you will need to reference the "credentials" field for each site in order to create the credentials array in the example</p><p>View credentials</p><div class="Code Console">/v1/credentials?api_key=[api_key]&id_user=[id_user]</div><p>Delete credentials</p><div class="Code Console">/v1/credentials/[id_credential]?api_key=[api_key]&id_user=[id_user]</div><p>Note: this will remove all data like transactions, attachments and accounts</p><p>Check the socket to know the current job status</p><ul><li>1xx - Job Information<ul><li><b>100 - Register</b> API register a new job (via a REST request)</li><li><b>101 - Starting</b> Sync got job information to start working</li><li><b>102 - Running</b> Sync is running (login successful)</li></ul></li><li>2xx - Success<ul><li><b>200 - Finish</b> Data was processed correctly</li><li><b>201 - Pending</b> Data was processed correctly, pending data will continue to download in the background</li><li><b>202 - NoTransactions</b> Job finish correctly, but there where no transactions found</li></ul></li><li>4xx - User Errors<ul><li><b>401 - Unauthorized</b> Invalid credentials (user and password are not valid)</li><li><b>405 - Locked</b> Account is locked</li><li><b>406 - Conflict</b> User is already logged</li><li><b>410 - Waiting</b> Waiting for two-fa</li><li><b>411 - TwofaTimeout</b> Timeout for user input on two-fa</li></ul></li><li>5xx - System Errors<ul><li><b>500 - Error</b> Bank requires attention (Sync error)</li><li><b>501 - Unavailable</b> Bank temporarily unavailable (timeout)</li><li><b>504 - ScriptTimeout</b> Sync timeout</li><li><b>505 - ScriptNotFound</b> Script not found</li></ul></li></ul><p>Retrieve credentials generated data with the /transactions, /accounts and /attachments endpoints</p><p>View accounts</p><div class="Code Console">/v1/accounts?api_key=[api_key]&id_user=[id_user]</div><p>View attachments</p><div class="Code Console">/v1/attachments?api_key=[api_key]&id_user=[id_user]</div><p>Count attachments</p><div class="Code Console">/v1/attachments/count?api_key=[api_key]&id_user=[id_user]</div><p>Download an attachment</p><div class="Code Console">/v1/attachments/[id_attachment]?api_key=[api_key]&id_user=[id_user]</div><p>Get extracted data from attachment</p><div class="Code Console">/v1/attachments/[id_attachment]/extra?api_key=[api_key]&id_user=[id_user]</div><p>View transactions</p><div class="Code Console">/v1/transactions/[id_transaction]?api_key=[api_key]&id_user=[id_user]</div><p>Count transactions</p><div class="Code Console">/v1/transactions/[id_transaction]/count?api_key=[api_key]&id_user=[id_user]</div><div class="Code Console">https://sync.paybook.com/v1/</div>',
+			title: "Conexión con Sync API",
+			body: ['<p>En este tutorial implementaremos <a href="https://www.paybook.com/syncdocs#api-Overview-Overview">Sync API</a> por medio de la interfaz <a href="https://curl.haxx.se/docs/manpage.html">cURL</a> desde la línea de comandos. La interacción entre tu terminal y el API se muestra a continuación:</p><img src="../img/quickstart2.png"><p>En resumen, estaremos consumiendo los enpoints GET/POST/PUT/DELETE de <a href="https://www.paybook.com/syncdocs#api-Overview-Overview">Sync API</a> a través de nuestra línea de comandos.</p>'],
+			subtopics: []
+		},
+		{
+			title: "Flujo del Tutorial",
+			body: ['<p>En este tutorial haremos lo siguiente:</p><ol><li>Crearemos un usuario nuevo que ligaremos a nuestra <b>API_KEY</b></li><li>Consultaremos los usuarios que están ligados a nuestra <b>API_KEY</b></li><li>Iniciaremos sesión con el usuario creado en el paso 1</li><li>Verificaremos la sesión creada en el paso 3.</li></ol><p>A partir de aquí ya tendremos una sesión iniciada (sesión del usuario creada en el paso 1) por lo que las siguientes acciones estarán ligadas a dicho usuario:</p><ol><li>Consultaremos los catálogos de las instituciones que el usuario puede sincronzar con <a href="https://www.paybook.com/syncdocs#api-Overview-Overview">Sync API</a>.</li><li>Registraremos las credenciales del usuario en una institución (SAT).</li><li>Revisaremos el estatus de sincronización para las credenciales registradas.</li><li>Consultaremos las transacciones sincronizadas.</li></ol><p>Esperemos lo disfrutes ¡Aquí vamos!</p>'],
+			subtopics: []
+		},
+		{
+			title: "1. Creación de Usuario",
+			body: ['<p>Crear un usuario por medio de <a href="https://www.paybook.com/syncdocs#api-Overview-Overview">Sync API</a> es muy sencillo, para esto únicamente requieres tu <b>API_KEY</b> y un nombre de usuaario para el usuario que deseas crear.</p><p><b>INPUT:</b> api_key y name</p><p><b>OUTPUT:</b> id_user</p><div class="Code Console">curl -X POST -H "Content-type:application/json" -d \'{"api_key":"your_api_key","name":"some_name"}\' https://sync.paybook.com/v1/users</div><p>Con esto se habrá creado un nuevo usuario "name" ligado a tu <b>API_KEY</b>, la respuesta de <a href="https://www.paybook.com/syncdocs#api-Overview-Overview">Sync API</a> debe ser la siguiente:</p><div class="Code Console">{"code":200,"status":true,"message":null,"response":{"id_user":"573a91a90b212a0e3e8b4596","id_external":null,"name":"curlhugo1","dt_create":1463456169,"dt_modify":null}}</div><p><b>Importante:</b> no olvides remplazar el valor de los parámetros en todos los comandos.</p>'],
+			subtopics: []
+		},
+		{
+			title: "2. Consulta de Usuarios",
+			body: ['<p>Para verificar los usuarios que están ligados a tu <b>API_KEY</b>, es decir, a tu cuenta de <a href="https://www.paybook.com/syncdocs#api-Overview-Overview">Sync API</a>, ejecuta el siguiente comando:</p><p><b>INPUT:</b> api_key </p><p><b>OUTPUT:</b> id_user</p><div class="Code Console">curl -X GET -H "Content-type:application/json" -d \'{"api_key":"your_api_key"}\' http://sync.paybook.com/v1/users</div><p>Para efectos de este tutorial la ejecución de este comando te debe regresar el usuario registrado anteriormente:</p><div class="Code Console">{"code":200,"status":true,"message":null,"response":[{"id_user":"573a91a90b212a0e3e8b4596","id_external":null,"name":"curlhugo1","dt_create":1463518052,"dt_modify":null}]}</div>'],
+			subtopics: []
+		},
+		{
+			title: "3. Inicio de Sesión",
+			body: ['<p>Para poder sincronizar una cuenta de alguna institución lo primero que tenemos que hacer es iniciar sesión con el usuario que deseamos sincronizar. Para esto es necesario tener el id del usuario i.e. id_user y ejecutar:</p><p><b>INPUT:</b> api_key y id_user </p><p><b>OUTPUT:</b> token</p><div class="Code Console">curl -X POST -H "Content-type:application/json" -d \'{"api_key":"your_api_key","id_user":"id_user_value"}\' https://sync.paybook.cm/v1/sessions</div><p>Este comando nos regresará un token e.g. 701c899236ea141d25f63c88d9f09230 como se muestra a continuación:</p><div class="Code Console">{"code":200,"status":true,"message":null,"response":{"token":"701c899236ea141d25f63c88d9f09230"}}</div><p><b>Importante:</b> El token tiene un periodo de expiración de 5 minutos después de su creación.</p>'],
+			subtopics: []
+		},
+		{
+			title: "4. Verificación de la Sesión",
+			body: ['<p>No está demás verificar la validez de la sesión i.e. del token, para esto ejecutar el siguiente comando:</p><p><b>INPUT:</b> token </p><p><b>OUTPUT:</b> code 200 o code 401</p><div class="Code Console">curl \'https://sync.paybook.com/v1/sessions/701c899236ea141d25f63c88d9f09230/verify\'</div><p>Si la sesión es valida nos regresará lo siguiente:</p><div class="Code Console">{"code":200,"status":true,"message":null,"response":null}</div><p>Si la sesión ya no es valida tendremos un código 401 <b>Unauthoraized</b></p><div class="Code Console">{"code":401,"status":false,"message":"Unauthorized","response":null}</div>'],
+			subtopics: []
+		},
+		{
+			title: "5. Consulta de Catálogos de Instituciones",
+			body: ['<p>Una vez que hemos iniciado sesión tenemos que consultar el catálogo de instituciones que <a href="https://www.paybook.com/syncdocs#api-Overview-Overview">Sync API</a> tiene para nosotros de tal manera que podamos elegir la institución que queremos sincronizar para este usuario.</p><p><b>INPUT:</b> token</p><p><b>OUTPUT:</b> catalogues</p><div class="Code Console">curl \'https://sync.paybook.com/v1/catalogues/sites?token=your_token\'</div>'],
+			subtopics: []
+		},
+		{
+			title: "6. Sincronizar una Institución",
+			body: ['<p>El siguiente paso consiste en seleccionar una institución del catálogo para sincronizarla, para efectos de este tutorial seleccionaremos el SAT, para esto obtenemos el id del sitio del SAT analizando el catálogo, se debe obtener el siguiente valor:</p><div class="Code Console">id_site = \'56cf5728784806f72b8b456f\'</div><p>Una vez que hemos seleccionado la institución hay que dar de alta las credenciales de nuestro usuario en esa institución, en el caso particular del SAT las credenciales deben ser el <b>RFC</b> así como su Clave de Identificación Electrónica Confidencial, o mejor conocida como <b>CIEC</b>:</p><p><b>INPUT:</b> token, id_site, some_rfc y some_ciec</p><p><b>OUTPUT:</b> url_status</p><div class="Code Console">curl -X POST -H "Content-type:application/json" -d \'{"token":"your_token","id_site":"id_site","credentials":{"rfc" : "some_rfc","password" : "some_ciec"}}\' https://sync.paybook.com/v1/credentials</div><p>Si las credenciales fueron registradas corréctamente obtendremos un resultado como el siguiente:</p><div class="Code Console">{"code":200,"status":true,"message":null,"response":{"id_credential":"573b88f90b212a033e8b4582","username":"O***********9","ws":"wss:\/\/sync.paybook.com\/v1\/status\/573b88f90b212af83d8b457f","status":"https:\/\/sync.paybook.com\/v1\/jobs\/573b88f90b212af83d8b457f\/status","twofa":"https:\/\/sync.paybook.com\/v1\/jobs\/573b88f90b212af83d8b457f\/twofa"}}</div><p><b>Importante:</b> guardar el valor del campo de <b>status</b> -- es una url -- ya que se utilizará más adelante.</p>'],
+			subtopics: []
+		},
+		{
+			title: "7. Verificar creación de Credenciales",
+			body: ['<p>Como un paso de verificación podemos revisar las credenciales registradas para un usuario:</p><p><b>INPUT:</b> api_key y id_user </p><p><b>OUTPUT:</b> credentials_retrieved</p><div class="Code Console">curl \'https://sync.paybook.com/v1/credentials?api_key=b7e57daf2b782bee22f05e38a1823c3a&id_user=573a91a90b212a0e3e8b4596\'</div><p>Y obtendremos un resultado parecido:</p><div class="Code Console">{"code":200,"status":true,"message":null,"response":[{"id_credential":"573b88f90b212a033e8b4582","id_site":"56cf5728784806f72b8b456f","id_site_organization":"56cf4ff5784806152c8b4568","id_site_organization_type":"56cf4f5b784806cf028b4569","username":"O***********9","dt_refresh":1463465010}]}</div>'],
+			subtopics: []
+		},
+		{
+			title: "8. Revisar el Estatus de Sincronización",
+			body: ['<p>Una vez que hemos registrado una credencial y hemos verificado que ésta se haya guardado corréctamente, el siguiente paso consiste en checar el estatus de sincronización para este contribuyente. Para esto haremos uso del valor que guardamos de <b>url_status</b> que obtuvimos anteriormente al crear credenciales, únicamente hay que agregar el valor de nuestro token de sesión:</p><div class="Code Console">curl &ltvalor_status&gt; + ? + token=&ltsome_token&gt;</span></div><p>Un ejemplo sería el siguiente:</p><p><b>INPUT:</b> token </p><p><b>OUTPUT:</b> status</p><div class="Code Console">curl \'https://sync.paybook.com/v1/jobs/573b88f90b212af83d8b457f/status?token=68f00287cde168ddbb851d90f5be3341\'</div><p>Al ejecutar el comando anterior obtendremos el siguiente resultado:</p><div class="Code Console">{"code":200,"status":true,"message":null,"response":[{"code":100},{"code":101},{"code":102},{"code":200}]}</div><p>Estos son una serie de códigos que indican el estatus de sincronización de la cuenta del SAT que el usuario registró. La descripción de los códigos se muestra a continuación:</p><table><thead><tr><th>Código</th><th>Descripción</th></tr></thead><tbody><tr><td>100</td><td>Se registró un nuevo Job en el API</td></tr><tr><td>101</td><td>Se obtuvo el Job registrado y empezará a trabajar</td></tr><tr><td>102</td><td>El login fue exitóso y la información está siendo sincronizada</td></tr><tr><td>200</td><td>Los datos han sido procesados exitósamente</td></tr><tr><td>201</td><td>Los fatos han sido procesados exitósamente, se continuará con la descarga</td></tr><tr><td>202</td><td>No se encontraron transacciones</td></tr></tbody></table>'],
+			subtopics: []
+		},
+		{
+			title: "9. Consultar Transacciones",
+			body: ['<p>Una vez que se registraron las credenciales En caso de tener en el estatus un código 200, 201 o 202 podemos consultar las transacciones sincronizadas. Para esto ejecutamos el siguiente comando:</p><p><b>INPUT:</b> token y id_site</p><p><b>OUTPUT:</b> transactions_count</p><div class="Code Console">curl \'https://sync.paybook.com/v1/transactions/count?token=your_token&id_site=some_id_site\'</div><p>Y esto nos regresará una respuesta con el número de transacciones sincronizadas:</p><div class="Code Console">{"code":200,"status":true,"message":null,"response":{"count":121}}</div><p>Si queremos consultar las transacciones directamente ejecutamos:</p><p><b>INPUT:</b> token y id_site </p><p><b>OUTPUT:</b> transactions</p><div class="Code Console">curl \'https://sync.paybook.com/v1/transactions?token=your_token&id_site=some_id_site\'</div><p>Y nos regresará un arreglo de transacciones como la siguiente:</p><div class="Code Console">{"id_transaction":"573b8922234283ad738b45da","id_user":"573a91a90b212a0e3e8b4596","id_external":null,"id_site":"56cf5728784806f72b8b456f","id_site_organization":"56cf4ff5784806152c8b4568","id_site_organization_type":"56cf4f5b784806cf028b4569","id_account":"573b8921234283ad738b4567","id_account_type":"546d4904df527d1844a2e18d","is_disable":0,"description":"CREACIONES DE TECNOLOGIA AVANZADA DE MEXICO SA DE CV","amount":6834.93,"dt_transaction":1461960603,"dt_refresh":1463519574}</div>'],
 			subtopics: []
 		}
 	];
