@@ -119,6 +119,9 @@ html{
 .HTML .Tag .Type{
 	color: #f92672;
 }
+input{
+	outline: -webkit-focus-ring-color auto 5px;
+}
 .JS{
 	color: white;
 }

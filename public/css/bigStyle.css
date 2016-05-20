@@ -65,7 +65,7 @@ body{
 	position: relative;
 	padding-bottom: 120px;
 }
-#ContentRight ol,#ContentRight p,#ContentRight table,#ContentRight ul{
+#ContentRight .InputContainer,#ContentRight ol,#ContentRight p,#ContentRight table,#ContentRight ul{
 	margin-bottom: 16px;
 }
 #ContentRight table{

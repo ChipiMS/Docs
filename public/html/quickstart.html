@@ -88,7 +88,6 @@
 				<div id="ContentRight">
 					<center>
 						<div class="ContentRightContainer">
-							
 							<div class="SelectLibrary" ng-click="showLibraries($event)">
 								<h6>Librería servidor</h6>
 								<img src="{{'../img/'+selectedLibrary.img}}">
@@ -103,10 +102,9 @@
 							<p style="margin-top: 120px;">El objetivo de este tutorial es implementar <a href="https://www.paybook.com/syncdocs#api-Overview-Overview">Sync API</a>. Entender como funciona el sistema y las interacciones que se establecen entre tu aplicación y el API.</p>
 							<div ng-repeat="topic in info">
 								<h1 id='{{"Topic"+$index}}'>{{topic.title}}</h1>
-								<div ng-repeat="body in topic.body" ng-bind-html="body"></div>
-								<div ng-repeat="subtopic in topic.subtopics">
-									<h2 id='{{"Topic"+$parent.$index+"_"+$index}}'>{{subtopic.title}}</h2>
-									<div ng-repeat="body in subtopic.body" ng-bind-html="body"></div>
+								<div ng-repeat="body in topic.body">
+									<div ng-show="body[0]=='<'" ng-bind-html="body"></div>
+									<div class="InputContainer" ng-show="body[0]!='<'">{{body[2]}}<input placeholder="{{body[0]}}" type="text" ng-model="body[1]" ng-keyup="inputController($parent.$index,$index)"></div>
 								</div>
 							</div>
 						</div>
