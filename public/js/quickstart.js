@@ -9,7 +9,14 @@ Plaid.controller("main",function main($scope,$http){
 		{title: ".NET",img: "dotnet.png"},
 		{title: "Node.js",img: "nodejs.png"},
 		{title: "Python",img: "python.png"}
-	]
+	];
+	$scope.api_key="your_api_key";
+	$scope.ciec="some_ciec";
+	$scope.id_site="some_id_site";
+	$scope.id_user="id_user_value";
+	$scope.name="some_name";
+	$scope.rfc="some_rfc";
+	$scope.token="your_token";
 	$(document).scroll(function(){
 		if(document.body.scrollTop<178){
 			$("#TopicsLeft").addClass("TopicsLeftTop");
@@ -77,7 +84,80 @@ Plaid.controller("main",function main($scope,$http){
 		},500);
 	};
 	$scope.inputController=function(i,j){
-		console.log(i,j);
+		//console.log(i,j);
+		//api_key
+		if(j==1&&(i==4||(i==5||(i==6||i==10)))){
+			$scope.api_key=$scope.info[i].body[j][1];
+			//changeInputs
+			$scope.info[4].body[1][1]=$scope.api_key;
+			$scope.info[5].body[1][1]=$scope.api_key;
+			$scope.info[6].body[1][1]=$scope.api_key;
+			$scope.info[10].body[1][1]=$scope.api_key;
+			//changeCode
+			$scope.info[4].body[3]='<p><b>OUTPUT:</b> id_user</p><div class="Code Console">curl -X POST -H "Content-type:application/json" -d \'{"api_key":"'+$scope.api_key+'","name":"'+$scope.name+'"}\' https://sync.paybook.com/v1/users</div><p>Con esto se habrá creado un nuevo usuario "name" ligado a tu <b>API_KEY</b>, la respuesta de <a target="_blank" href="https://www.paybook.com/syncdocs#api-Overview-Overview">Sync API</a> debe ser la siguiente:</p><div class="Code Console">{"code":200,"status":true,"message":null,"response":{"id_user":"573a91a90b212a0e3e8b4596","id_external":null,"name":"curlhugo1","dt_create":1463456169,"dt_modify":null}}</div><p><b>Importante:</b> no olvides remplazar el valor de los parámetros en todos los comandos.</p>';
+			$scope.info[5].body[2]='<p><b>OUTPUT:</b> id_user</p><div class="Code Console">curl -X GET -H "Content-type:application/json" -d \'{"api_key":"'+$scope.api_key+'"}\' http://sync.paybook.com/v1/users</div><p>Para efectos de este tutorial la ejecución de este comando te debe regresar el usuario registrado anteriormente:</p><div class="Code Console">{"code":200,"status":true,"message":null,"response":[{"id_user":"573a91a90b212a0e3e8b4596","id_external":null,"name":"curlhugo1","dt_create":1463518052,"dt_modify":null}]}</div>';
+			$scope.info[6].body[3]='<p><b>OUTPUT:</b> token</p><div class="Code Console">curl -X POST -H "Content-type:application/json" -d \'{"api_key":"'+$scope.api_key+'","id_user":"'+$scope.id_user+'"}\' https://sync.paybook.cm/v1/sessions</div><p>Este comando nos regresará un token e.g. 701c899236ea141d25f63c88d9f09230 como se muestra a continuación:</p><div class="Code Console">{"code":200,"status":true,"message":null,"response":{"token":"701c899236ea141d25f63c88d9f09230"}}</div><p><b>Importante:</b> El token tiene un periodo de expiración de 5 minutos después de su creación.</p>';
+			$scope.info[10].body[3]='<p><b>OUTPUT:</b> credentials_retrieved</p><div class="Code Console">curl \'https://sync.paybook.com/v1/credentials?api_key='+$scope.api_key+'&id_user='+$scope.id_user+'\'</div><p>Y obtendremos un resultado parecido:</p><div class="Code Console">{"code":200,"status":true,"message":null,"response":[{"id_credential":"573b88f90b212a033e8b4582","id_site":"56cf5728784806f72b8b456f","id_site_organization":"56cf4ff5784806152c8b4568","id_site_organization_type":"56cf4f5b784806cf028b4569","username":"O***********9","dt_refresh":1463465010}]}</div>'
+		}
+		//name
+		if(i==4&&j==2){
+			$scope.name=$scope.info[i].body[j][1];
+			//changeCode
+			$scope.info[4].body[3]='<p><b>OUTPUT:</b> id_user</p><div class="Code Console">curl -X POST -H "Content-type:application/json" -d \'{"api_key":"'+$scope.api_key+'","name":"'+$scope.name+'"}\' https://sync.paybook.com/v1/users</div><p>Con esto se habrá creado un nuevo usuario "name" ligado a tu <b>API_KEY</b>, la respuesta de <a target="_blank" href="https://www.paybook.com/syncdocs#api-Overview-Overview">Sync API</a> debe ser la siguiente:</p><div class="Code Console">{"code":200,"status":true,"message":null,"response":{"id_user":"573a91a90b212a0e3e8b4596","id_external":null,"name":"curlhugo1","dt_create":1463456169,"dt_modify":null}}</div><p><b>Importante:</b> no olvides remplazar el valor de los parámetros en todos los comandos.</p>';
+		}
+		//id_user
+		if(j==2&&(i==6||i==10)){
+			$scope.id_user=$scope.info[i].body[j][1];
+			//changeInputs
+			$scope.info[6].body[2][1]=$scope.id_user;
+			$scope.info[10].body[2][1]=$scope.id_user;
+			//changeCode
+			$scope.info[6].body[3]='<p><b>OUTPUT:</b> token</p><div class="Code Console">curl -X POST -H "Content-type:application/json" -d \'{"api_key":"'+$scope.api_key+'","id_user":"'+$scope.id_user+'"}\' https://sync.paybook.cm/v1/sessions</div><p>Este comando nos regresará un token e.g. 701c899236ea141d25f63c88d9f09230 como se muestra a continuación:</p><div class="Code Console">{"code":200,"status":true,"message":null,"response":{"token":"701c899236ea141d25f63c88d9f09230"}}</div><p><b>Importante:</b> El token tiene un periodo de expiración de 5 minutos después de su creación.</p>';
+			$scope.info[10].body[3]='<p><b>OUTPUT:</b> credentials_retrieved</p><div class="Code Console">curl \'https://sync.paybook.com/v1/credentials?api_key='+$scope.api_key+'&id_user='+$scope.id_user+'\'</div><p>Y obtendremos un resultado parecido:</p><div class="Code Console">{"code":200,"status":true,"message":null,"response":[{"id_credential":"573b88f90b212a033e8b4582","id_site":"56cf5728784806f72b8b456f","id_site_organization":"56cf4ff5784806152c8b4568","id_site_organization_type":"56cf4f5b784806cf028b4569","username":"O***********9","dt_refresh":1463465010}]}</div>'
+		}
+		//token
+		if((i==12&&j==4)||(j==1&&(i==7||(i==8||(i==9||(i==11||i==12)))))){
+			$scope.token=$scope.info[i].body[j][1];
+			//changeInputs
+			$scope.info[7].body[1][1]=$scope.token;
+			$scope.info[8].body[1][1]=$scope.token;
+			$scope.info[9].body[1][1]=$scope.token;
+			$scope.info[11].body[1][1]=$scope.token;
+			$scope.info[12].body[1][1]=$scope.token;
+			$scope.info[12].body[4][1]=$scope.token;
+			//changeCode
+			$scope.info[7].body[2]='<p><b>OUTPUT:</b> code 200 o code 401</p><div class="Code Console">curl \'https://sync.paybook.com/v1/sessions/'+$scope.token+'/verify\'</div><p>Si la sesión es valida nos regresará lo siguiente:</p><div class="Code Console">{"code":200,"status":true,"message":null,"response":null}</div><p>Si la sesión ya no es valida tendremos un código 401 <b>Unauthoraized</b></p><div class="Code Console">{"code":401,"status":false,"message":"Unauthorized","response":null}</div>';
+			$scope.info[8].body[2]='<p><b>OUTPUT:</b> catalogues</p><div class="Code Console">curl \'https://sync.paybook.com/v1/catalogues/sites?token='+$scope.token+'\'</div>';
+			$scope.info[9].body[5]='<p><b>OUTPUT:</b> url_status</p><div class="Code Console">curl -X POST -H "Content-type:application/json" -d \'{"token":"'+$scope.token+'","id_site":"'+$scope.id_site+'","credentials":{"rfc" : "'+$scope.rfc+'","password" : "'+$scope.ciec+'"}}\' https://sync.paybook.com/v1/credentials</div><p>Si las credenciales fueron registradas corréctamente obtendremos un resultado como el siguiente:</p><div class="Code Console">{"code":200,"status":true,"message":null,"response":{"id_credential":"573b88f90b212a033e8b4582","username":"O***********9","ws":"wss:\/\/sync.paybook.com\/v1\/status\/573b88f90b212af83d8b457f","status":"https:\/\/sync.paybook.com\/v1\/jobs\/573b88f90b212af83d8b457f\/status","twofa":"https:\/\/sync.paybook.com\/v1\/jobs\/573b88f90b212af83d8b457f\/twofa"}}</div><p><b>Importante:</b> guardar el valor del campo de <b>status</b> -- es una url -- ya que se utilizará más adelante.</p>';
+			$scope.info[11].body[2]='<p><b>OUTPUT:</b> status</p><div class="Code Console">curl \'https://sync.paybook.com/v1/jobs/573b88f90b212af83d8b457f/status?token='+$scope.token+'\'</div><p>Al ejecutar el comando anterior obtendremos el siguiente resultado:</p><div class="Code Console">{"code":200,"status":true,"message":null,"response":[{"code":100},{"code":101},{"code":102},{"code":200}]}</div><p>Estos son una serie de códigos que indican el estatus de sincronización de la cuenta del SAT que el usuario registró. La descripción de los códigos se muestra a continuación:</p><table><thead><tr><th>Código</th><th>Descripción</th></tr></thead><tbody><tr><td>100</td><td>Se registró un nuevo Job en el API</td></tr><tr><td>101</td><td>Se obtuvo el Job registrado y empezará a trabajar</td></tr><tr><td>102</td><td>El login fue exitóso y la información está siendo sincronizada</td></tr><tr><td>200</td><td>Los datos han sido procesados exitósamente</td></tr><tr><td>201</td><td>Los fatos han sido procesados exitósamente, se continuará con la descarga</td></tr><tr><td>202</td><td>No se encontraron transacciones</td></tr></tbody></table>';
+			$scope.info[12].body[3]='<p><b>OUTPUT:</b> transactions_count</p><div class="Code Console">curl \'https://sync.paybook.com/v1/transactions/count?token='+$scope.token+'&id_site='+$scope.id_site+'\'</div><p>Y esto nos regresará una respuesta con el número de transacciones sincronizadas:</p><div class="Code Console">{"code":200,"status":true,"message":null,"response":{"count":121}}</div><p>Si queremos consultar las transacciones directamente ejecutamos:</p><p><b>INPUT:</b></p>';
+			$scope.info[12].body[6]='<p><b>OUTPUT:</b> transactions</p><div class="Code Console">curl \'https://sync.paybook.com/v1/transactions?token='+$scope.token+'&id_site='+$scope.id_site+'\'</div><p>Y nos regresará un arreglo de transacciones como la siguiente:</p><div class="Code Console">{"id_transaction":"573b8922234283ad738b45da","id_user":"573a91a90b212a0e3e8b4596","id_external":null,"id_site":"56cf5728784806f72b8b456f","id_site_organization":"56cf4ff5784806152c8b4568","id_site_organization_type":"56cf4f5b784806cf028b4569","id_account":"573b8921234283ad738b4567","id_account_type":"546d4904df527d1844a2e18d","is_disable":0,"description":"CREACIONES DE TECNOLOGIA AVANZADA DE MEXICO SA DE CV","amount":6834.93,"dt_transaction":1461960603,"dt_refresh":1463519574}</div>';
+		}
+		//id_site
+		if((i==12&&j==5)||(j==2&&(i==9||i==12))){
+			$scope.id_site=$scope.info[i].body[j][1];
+			//changeInputs
+			$scope.info[9].body[2][1]=$scope.id_site;
+			$scope.info[12].body[2][1]=$scope.id_site;
+			$scope.info[12].body[5][1]=$scope.id_site;
+			//changeCode
+			$scope.info[9].body[5]='<p><b>OUTPUT:</b> url_status</p><div class="Code Console">curl -X POST -H "Content-type:application/json" -d \'{"token":"'+$scope.token+'","id_site":"'+$scope.id_site+'","credentials":{"rfc" : "'+$scope.rfc+'","password" : "'+$scope.ciec+'"}}\' https://sync.paybook.com/v1/credentials</div><p>Si las credenciales fueron registradas corréctamente obtendremos un resultado como el siguiente:</p><div class="Code Console">{"code":200,"status":true,"message":null,"response":{"id_credential":"573b88f90b212a033e8b4582","username":"O***********9","ws":"wss:\/\/sync.paybook.com\/v1\/status\/573b88f90b212af83d8b457f","status":"https:\/\/sync.paybook.com\/v1\/jobs\/573b88f90b212af83d8b457f\/status","twofa":"https:\/\/sync.paybook.com\/v1\/jobs\/573b88f90b212af83d8b457f\/twofa"}}</div><p><b>Importante:</b> guardar el valor del campo de <b>status</b> -- es una url -- ya que se utilizará más adelante.</p>';
+			$scope.info[12].body[3]='<p><b>OUTPUT:</b> transactions_count</p><div class="Code Console">curl \'https://sync.paybook.com/v1/transactions/count?token='+$scope.token+'&id_site='+$scope.id_site+'\'</div><p>Y esto nos regresará una respuesta con el número de transacciones sincronizadas:</p><div class="Code Console">{"code":200,"status":true,"message":null,"response":{"count":121}}</div><p>Si queremos consultar las transacciones directamente ejecutamos:</p><p><b>INPUT:</b></p>';
+			$scope.info[12].body[6]='<p><b>OUTPUT:</b> transactions</p><div class="Code Console">curl \'https://sync.paybook.com/v1/transactions?token='+$scope.token+'&id_site='+$scope.id_site+'\'</div><p>Y nos regresará un arreglo de transacciones como la siguiente:</p><div class="Code Console">{"id_transaction":"573b8922234283ad738b45da","id_user":"573a91a90b212a0e3e8b4596","id_external":null,"id_site":"56cf5728784806f72b8b456f","id_site_organization":"56cf4ff5784806152c8b4568","id_site_organization_type":"56cf4f5b784806cf028b4569","id_account":"573b8921234283ad738b4567","id_account_type":"546d4904df527d1844a2e18d","is_disable":0,"description":"CREACIONES DE TECNOLOGIA AVANZADA DE MEXICO SA DE CV","amount":6834.93,"dt_transaction":1461960603,"dt_refresh":1463519574}</div>';
+		}
+		//rfc
+		if(i==9&&j==3){
+			$scope.rfc=$scope.info[i].body[j][1];
+			//changeCode
+			$scope.info[9].body[5]='<p><b>OUTPUT:</b> url_status</p><div class="Code Console">curl -X POST -H "Content-type:application/json" -d \'{"token":"'+$scope.token+'","id_site":"'+$scope.id_site+'","credentials":{"rfc" : "'+$scope.rfc+'","password" : "'+$scope.ciec+'"}}\' https://sync.paybook.com/v1/credentials</div><p>Si las credenciales fueron registradas corréctamente obtendremos un resultado como el siguiente:</p><div class="Code Console">{"code":200,"status":true,"message":null,"response":{"id_credential":"573b88f90b212a033e8b4582","username":"O***********9","ws":"wss:\/\/sync.paybook.com\/v1\/status\/573b88f90b212af83d8b457f","status":"https:\/\/sync.paybook.com\/v1\/jobs\/573b88f90b212af83d8b457f\/status","twofa":"https:\/\/sync.paybook.com\/v1\/jobs\/573b88f90b212af83d8b457f\/twofa"}}</div><p><b>Importante:</b> guardar el valor del campo de <b>status</b> -- es una url -- ya que se utilizará más adelante.</p>';
+		}
+		//ciec
+		if(i==9&&j==4){
+			$scope.ciec=$scope.info[i].body[j][1];
+			//changeCode
+			$scope.info[9].body[5]='<p><b>OUTPUT:</b> url_status</p><div class="Code Console">curl -X POST -H "Content-type:application/json" -d \'{"token":"'+$scope.token+'","id_site":"'+$scope.id_site+'","credentials":{"rfc" : "'+$scope.rfc+'","password" : "'+$scope.ciec+'"}}\' https://sync.paybook.com/v1/credentials</div><p>Si las credenciales fueron registradas corréctamente obtendremos un resultado como el siguiente:</p><div class="Code Console">{"code":200,"status":true,"message":null,"response":{"id_credential":"573b88f90b212a033e8b4582","username":"O***********9","ws":"wss:\/\/sync.paybook.com\/v1\/status\/573b88f90b212af83d8b457f","status":"https:\/\/sync.paybook.com\/v1\/jobs\/573b88f90b212af83d8b457f\/status","twofa":"https:\/\/sync.paybook.com\/v1\/jobs\/573b88f90b212af83d8b457f\/twofa"}}</div><p><b>Importante:</b> guardar el valor del campo de <b>status</b> -- es una url -- ya que se utilizará más adelante.</p>';
+		}
+		//console.log($scope.info[i].body[j][1]);
 	}
 	$scope.navbarShowMore=function(event){
 		event.stopPropagation();
@@ -129,14 +209,17 @@ Plaid.controller("main",function main($scope,$http){
 		{
 			title: "1. Creación de Usuario",
 			body: [
-				'<p>Crear un usuario por medio de <a target="_blank" href="https://www.paybook.com/syncdocs#api-Overview-Overview">Sync API</a> es muy sencillo, para esto únicamente requieres tu <b>API_KEY</b> y un nombre de usuaario para el usuario que deseas crear.</p><p><b>INPUT:</b> api_key y name</p><p><b>OUTPUT:</b> id_user</p><div class="Code Console">curl -X POST -H "Content-type:application/json" -d \'{"api_key":"your_api_key","name":"some_name"}\' https://sync.paybook.com/v1/users</div><p>Con esto se habrá creado un nuevo usuario "name" ligado a tu <b>API_KEY</b>, la respuesta de <a target="_blank" href="https://www.paybook.com/syncdocs#api-Overview-Overview">Sync API</a> debe ser la siguiente:</p><div class="Code Console">{"code":200,"status":true,"message":null,"response":{"id_user":"573a91a90b212a0e3e8b4596","id_external":null,"name":"curlhugo1","dt_create":1463456169,"dt_modify":null}}</div><p><b>Importante:</b> no olvides remplazar el valor de los parámetros en todos los comandos.</p>'
+				'<p>Crear un usuario por medio de <a target="_blank" href="https://www.paybook.com/syncdocs#api-Overview-Overview">Sync API</a> es muy sencillo, para esto únicamente requieres tu <b>API_KEY</b> y un nombre de usuaario para el usuario que deseas crear.</p><p><b>INPUT:</b></p>',
+				["api_key",$scope.api_key,"api_key: "],
+				["name",$scope.name,"name: "],
+				'<p><b>OUTPUT:</b> id_user</p><div class="Code Console">curl -X POST -H "Content-type:application/json" -d \'{"api_key":"your_api_key","name":"some_name"}\' https://sync.paybook.com/v1/users</div><p>Con esto se habrá creado un nuevo usuario "name" ligado a tu <b>API_KEY</b>, la respuesta de <a target="_blank" href="https://www.paybook.com/syncdocs#api-Overview-Overview">Sync API</a> debe ser la siguiente:</p><div class="Code Console">{"code":200,"status":true,"message":null,"response":{"id_user":"573a91a90b212a0e3e8b4596","id_external":null,"name":"curlhugo1","dt_create":1463456169,"dt_modify":null}}</div><p><b>Importante:</b> no olvides remplazar el valor de los parámetros en todos los comandos.</p>'
 			]
 		},
 		{
 			title: "2. Consulta de Usuarios",
 			body: [
 				'<p>Para verificar los usuarios que están ligados a tu <b>API_KEY</b>, es decir, a tu cuenta de <a target="_blank" href="https://www.paybook.com/syncdocs#api-Overview-Overview">Sync API</a>, ejecuta el siguiente comando:</p><p><b>INPUT:</b></p>',
-				["api_key","","api_key: "],
+				["api_key",$scope.api_key,"api_key: "],
 				'<p><b>OUTPUT:</b> id_user</p><div class="Code Console">curl -X GET -H "Content-type:application/json" -d \'{"api_key":"your_api_key"}\' http://sync.paybook.com/v1/users</div><p>Para efectos de este tutorial la ejecución de este comando te debe regresar el usuario registrado anteriormente:</p><div class="Code Console">{"code":200,"status":true,"message":null,"response":[{"id_user":"573a91a90b212a0e3e8b4596","id_external":null,"name":"curlhugo1","dt_create":1463518052,"dt_modify":null}]}</div>'
 			]
 		},
@@ -144,8 +227,8 @@ Plaid.controller("main",function main($scope,$http){
 			title: "3. Inicio de Sesión",
 			body: [
 				'<p>Para poder sincronizar una cuenta de alguna institución lo primero que tenemos que hacer es iniciar sesión con el usuario que deseamos sincronizar. Para esto es necesario tener el id del usuario i.e. id_user y ejecutar:</p><p><b>INPUT:</b></p>',
-				["api_key","","api_key: "],
-				["id_user","","id_user: "],
+				["api_key",$scope.api_key,"api_key: "],
+				["id_user",$scope.id_user,"id_user: "],
 				'<p><b>OUTPUT:</b> token</p><div class="Code Console">curl -X POST -H "Content-type:application/json" -d \'{"api_key":"your_api_key","id_user":"id_user_value"}\' https://sync.paybook.cm/v1/sessions</div><p>Este comando nos regresará un token e.g. 701c899236ea141d25f63c88d9f09230 como se muestra a continuación:</p><div class="Code Console">{"code":200,"status":true,"message":null,"response":{"token":"701c899236ea141d25f63c88d9f09230"}}</div><p><b>Importante:</b> El token tiene un periodo de expiración de 5 minutos después de su creación.</p>'
 			]
 		},
@@ -153,15 +236,15 @@ Plaid.controller("main",function main($scope,$http){
 			title: "4. Verificación de la Sesión",
 			body: [
 				'<p>No está demás verificar la validez de la sesión i.e. del token, para esto ejecutar el siguiente comando:</p><p><b>INPUT:</b></p>',
-				["token","","token: "],
-				'<p><b>OUTPUT:</b> code 200 o code 401</p><div class="Code Console">curl \'https://sync.paybook.com/v1/sessions/701c899236ea141d25f63c88d9f09230/verify\'</div><p>Si la sesión es valida nos regresará lo siguiente:</p><div class="Code Console">{"code":200,"status":true,"message":null,"response":null}</div><p>Si la sesión ya no es valida tendremos un código 401 <b>Unauthoraized</b></p><div class="Code Console">{"code":401,"status":false,"message":"Unauthorized","response":null}</div>'
+				["token",$scope.token,"token: "],
+				'<p><b>OUTPUT:</b> code 200 o code 401</p><div class="Code Console">curl \'https://sync.paybook.com/v1/sessions/your_token/verify\'</div><p>Si la sesión es valida nos regresará lo siguiente:</p><div class="Code Console">{"code":200,"status":true,"message":null,"response":null}</div><p>Si la sesión ya no es valida tendremos un código 401 <b>Unauthoraized</b></p><div class="Code Console">{"code":401,"status":false,"message":"Unauthorized","response":null}</div>'
 			]
 		},
 		{
 			title: "5. Consulta de Catálogos de Instituciones",
 			body: [
 				'<p>Una vez que hemos iniciado sesión tenemos que consultar el catálogo de instituciones que <a target="_blank" href="https://www.paybook.com/syncdocs#api-Overview-Overview">Sync API</a> tiene para nosotros de tal manera que podamos elegir la institución que queremos sincronizar para este usuario.</p><p><b>INPUT:</b></p>',
-				["token","","token: "],
+				["token",$scope.token,"token: "],
 				'<p><b>OUTPUT:</b> catalogues</p><div class="Code Console">curl \'https://sync.paybook.com/v1/catalogues/sites?token=your_token\'</div>'
 			]
 		},
@@ -169,39 +252,39 @@ Plaid.controller("main",function main($scope,$http){
 			title: "6. Sincronizar una Institución",
 			body: [
 				'<p>El siguiente paso consiste en seleccionar una institución del catálogo para sincronizarla, para efectos de este tutorial seleccionaremos el SAT, para esto obtenemos el id del sitio del SAT analizando el catálogo, se debe obtener el siguiente valor:</p><div class="Code Console">id_site = \'56cf5728784806f72b8b456f\'</div><p>Una vez que hemos seleccionado la institución hay que dar de alta las credenciales de nuestro usuario en esa institución, en el caso particular del SAT las credenciales deben ser el <b>RFC</b> así como su Clave de Identificación Electrónica Confidencial, o mejor conocida como <b>CIEC</b>:</p><p><b>INPUT:</b></p>',
-				["token","","token: "],
-				["id_site","","id_site: "],
-				["some_rfc","","some_rfc: "],
-				["some_ciec","","some_ciec: "],
-				'<p><b>OUTPUT:</b> url_status</p><div class="Code Console">curl -X POST -H "Content-type:application/json" -d \'{"token":"your_token","id_site":"id_site","credentials":{"rfc" : "some_rfc","password" : "some_ciec"}}\' https://sync.paybook.com/v1/credentials</div><p>Si las credenciales fueron registradas corréctamente obtendremos un resultado como el siguiente:</p><div class="Code Console">{"code":200,"status":true,"message":null,"response":{"id_credential":"573b88f90b212a033e8b4582","username":"O***********9","ws":"wss:\/\/sync.paybook.com\/v1\/status\/573b88f90b212af83d8b457f","status":"https:\/\/sync.paybook.com\/v1\/jobs\/573b88f90b212af83d8b457f\/status","twofa":"https:\/\/sync.paybook.com\/v1\/jobs\/573b88f90b212af83d8b457f\/twofa"}}</div><p><b>Importante:</b> guardar el valor del campo de <b>status</b> -- es una url -- ya que se utilizará más adelante.</p>'
+				["token",$scope.token,"token: "],
+				["id_site",$scope.id_site,"id_site: "],
+				["rfc",$scope.rfc,"rfc: "],
+				["ciec",$scope.ciec,"ciec: "],
+				'<p><b>OUTPUT:</b> url_status</p><div class="Code Console">curl -X POST -H "Content-type:application/json" -d \'{"token":"your_token","id_site":"some_id_site","credentials":{"rfc" : "some_rfc","password" : "some_ciec"}}\' https://sync.paybook.com/v1/credentials</div><p>Si las credenciales fueron registradas corréctamente obtendremos un resultado como el siguiente:</p><div class="Code Console">{"code":200,"status":true,"message":null,"response":{"id_credential":"573b88f90b212a033e8b4582","username":"O***********9","ws":"wss:\/\/sync.paybook.com\/v1\/status\/573b88f90b212af83d8b457f","status":"https:\/\/sync.paybook.com\/v1\/jobs\/573b88f90b212af83d8b457f\/status","twofa":"https:\/\/sync.paybook.com\/v1\/jobs\/573b88f90b212af83d8b457f\/twofa"}}</div><p><b>Importante:</b> guardar el valor del campo de <b>status</b> -- es una url -- ya que se utilizará más adelante.</p>'
 			]
 		},
 		{
 			title: "7. Verificar creación de Credenciales",
 			body: [
 				'<p>Como un paso de verificación podemos revisar las credenciales registradas para un usuario:</p><p><b>INPUT:</b></p>',
-				["api_key","","api_key: "],
-				["id_user","","id_user: "],
-				'<p><b>OUTPUT:</b> credentials_retrieved</p><div class="Code Console">curl \'https://sync.paybook.com/v1/credentials?api_key=b7e57daf2b782bee22f05e38a1823c3a&id_user=573a91a90b212a0e3e8b4596\'</div><p>Y obtendremos un resultado parecido:</p><div class="Code Console">{"code":200,"status":true,"message":null,"response":[{"id_credential":"573b88f90b212a033e8b4582","id_site":"56cf5728784806f72b8b456f","id_site_organization":"56cf4ff5784806152c8b4568","id_site_organization_type":"56cf4f5b784806cf028b4569","username":"O***********9","dt_refresh":1463465010}]}</div>'
+				["api_key",$scope.api_key,"api_key: "],
+				["id_user",$scope.id_user,"id_user: "],
+				'<p><b>OUTPUT:</b> credentials_retrieved</p><div class="Code Console">curl \'https://sync.paybook.com/v1/credentials?api_key=your_api_key&id_user=id_user_value\'</div><p>Y obtendremos un resultado parecido:</p><div class="Code Console">{"code":200,"status":true,"message":null,"response":[{"id_credential":"573b88f90b212a033e8b4582","id_site":"56cf5728784806f72b8b456f","id_site_organization":"56cf4ff5784806152c8b4568","id_site_organization_type":"56cf4f5b784806cf028b4569","username":"O***********9","dt_refresh":1463465010}]}</div>'
 			]
 		},
 		{
 			title: "8. Revisar el Estatus de Sincronización",
 			body: [
 				'<p>Una vez que hemos registrado una credencial y hemos verificado que ésta se haya guardado corréctamente, el siguiente paso consiste en checar el estatus de sincronización para este contribuyente. Para esto haremos uso del valor que guardamos de <b>url_status</b> que obtuvimos anteriormente al crear credenciales, únicamente hay que agregar el valor de nuestro token de sesión:</p><div class="Code Console">curl &ltvalor_status&gt; + ? + token=&ltsome_token&gt;</span></div><p>Un ejemplo sería el siguiente:</p><p><b>INPUT:</b></p>',
-				["token","","token: "],
-				'<p><b>OUTPUT:</b> status</p><div class="Code Console">curl \'https://sync.paybook.com/v1/jobs/573b88f90b212af83d8b457f/status?token=68f00287cde168ddbb851d90f5be3341\'</div><p>Al ejecutar el comando anterior obtendremos el siguiente resultado:</p><div class="Code Console">{"code":200,"status":true,"message":null,"response":[{"code":100},{"code":101},{"code":102},{"code":200}]}</div><p>Estos son una serie de códigos que indican el estatus de sincronización de la cuenta del SAT que el usuario registró. La descripción de los códigos se muestra a continuación:</p><table><thead><tr><th>Código</th><th>Descripción</th></tr></thead><tbody><tr><td>100</td><td>Se registró un nuevo Job en el API</td></tr><tr><td>101</td><td>Se obtuvo el Job registrado y empezará a trabajar</td></tr><tr><td>102</td><td>El login fue exitóso y la información está siendo sincronizada</td></tr><tr><td>200</td><td>Los datos han sido procesados exitósamente</td></tr><tr><td>201</td><td>Los fatos han sido procesados exitósamente, se continuará con la descarga</td></tr><tr><td>202</td><td>No se encontraron transacciones</td></tr></tbody></table>'
+				["token",$scope.token,"token: "],
+				'<p><b>OUTPUT:</b> status</p><div class="Code Console">curl \'https://sync.paybook.com/v1/jobs/573b88f90b212af83d8b457f/status?token=your_token\'</div><p>Al ejecutar el comando anterior obtendremos el siguiente resultado:</p><div class="Code Console">{"code":200,"status":true,"message":null,"response":[{"code":100},{"code":101},{"code":102},{"code":200}]}</div><p>Estos son una serie de códigos que indican el estatus de sincronización de la cuenta del SAT que el usuario registró. La descripción de los códigos se muestra a continuación:</p><table><thead><tr><th>Código</th><th>Descripción</th></tr></thead><tbody><tr><td>100</td><td>Se registró un nuevo Job en el API</td></tr><tr><td>101</td><td>Se obtuvo el Job registrado y empezará a trabajar</td></tr><tr><td>102</td><td>El login fue exitóso y la información está siendo sincronizada</td></tr><tr><td>200</td><td>Los datos han sido procesados exitósamente</td></tr><tr><td>201</td><td>Los fatos han sido procesados exitósamente, se continuará con la descarga</td></tr><tr><td>202</td><td>No se encontraron transacciones</td></tr></tbody></table>'
 			]
 		},
 		{
 			title: "9. Consultar Transacciones",
 			body: [
 				'<p>Una vez que se registraron las credenciales En caso de tener en el estatus un código 200, 201 o 202 podemos consultar las transacciones sincronizadas. Para esto ejecutamos el siguiente comando:</p><p><b>INPUT:</b></p>',
-				["token","","token: "],
-				["id_site","","id_site: "],
+				["token",$scope.token,"token: "],
+				["id_site",$scope.id_site,"id_site: "],
 				'<p><b>OUTPUT:</b> transactions_count</p><div class="Code Console">curl \'https://sync.paybook.com/v1/transactions/count?token=your_token&id_site=some_id_site\'</div><p>Y esto nos regresará una respuesta con el número de transacciones sincronizadas:</p><div class="Code Console">{"code":200,"status":true,"message":null,"response":{"count":121}}</div><p>Si queremos consultar las transacciones directamente ejecutamos:</p><p><b>INPUT:</b></p>',
-				["token","","token: "],
-				["id_site","","id_site: "],
+				["token",$scope.token,"token: "],
+				["id_site",$scope.id_site,"id_site: "],
 				'<p><b>OUTPUT:</b> transactions</p><div class="Code Console">curl \'https://sync.paybook.com/v1/transactions?token=your_token&id_site=some_id_site\'</div><p>Y nos regresará un arreglo de transacciones como la siguiente:</p><div class="Code Console">{"id_transaction":"573b8922234283ad738b45da","id_user":"573a91a90b212a0e3e8b4596","id_external":null,"id_site":"56cf5728784806f72b8b456f","id_site_organization":"56cf4ff5784806152c8b4568","id_site_organization_type":"56cf4f5b784806cf028b4569","id_account":"573b8921234283ad738b4567","id_account_type":"546d4904df527d1844a2e18d","is_disable":0,"description":"CREACIONES DE TECNOLOGIA AVANZADA DE MEXICO SA DE CV","amount":6834.93,"dt_transaction":1461960603,"dt_refresh":1463519574}</div>'
 			]
 		}
