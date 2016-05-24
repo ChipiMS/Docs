@@ -237,6 +237,7 @@ main{
 #TopicsLeft{
 	width: 128px;
 	padding: 29px;
+	height: calc(100vh - 58px);
 }
 .TopicsLeftMiddle{
 	left: 0;

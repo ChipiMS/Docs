@@ -389,11 +389,11 @@ main{
 	border: 1px solid #f2f4f6;
 	border-radius: 4px;
 	box-shadow: 0 0 5px rgba(19,49,69,0.1);
-	display: inline-block;
+	display: inline-block !important;
 	padding: 20px;
 	height: 54px;
 	position: relative;
-	text-decoration: none;
+	text-decoration: none !important;
 	transition: box-shadow 300ms cubic-bezier(0.23, 1.2, 0.32, 1);
 	margin-left: 8px;
 	margin-right: 8px;
@@ -422,6 +422,7 @@ main{
 	height: 50px;
 	margin-right: 2rem;
 	min-width: 50px;
+	width: initial;
 }
 .ResourcesCard p{
 	font-family: 'Monaco', 'Courier';

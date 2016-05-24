@@ -1,6 +1,6 @@
 var Plaid=angular.module('Plaid',["ngSanitize"]);
 Plaid.controller("main",function main($scope,$http){
-	$scope.actualTopic;
+	$scope.actualTopic=0;
 	$scope.selectedLibrary={title: "Ruby",img: "ruby.png"};
 	$scope.libraries=[
 		{title: "Ruby",img: "ruby.png"},
@@ -18,14 +18,63 @@ Plaid.controller("main",function main($scope,$http){
 	$scope.rfc="some_rfc";
 	$scope.token="your_token";
 	$(document).scroll(function(){
-		if(document.body.scrollTop<178){
+		var bodyPadding,auxTop,auxBottom;
+		if(document.body.offsetWidth<1008){
+			bodyPadding=0;
+			auxTop=97;
+			auxBottom=72;
+		}
+		else{
+			bodyPadding=parseFloat($("body").css("padding-top"));
+			auxTop=192;
+			auxBottom=157;
+		}
+		if(document.body.scrollTop<auxTop+bodyPadding){
 			$("#TopicsLeft").addClass("TopicsLeftTop");
 			$("#TopicsLeft").removeClass("TopicsLeftBottom");
 			$("#TopicsLeft").removeClass("TopicsLeftMiddle");
 		}
 		else{
-			var bodyPadding=parseFloat($("body").css("padding-top"));
-			if(document.body.offsetHeight-document.body.scrollTop<$(window.top).height()+157+bodyPadding){
+			if(document.body.offsetHeight-document.body.scrollTop<$(window.top).height()+auxBottom+bodyPadding){
+				$("#TopicsLeft").addClass("TopicsLeftBottom");
+				$("#TopicsLeft").removeClass("TopicsLeftTop");
+				$("#TopicsLeft").removeClass("TopicsLeftMiddle");
+			}
+			else{
+				$("#TopicsLeft").addClass("TopicsLeftMiddle");
+				$("#TopicsLeft").removeClass("TopicsLeftTop");
+				$("#TopicsLeft").removeClass("TopicsLeftBottom");
+			}
+		}
+		var notFound=true;
+		var scroll=document.body.scrollTop;
+		for(var i=$scope.info.length-1;i>=0&&notFound;i--){
+			if($("#Topic"+i).offset().top<scroll){
+				$scope.actualTopic=i;
+				notFound=false;
+			}
+		}
+		$scope.$apply();
+	});
+	$(window).resize(function(){
+		var bodyPadding,auxTop,auxBottom;
+		if(document.body.offsetWidth<1008){
+			bodyPadding=0;
+			auxTop=97;
+			auxBottom=72;
+		}
+		else{
+			bodyPadding=parseFloat($("body").css("padding-top"));
+			auxTop=192;
+			auxBottom=157;
+		}
+		if(document.body.scrollTop<auxTop+bodyPadding){
+			$("#TopicsLeft").addClass("TopicsLeftTop");
+			$("#TopicsLeft").removeClass("TopicsLeftBottom");
+			$("#TopicsLeft").removeClass("TopicsLeftMiddle");
+		}
+		else{
+			if(document.body.offsetHeight-document.body.scrollTop<$(window.top).height()+auxBottom+bodyPadding){
 				$("#TopicsLeft").addClass("TopicsLeftBottom");
 				$("#TopicsLeft").removeClass("TopicsLeftTop");
 				$("#TopicsLeft").removeClass("TopicsLeftMiddle");
@@ -54,14 +103,24 @@ Plaid.controller("main",function main($scope,$http){
 		$(".Libraries").removeClass("LibrariesVisible");
 	};
 	$scope.init=function(){
-		if(document.body.scrollTop<178){
+		var bodyPadding,auxTop,auxBottom;
+		if(document.body.offsetWidth<1008){
+			bodyPadding=0;
+			auxTop=97;
+			auxBottom=72;
+		}
+		else{
+			bodyPadding=parseFloat($("body").css("padding-top"));
+			auxTop=192;
+			auxBottom=157;
+		}
+		if(document.body.scrollTop<auxTop+bodyPadding){
 			$("#TopicsLeft").addClass("TopicsLeftTop");
 			$("#TopicsLeft").removeClass("TopicsLeftBottom");
 			$("#TopicsLeft").removeClass("TopicsLeftMiddle");
 		}
 		else{
-			var bodyPadding=parseFloat($("body").css("padding-top"));
-			if(document.body.offsetHeight-document.body.scrollTop<$(window.top).height()+157+bodyPadding){
+			if(document.body.offsetHeight-document.body.scrollTop<$(window.top).height()+auxBottom+bodyPadding){
 				$("#TopicsLeft").addClass("TopicsLeftBottom");
 				$("#TopicsLeft").removeClass("TopicsLeftTop");
 				$("#TopicsLeft").removeClass("TopicsLeftMiddle");
