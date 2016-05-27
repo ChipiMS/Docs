@@ -1,5 +1,5 @@
-var Plaid=angular.module('Plaid',[]);
-Plaid.controller("main",function main($scope,$http){
+var Paybook=angular.module('Paybook',[]);
+Paybook.controller("main",function main($scope,$http){
 	$scope.closeAll=function(){
 		$(".NavigationMoreList").removeClass("NavigationMoreListVisible");
 		$(".NavigationBlocker").css("display","");

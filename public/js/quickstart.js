@@ -1,5 +1,5 @@
-var Plaid=angular.module('Plaid',["ngSanitize"]);
-Plaid.controller("main",function main($scope,$http){
+var Paybook=angular.module('Paybook',["ngSanitize"]);
+Paybook.controller("main",function main($scope,$http){
 	$scope.actualTopic=0;
 	$scope.selectedLibrary={title: "Ruby",img: "ruby.png"};
 	$scope.libraries=[

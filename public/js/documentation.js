@@ -1,5 +1,5 @@
-var Plaid=angular.module('Plaid',["ngSanitize"]);
-Plaid.controller("main",function main($scope,$http){
+var Paybook=angular.module('Paybook',["ngSanitize"]);
+Paybook.controller("main",function main($scope,$http){
 	$scope.actualTopic=0;
 	$scope.actualSubtopic=-1;
 	$(document).scroll(function(){

@@ -1,5 +1,5 @@
-var Plaid=angular.module('Plaid',["ngSanitize"]);
-Plaid.controller("main",function main($scope,$http){
+var Paybook=angular.module('Paybook',["ngSanitize"]);
+Paybook.controller("main",function main($scope,$http){
 	$scope.actualTopic=0;
 	$(document).scroll(function(){
 		var bodyPadding,auxTop,auxBottom;
@@ -146,7 +146,7 @@ Plaid.controller("main",function main($scope,$http){
 	$scope.info=[
 		{
 			title: "Introduction",
-			body: "<p>All libraries for Plaid are listed below. If you've built anything that you'd be willing to share, please let us know and we'll link to it here (and send you a t-shirt)!</p>",
+			body: "<p>All libraries for Paybook are listed below. If you've built anything that you'd be willing to share, please let us know and we'll link to it here (and send you a t-shirt)!</p>",
 		},
 		{
 			title: "Official libraries",
