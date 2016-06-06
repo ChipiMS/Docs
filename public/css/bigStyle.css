@@ -520,7 +520,7 @@ main{
 	position: absolute;
 	left: 0;
 }
-ul ul{
+ul ul,ol ul{
 	padding-left: 10px;
 	margin-bottom: 0 !important;
 }
@@ -531,14 +531,11 @@ ul ul ul{
 	overflow: hidden;
 	position: relative;
 }
-.WhiteBlueGroup .White{
-	float: left;
-	overflow: hidden;
-	width: calc(45% - 60px);
-	padding: 30px;
-}
-.WhiteBlueGroup .White img{
-	width: 100%;
+.WhiteBlueGroup a{
+	color: #0e304b;
+	display: initial;
+	text-decoration: underline;
+	cursor: pointer;
 }
 .WhiteBlueGroup .Blue{
 	color: #f7f8f9;
@@ -554,6 +551,15 @@ ul ul ul{
 .WhiteBlueGroup .Blue pre>*{
 	padding-left: 30px;
 	padding-right: 30px;
+}
+.WhiteBlueGroup .White{
+	float: left;
+	overflow: hidden;
+	width: calc(45% - 60px);
+	padding: 30px;
+}
+.WhiteBlueGroup .White img{
+	width: 100%;
 }
 .WhiteSubtopic{
 	font-size: 22px;
