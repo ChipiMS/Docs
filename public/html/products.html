@@ -18,61 +18,69 @@
 	<!-- SPELLS -->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script><!-- load angular -->
-	<script src="../js/core.js"></script>
+	<script src="../js/products.js"></script>
 
 </head>
-<body ng-controller="main" ng-click="closeAll()">
+<body ng-controller="main" data-ng-init="init()" ng-click="closeAll()">
 	<main>
 		<nav class="Navigation">
 			<div ng-click="showSmallViews($event)" class="NavigationSmallButton">
 				<div class="fa fa-bars"></div>
 			</div>
 			<div class="NavigationLeft">
-				<a href="/">
-					<img src="../img/icon.jpeg">
+				<a href="{{language.code+'/'}}">
+					<img src="../../img/icon.jpeg">
 				</a>
-				<a href="/">
+				<a href="{{language.code+'/'}}">
 					<span>Paybook</span>
 				</a>
 			</div>
 			<ul class="NavigationCenter">
 				<li class="NavigationItem" id="CloseSidebar" ng-click="closeAll()"><div class="fa fa-times"></div></li>
-				<li class="NavigationItem"><a href="/solutions">Solutions</a></li>
-				<li class="NavigationItem">Products</li>
-				<li class="NavigationItem"><a href="/docs">Docs</a></li>
+				<li class="NavigationItem"><a href="{{language.code+'/solutions'}}">{{allPages.Solutions}}</a></li>
+				<li class="NavigationItem"><a href="{{language.code+'/products'}}">{{allPages.Products}}</a></li>
+				<li class="NavigationItem"><a href="{{language.code+'/docs'}}">{{allPages.Docs}}</a></li>
 				<li class="NavigationMore">
 					<div class="NavigationItem" ng-click="navbarShowMore($event)">
-						<span>More</span>
+						<span>{{allPages.More}}</span>
 						<div class="fa fa-chevron-down"></div>
 					</div>
 					<ul class="NavigationMoreList">
-						<li class="NavigationMoreItem"><a href="/company">Company</a></li>
-						<li class="NavigationMoreItem"><a href="/contact">Contact</a></li>
-						<li class="NavigationMoreItem"><a href="/security">Security</a></li>
-						<li class="NavigationMoreItem"><a href="/blog">Blog</a></li>
-						<li class="NavigationMoreItem"><a href="/fin">Fin</a></li>
+						<li class="NavigationMoreItem"><a href="{{language.code+'/company'}}">{{allPages.Company}}</a></li>
+						<li class="NavigationMoreItem"><a href="{{language.code+'/contact'}}">{{allPages.Contact}}</a></li>
+						<li class="NavigationMoreItem"><a href="{{language.code+'/security'}}">{{allPages.Security}}</a></li>
+						<li class="NavigationMoreItem"><a href="{{language.code+'/blog'}}">{{allPages.Blog}}</a></li>
+						<li class="NavigationMoreItem"><a href="{{language.code+'/fin'}}">{{allPages.Fin}}</a></li>
 					</ul>
 				</li>
 			</ul>
+			<div class="NavigationRight">
+				<div class="LanguageButton" ng-click="showLanguages($event)">{{language.name}}</div>
+				<div class="LanguageButtonSmall fa fa-language" ng-click="showLanguages($event)"></div>
+				<ul class="Languages">
+					<li class="NavigationMoreItem"><a href="{{'/en'+url}}">English</a></li>
+					<li class="NavigationMoreItem"><a href="{{'/es'+url}}">Español</a></li>
+				</ul>
+			</div>
 			<div class="NavigationBlocker"></div>
 		</nav>
 		<article class="Products">
-			<h2>Products</h2>
-			<h3>Use Paybook’s financial data technologies to create solutions that suit your business</h3>
+			<h2>{{info.title}}</h2>
+			<h3>{{info.subtitle}}</h3>
 		</article>
 	</main>
 
 	<!-- FOOTER -->
 	<footer>
 		<ul class="FooterMenu">
-			<li class="FooterItem"><a href="/docs/faq">FAQ</a></li>
-			<li class="FooterItem"><a href="/blog">Blog</a></li>
-			<li class="FooterItem"><a href="/legal">Terms and Privacy</a></li>
-			<li class="FooterItem"><a href="/status">Status</a></li>
-			<li class="FooterItem"><a href="/contact">Contact</a></li>
-			<li class="FooterItem"><a href="/fin">Fin</a></li>
+			<li class="FooterItem"><a href="{{language.code+'/docs/faq'}}">{{allPages.FAQ}}</a></li>
+			<li class="FooterItem"><a href="{{language.code+'/blog'}}">{{allPages.Blog}}</a></li>
+			<li class="FooterItem"><a href="{{language.code+'/legal'}}">{{allPages.TermsAndPrivacy}}</a></li>
+			<li class="FooterItem"><a href="{{language.code+'/status'}}">{{allPages.Status}}</a></li>
+			<li class="FooterItem"><a href="{{language.code+'/contact'}}">{{allPages.Contact}}</a></li>
+			<li class="FooterItem"><a href="{{language.code+'/fin'}}">{{allPages.Fin}}</a></li>
 		</ul>
-		<p class="FooterCopyright">2016 CTAM</p>
+		<p class="FooterCopyright">2016 Paybook</p>
 	</footer>
 </body>
 </html>

@@ -1,6 +1,7 @@
 var Paybook=angular.module('Paybook',["ngSanitize"]);
 Paybook.controller("main",function main($scope,$http){
 	$scope.actualTopic=0;
+	$scope.url=window.location.pathname.slice(3);
 	$(document).scroll(function(){
 		var bodyPadding,auxTop,auxBottom;
 		if(document.body.offsetWidth<1008){
@@ -80,12 +81,32 @@ Paybook.controller("main",function main($scope,$http){
 		$scope.$apply();
 	});
 	$scope.closeAll=function(){
+		$(".Languages").removeClass("LanguagesVisible");
 		$(".NavigationMoreList").removeClass("NavigationMoreListVisible");
 		$(".NavigationBlocker").css("display","");
 		$(".NavigationCenter").removeClass("NavigationCenterSmall");
 		$(".Subnavigation ul").removeClass("SubnaviationShowUl");
 	};
 	$scope.init=function(){
+		var languageCode=window.location.pathname.slice(1,3);
+		if(languageCode=="en"){
+			$scope.language={
+				code: "/en",
+				name: "English"
+			};
+			$scope.info=$scope.infoEn;
+			$scope.allPages=$scope.allPagesEn;
+		}
+		else{
+			if(languageCode=="es"){
+				$scope.language={
+					code: "/es",
+					name: "Español"
+				};
+				$scope.info=$scope.infoEs;
+				$scope.allPages=$scope.allPagesEs;
+			}
+		}
 		var bodyPadding,auxTop,auxBottom;
 		if(document.body.offsetWidth<1008){
 			bodyPadding=0;
@@ -134,6 +155,10 @@ Paybook.controller("main",function main($scope,$http){
         	scrollTop: $("#Topic"+topic).offset().top+1
 	    }, 1000);
 	};
+	$scope.showLanguages=function(event){
+		event.stopPropagation();
+		$(".Languages").addClass("LanguagesVisible");
+	};
 	$scope.showSmallViews=function(event){
 		event.stopPropagation();
 		$(".NavigationCenter").addClass("NavigationCenterSmall");
@@ -143,18 +168,90 @@ Paybook.controller("main",function main($scope,$http){
 		event.stopPropagation();
 		$(".Subnavigation ul").addClass("SubnaviationShowUl");
 	};
-	$scope.info=[
+	/*
+	███████╗███╗   ██╗
+	██╔════╝████╗  ██║
+	█████╗  ██╔██╗ ██║
+	██╔══╝  ██║╚██╗██║
+	███████╗██║ ╚████║
+	╚══════╝╚═╝  ╚═══╝
+	*/
+	$scope.allPagesEn={
+		Blog: "Blog",
+		Company: "Company",
+		Contact: "Contact",
+		Docs: "Docs",
+		Documentation: "Documentation",
+		FAQ: "FAQ",
+		Fin: "Fin",
+		More: "More",
+		Products: "Products",
+		Questions: "Questions or comments?",
+		Quickstart: "Quickstart",
+		Resources: "Resources",
+		Security: "Security",
+		Solutions: "Solutions",
+		Support: "Contact support",
+		Status: "Status",
+		TermsAndPrivacy: "Terms and Privacy",
+	}
+	$scope.infoEn=[
 		{
 			title: "Introduction",
 			body: "<p>All libraries for Paybook are listed below. If you've built anything that you'd be willing to share, please let us know and we'll link to it here (and send you a t-shirt)!</p>",
 		},
 		{
 			title: "Official libraries",
-			body: '<a href="https://github.com/Paybook/Lite.JS" class="ResourcesCard"><img src="../img/node.svg"><div><h3>Node</h3><p>paybook-node</p></div><div class="fa fa-chevron-right"></div></a><a href="https://github.com/Paybook/Lite.GO" class="ResourcesCard"><img src="../img/go.svg"><div><h3>Go</h3><p>paybook-go</p></div><div class="fa fa-chevron-right"></div></a><a href="https://github.com/Paybook/Lite.Py" class="ResourcesCard"><img src="../img/python.svg"><div><h3>Python</h3><p>paybook-python</p></div><div class="fa fa-chevron-right"></div></a>',
+			body: '<a href="https://github.com/Paybook/Lite.JS" class="ResourcesCard"><img src="../../img/node.svg"><div><h3>Node</h3><p>paybook-node</p></div><div class="fa fa-chevron-right"></div></a><a href="https://github.com/Paybook/Lite.GO" class="ResourcesCard"><img src="../../img/go.svg"><div><h3>Go</h3><p>paybook-go</p></div><div class="fa fa-chevron-right"></div></a><a href="https://github.com/Paybook/Lite.Py" class="ResourcesCard"><img src="../../img/python.svg"><div><h3>Python</h3><p>paybook-python</p></div><div class="fa fa-chevron-right"></div></a>',
 		},
 		{
 			title: "Community libraries",
-			body: '<a href="https://github.com/Paybook/Lite.GO" class="ResourcesCard"><img src="../img/ruby.svg"><div><h3>Ruby</h3><p>paybook-ruby</p></div><div class="fa fa-chevron-right"></div></a><a href="https://github.com/Paybook/Lite.GO" class="ResourcesCard"><img src="../img/java.svg"><div><h3>Java</h3><p>paybook-java</p></div><div class="fa fa-chevron-right"></div></a><a href="https://github.com/Paybook/Lite.GO" class="ResourcesCard"><img src="../img/php.svg"><div><h3>PHP</h3><p>paybook-php</p></div><div class="fa fa-chevron-right"></div></a><a href="https://github.com/Paybook/Lite.GO" class="ResourcesCard"><img src="../img/swift.svg"><div><h3>Swift</h3><p>paybook-swift</p></div><div class="fa fa-chevron-right"></div></a>',
+			body: '<a href="https://github.com/Paybook/Lite.GO" class="ResourcesCard"><img src="../../img/ruby.svg"><div><h3>Ruby</h3><p>paybook-ruby</p></div><div class="fa fa-chevron-right"></div></a><a href="https://github.com/Paybook/Lite.GO" class="ResourcesCard"><img src="../../img/java.svg"><div><h3>Java</h3><p>paybook-java</p></div><div class="fa fa-chevron-right"></div></a><a href="https://github.com/Paybook/Lite.GO" class="ResourcesCard"><img src="../../img/php.svg"><div><h3>PHP</h3><p>paybook-php</p></div><div class="fa fa-chevron-right"></div></a><a href="https://github.com/Paybook/Lite.GO" class="ResourcesCard"><img src="../../img/swift.svg"><div><h3>Swift</h3><p>paybook-swift</p></div><div class="fa fa-chevron-right"></div></a>',
+		},
+		{
+			title: "Community Resources",
+			body: "<p>Ember component, by @jasonkriss</p><p>Example Angular/Ionic app, by @pbernasconi</p><p>Angular component, by @csbarnes</p>",
+		},
+	];
+	/*
+	███████╗███████╗
+	██╔════╝██╔════╝
+	█████╗  ███████╗
+	██╔══╝  ╚════██║
+	███████╗███████║
+	╚══════╝╚══════╝
+	*/
+	$scope.allPagesEs={
+		Blog: "Blog",
+		Company: "Compañía",
+		Contact: "Contacto",
+		Docs: "Docs",
+		Documentation: "Documentación",
+		FAQ: "FAQ",
+		Fin: "Fin",
+		More: "Más",
+		Products: "Productos",
+		Questions: "¿Preguntas o comentarios?",
+		Quickstart: "Quickstart",
+		Resources: "Recursos",
+		Security: "Seguridad",
+		Solutions: "Soluciones",
+		Support: "Contactar a soporte",
+		Status: "Status",
+		TermsAndPrivacy: "Términos y Privacidad",
+	}
+	$scope.infoEs=[
+		{
+			title: "Introduction",
+			body: "<p>All libraries for Paybook are listed below. If you've built anything that you'd be willing to share, please let us know and we'll link to it here (and send you a t-shirt)!</p>",
+		},
+		{
+			title: "Official libraries",
+			body: '<a href="https://github.com/Paybook/Lite.JS" class="ResourcesCard"><img src="../../img/node.svg"><div><h3>Node</h3><p>paybook-node</p></div><div class="fa fa-chevron-right"></div></a><a href="https://github.com/Paybook/Lite.GO" class="ResourcesCard"><img src="../../img/go.svg"><div><h3>Go</h3><p>paybook-go</p></div><div class="fa fa-chevron-right"></div></a><a href="https://github.com/Paybook/Lite.Py" class="ResourcesCard"><img src="../../img/python.svg"><div><h3>Python</h3><p>paybook-python</p></div><div class="fa fa-chevron-right"></div></a>',
+		},
+		{
+			title: "Community libraries",
+			body: '<a href="https://github.com/Paybook/Lite.GO" class="ResourcesCard"><img src="../../img/ruby.svg"><div><h3>Ruby</h3><p>paybook-ruby</p></div><div class="fa fa-chevron-right"></div></a><a href="https://github.com/Paybook/Lite.GO" class="ResourcesCard"><img src="../../img/java.svg"><div><h3>Java</h3><p>paybook-java</p></div><div class="fa fa-chevron-right"></div></a><a href="https://github.com/Paybook/Lite.GO" class="ResourcesCard"><img src="../../img/php.svg"><div><h3>PHP</h3><p>paybook-php</p></div><div class="fa fa-chevron-right"></div></a><a href="https://github.com/Paybook/Lite.GO" class="ResourcesCard"><img src="../../img/swift.svg"><div><h3>Swift</h3><p>paybook-swift</p></div><div class="fa fa-chevron-right"></div></a>',
 		},
 		{
 			title: "Community Resources",

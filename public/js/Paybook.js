@@ -2,6 +2,7 @@ var Paybook=angular.module('Paybook',["ngSanitize"]);
 Paybook.controller("main",function main($scope,$http){
 	$scope.actualTopic;
 	$scope.actualSubtopic;
+	$scope.url=window.location.pathname.slice(3);
 	$(document).scroll(function(){
 		if(document.body.scrollTop<178){
 			$("#TopicsLeft").addClass("TopicsLeftTop");
@@ -42,12 +43,32 @@ Paybook.controller("main",function main($scope,$http){
 		$scope.$apply();
 	});
 	$scope.closeAll=function(){
+		$(".Languages").removeClass("LanguagesVisible");
 		$(".NavigationMoreList").removeClass("NavigationMoreListVisible");
 		$(".NavigationBlocker").css("display","");
 		$(".NavigationCenter").removeClass("NavigationCenterSmall");
 		$(".Subnavigation ul").removeClass("SubnaviationShowUl");
 	};
 	$scope.init=function(){
+		var languageCode=window.location.pathname.slice(1,3);
+		if(languageCode=="en"){
+			$scope.language={
+				code: "/en",
+				name: "English"
+			};
+			$scope.info=$scope.infoEn;
+			$scope.allPages=$scope.allPagesEn;
+		}
+		else{
+			if(languageCode=="es"){
+				$scope.language={
+					code: "/es",
+					name: "Español"
+				};
+			}
+			$scope.info=$scope.infoEs;
+			$scope.allPages=$scope.allPagesEs;
+		}
 		if(document.body.scrollTop<178){
 			$("#TopicsLeft").addClass("TopicsLeftTop");
 			$("#TopicsLeft").removeClass("TopicsLeftBottom");
@@ -99,6 +120,10 @@ Paybook.controller("main",function main($scope,$http){
         	scrollTop: $("#Topic"+topic).offset().top+1
 	    }, 1000);
 	};
+	$scope.showLanguages=function(event){
+		event.stopPropagation();
+		$(".Languages").addClass("LanguagesVisible");
+	};
 	$scope.showSmallViews=function(event){
 		event.stopPropagation();
 		$(".NavigationCenter").addClass("NavigationCenterSmall");
@@ -108,6 +133,28 @@ Paybook.controller("main",function main($scope,$http){
 		event.stopPropagation();
 		$(".Subnavigation ul").addClass("SubnaviationShowUl");
 	};
+	/*
+	███████╗███╗   ██╗
+	██╔════╝████╗  ██║
+	█████╗  ██╔██╗ ██║
+	██╔══╝  ██║╚██╗██║
+	███████╗██║ ╚████║
+	╚══════╝╚═╝  ╚═══╝
+	*/
+	$scope.allPagesEn={
+		Blog: "Blog",
+		Company: "Company",
+		Contact: "Contact",
+		Docs: "Docs",
+		FAQ: "FAQ",
+		Fin: "Fin",
+		More: "More",
+		Products: "Products",
+		Security: "Security",
+		Solutions: "Solutions",
+		Status: "Status",
+		TermsAndPrivacy: "Terms and Privacy",
+	}
 	$scope.info=[
 		{
 			title: "Overview",
@@ -285,4 +332,26 @@ Paybook.controller("main",function main($scope,$http){
 			]
 		},
 	];
+	/*
+	███████╗███████╗
+	██╔════╝██╔════╝
+	█████╗  ███████╗
+	██╔══╝  ╚════██║
+	███████╗███████║
+	╚══════╝╚══════╝
+	*/
+	$scope.allPagesEs={
+		Blog: "Blog",
+		Company: "Compañía",
+		Contact: "Contacto",
+		Docs: "Docs",
+		FAQ: "FAQ",
+		Fin: "Fin",
+		More: "Más",
+		Products: "Productos",
+		Security: "Seguridad",
+		Solutions: "Soluciones",
+		Status: "Status",
+		TermsAndPrivacy: "Términos y Privacidad",
+	}
 });

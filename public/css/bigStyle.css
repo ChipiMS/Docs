@@ -190,6 +190,60 @@ footer{
 .FooterMenu{
 	margin-bottom: 16px;
 }
+.LanguageButton{
+	background-color: #1a476a;
+	color: white;
+	line-height: 40px;
+	box-shadow: inset 0 1px 2px rgba(255,255,255,0.1),0 1px 2px rgba(19,49,69,0.2);
+	padding-right: 25px;
+	padding-left: 25px;
+	text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+	border-radius: 4px;
+	background-image: linear-gradient(to bottom, #29618e, #164a74);
+}
+.LanguageButton:hover{
+	box-shadow: inset 0 1px 2px rgba(255,255,255,0.3),0 3px 8px rgba(19,49,69,0.3);
+	cursor: pointer;
+}
+.LanguageButtonSmall{
+	display: none;
+}
+.Languages{
+	position: absolute;
+	right: 0;
+	margin-top: 15px;
+	padding-left: 0;
+	border-color: #e6eaed;
+	border-radius: 4px;
+	border-style: solid;
+	box-shadow: 0 0 5px rgba(19,49,69,0.1);
+	background-color: white;
+	width: 0;
+	height: 0;
+	text-align: left;
+	overflow: hidden;
+	transition: .35s width, .35s height, .35s padding-left;
+}
+@keyframes ShowLanguages{
+	from{
+		width: 0px;
+		height: 0px;
+		padding-left: 0px;
+	}
+	to{
+		width: 183px;
+		height: 110px;
+		padding-left: 15px;
+	}
+}
+.LanguagesVisible{
+	border-width: 1px;
+	width: 183px;
+	height: 110px;
+	padding-left: 15px;
+	animation-name: ShowLanguages;
+	animation-duration: .35s;
+}
 .Libraries{
 	position: absolute;
 	padding-left: 0;
@@ -211,6 +265,7 @@ footer{
 .Libraries img{
 	display: inline-block;
 	width: 30px;
+	margin-bottom: 0px !important;
 }
 .Libraries li{
 	padding-left: 13px;
@@ -264,6 +319,16 @@ main{
 	width: 100%;
 	z-index: 1;
 }
+.NavigationItem{
+	display: inline-block;
+	height: auto;
+	line-height: 1;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 22px;
+	padding-bottom: 22px;
+	cursor: pointer;
+}
 .NavigationLeft{
 	bottom: 0;
 	height: 40px;
@@ -294,16 +359,6 @@ main{
 	line-height: 40px;
 	font-size: 25px;
 	font-weight: bolder;
-}
-.NavigationItem{
-	display: inline-block;
-	height: auto;
-	line-height: 1;
-	padding-left: 20px;
-	padding-right: 20px;
-	padding-top: 22px;
-	padding-bottom: 22px;
-	cursor: pointer;
 }
 .NavigationMore{
 	position: relative;
@@ -378,6 +433,13 @@ main{
 	padding-left: 15px;
 	animation-name: ShowMore;
 	animation-duration: .35s;
+}
+.NavigationRight{
+	position: absolute;
+	right: 16px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	height: 40px;
 }
 .NavigationSmallButton{
 	display: none;
@@ -454,6 +516,7 @@ main{
 	width: 30px;
 	height: 30px;
 	display: inline-block;
+	margin-bottom: 0px !important;
 }
 .SelectLibrary span{
 	position: relative;
