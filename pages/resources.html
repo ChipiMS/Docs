@@ -1,0 +1,37 @@
+<article class="Docs" data-ng-init="init()">
+	<!-- SUBNAVIGATION -->
+	<div class="Subnavigation">
+		<div class="SubnavigationSelected" ng-click="showSmallSubviews($event)">
+			<span>{{allPages.Resources}}</span>
+			<div class="fa fa-chevron-down"></div>
+		</div>
+		<ul>
+			<li class="SubnavigationItem"><a href="{{language.code+'/docs/quickstart'}}">{{allPages.Quickstart}}</a><div style="display: none;" class="fa fa-chevron-up"></div></li>
+			<li class="SubnavigationItem"><a href="{{language.code+'/docs/documentation'}}">{{allPages.Documentation}}</a></li>
+			<li class="SubnavigationItem SubnavigationItemSelected">{{allPages.Resources}}</li>
+			<li class="SubnavigationItem"><a href="{{language.code+'/docs/faq'}}">{{allPages.FAQ}}</a></li>
+		</ul>
+		<div id="ContactSupport">
+			<span>{{allPages.Questions}}</span>
+			<a href="{{language.code+'/contact'}}">{{allPages.Support}}</a>
+		</div>
+	</div>
+	<div id="ContainerLeftRight">
+		<div id="TopicsLeft">
+			<div ng-repeat="topic in info">
+				<div class="{{actualTopic==$index?'TopicsLeftSelected TopicLeft':'TopicLeft'}}" ng-click="scrollToTopic($index)">{{topic.title}}</div>
+			</div>
+		</div>
+		<div id="ContentRight">
+			<center>
+				<div class="ContentRightContainer">
+					<h1>Resources</h1>
+					<div ng-repeat="topic in info">
+						<h2 id='{{"Topic"+$index}}'>{{topic.title}}</h1>
+						<div ng-bind-html="topic.body"></div>
+					</div>
+				</div>
+			</center>
+		</div>
+	</div>
+</article>

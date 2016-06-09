@@ -1,0 +1,50 @@
+<article class="Docs" data-ng-init="init()">
+	<!-- SUBNAVIGATION -->
+	<div class="Subnavigation">
+		<div class="SubnavigationSelected" ng-click="showSmallSubviews($event)">
+			<span>{{allPages.Documentation}}</span>
+			<div class="fa fa-chevron-down"></div>
+		</div>
+		<ul>
+			<li class="SubnavigationItem"><a href="{{language.code+'/docs/quickstart'}}">{{allPages.Quickstart}}</a><div style="display: none;" class="fa fa-chevron-up"></div></li>
+			<li class="SubnavigationItem SubnavigationItemSelected">{{allPages.Documentation}}</li>
+			<li class="SubnavigationItem"><a href="{{language.code+'/docs/resources'}}">{{allPages.Resources}}</a></li>
+			<li class="SubnavigationItem"><a href="{{language.code+'/docs/faq'}}">{{allPages.FAQ}}</a></li>
+		</ul>
+		<div id="ContactSupport">
+			<span>{{allPages.Questions}}</span>
+			<a href="{{language.code+'/contact'}}">{{allPages.Support}}</a>
+		</div>
+	</div>
+	<div id="ContainerLeftRight">
+		<div id="TopicsLeft">
+			<div ng-repeat="topic in info">
+				<div class="{{actualTopic==$index&&actualSubtopic==-1?'TopicsLeftSelected TopicLeft':'TopicLeft'}}" ng-click="scrollToTopic($index)">{{topic.title}}</div>
+				<div ng-repeat="subtopic in topic.subtopics">
+					<h1 class="{{actualTopic==$parent.$index&&actualSubtopic==$index?'TopicsLeftSelected SubtopicLeft':'SubtopicLeft'}}" ng-show="$parent.$index==actualTopic" ng-click="scrollToSubtopic($parent.$index,$index)">{{subtopic.title}}</h1>
+				</div>
+			</div>
+		</div>
+		<div id="ContentRight">
+			<div id="Blue"></div>
+			<div ng-repeat="topic in info">
+				<div class="WhiteBlueGroup">
+					<div class="White">
+						<h1 class="WhiteTopic" id='{{"Topic"+$index}}'>{{topic.title}}</h1>
+						<div ng-bind-html="topic.body" ng-hide="topic.body==''"></div>
+					</div>
+					<div class="Blue NextToWhiteTopic" ng-hide="topic.blue==''">
+						<div ng-bind-html="topic.blue"></div>
+					</div>
+				</div>
+				<div class="WhiteBlueGroup" ng-repeat="subtopic in topic.subtopics">
+					<div class="White">
+						<h2 class="WhiteSubtopic" id='{{"Topic"+$parent.$index+"_"+$index}}'>{{subtopic.title}}</h2>
+						<div ng-bind-html="subtopic.body"></div>
+					</div>
+					<div class="Blue" ng-bind-html="subtopic.blue"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</article>
