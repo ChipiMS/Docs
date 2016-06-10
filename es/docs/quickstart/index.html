@@ -1,0 +1,133 @@
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html lang="es" ng-app="Paybook">
+<head>
+	<base href="../../../">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+	<title>Paybook - Quickstart</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="src/css/style.css">
+	<link rel="stylesheet" type="text/css" href="src/css/bigStyle.css">
+	<link rel="stylesheet" media="screen and (max-width: 1025px)" href="src/css/mediumStyle.css">
+	<link rel="stylesheet" media="screen and (max-width: 715px)" href="src/css/smallStyle.css">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-sanitize.js"></script>
+	<script src="src/js/quickstart.js"></script>
+
+</head>
+<body ng-controller="main" data-ng-init="init()" ng-click="closeAll()">
+	<main>
+		<nav class="Navigation">
+			<div ng-click="showSmallViews($event)" class="NavigationSmallButton">
+				<div class="fa fa-bars"></div>
+			</div>
+			<div class="NavigationLeft">
+				<a href="{{language.code+'/'}}">
+					<img src="img/icon.jpeg">
+				</a>
+				<a href="{{language.code+'/'}}">
+					<span>Paybook</span>
+				</a>
+			</div>
+			<ul class="NavigationCenter">
+				<li class="NavigationItem" id="CloseSidebar" ng-click="closeAll()"><div class="fa fa-times"></div></li>
+				<li class="NavigationItem"><a href="{{language.code+'/solutions'}}">{{allPages.Solutions}}</a></li>
+				<li class="NavigationItem"><a href="{{language.code+'/products'}}">{{allPages.Products}}</a></li>
+				<li class="NavigationItem"><a href="{{language.code+'/docs'}}">{{allPages.Docs}}</a></li>
+				<li class="NavigationMore">
+					<div class="NavigationItem" ng-click="navbarShowMore($event)">
+						<span>{{allPages.More}}</span>
+						<div class="fa fa-chevron-down"></div>
+					</div>
+					<ul class="NavigationMoreList">
+						<li class="NavigationMoreItem"><a href="{{language.code+'/company'}}">{{allPages.Company}}</a></li>
+						<li class="NavigationMoreItem"><a href="{{language.code+'/contact'}}">{{allPages.Contact}}</a></li>
+						<li class="NavigationMoreItem"><a href="{{language.code+'/security'}}">{{allPages.Security}}</a></li>
+						<li class="NavigationMoreItem"><a href="{{language.code+'/blog'}}">{{allPages.Blog}}</a></li>
+						<li class="NavigationMoreItem"><a href="{{language.code+'/fin'}}">{{allPages.Fin}}</a></li>
+					</ul>
+				</li>
+			</ul>
+			<div class="NavigationRight">
+				<div class="LanguageButton" ng-click="showLanguages($event)">{{language.name}}</div>
+				<div class="LanguageButtonSmall fa fa-language" ng-click="showLanguages($event)"></div>
+				<ul class="Languages">
+					<li class="NavigationMoreItem"><a href="en/docs/quickstart">English</a></li>
+					<li class="NavigationMoreItem"><a href="es/docs/quickstart">Español</a></li>
+				</ul>
+			</div>
+			<div class="NavigationBlocker"></div>
+		</nav>
+		<article class="Docs">
+			<!-- SUBNAVIGATION -->
+			<div class="Subnavigation">
+				<div class="SubnavigationSelected" ng-click="showSmallSubviews($event)">
+					<span>{{allPages.Quickstart}}</span>
+					<div class="fa fa-chevron-down"></div>
+				</div>
+				<ul>
+					<li class="SubnavigationItem SubnavigationItemSelected">{{allPages.Quickstart}}<div style="display: none;" class="fa fa-chevron-up"></div></li>
+					<li class="SubnavigationItem"><a href="{{language.code+'/docs/documentation'}}">{{allPages.Documentation}}</a></li>
+					<li class="SubnavigationItem"><a href="{{language.code+'/docs/resources'}}">{{allPages.Resources}}</a></li>
+					<li class="SubnavigationItem"><a href="{{language.code+'/docs/faq'}}">{{allPages.FAQ}}</a></li>
+				</ul>
+				<div id="ContactSupport">
+					<span>{{allPages.Questions}}</span>
+					<a href="{{language.code+'/contact'}}">{{allPages.Support}}</a>
+				</div>
+			</div>
+			<div id="ContainerLeftRight">
+				<div id="TopicsLeft">
+					<div ng-repeat="topic in info">
+						<div class="{{actualTopic==$index?'TopicsLeftSelected TopicLeft':'TopicLeft'}}" ng-click="scrollToTopic($index)">{{topic.title}}</div>
+					</div>
+				</div>
+				<div id="ContentRight">
+					<center>
+						<div class="ContentRightContainer">
+							<div class="SelectLibrary" ng-click="showLibraries($event)">
+								<h6>{{allPages.Library}}</h6>
+								<img src="{{'img/'+selectedLibrary.img}}">
+								<h5>{{selectedLibrary.title}}</h5>
+								<span class="fa fa-chevron-down"></span>
+							</div>
+							<ul class="Libraries">
+								<li ng-repeat="library in libraries" ng-click="selectLibrary($index)">
+									<img src="{{'img/'+library.img}}"><h5>{{library.title}}</h5>
+								</li>
+							</ul>
+							<p style="margin-top: 120px;">{{allPages.Objetive1}}<a href="https://www.paybook.com/syncdocs#api-Overview-Overview">Sync API</a>{{allPages.Objetive2}}</p>
+							<div ng-repeat="topic in info">
+								<h1 id='{{"Topic"+$index}}'>{{topic.title}}</h1>
+								<div ng-repeat="body in topic.body">
+									<div ng-show="body[0]=='<'" ng-bind-html="body"></div>
+									<div class="InputContainer" ng-show="body[0]!='<'">{{body[2]}}<input placeholder="{{body[0]}}" type="text" ng-model="body[1]" ng-keyup="inputController($parent.$index,$index)"></div>
+								</div>
+							</div>
+						</div>
+					</center>
+				</div>
+			</div>
+		</article>
+	</main>
+
+	<!-- FOOTER -->
+	<footer>
+		<ul class="FooterMenu">
+			<li class="FooterItem"><a href="{{language.code+'/docs/faq'}}">{{allPages.FAQ}}</a></li>
+			<li class="FooterItem"><a href="{{language.code+'/blog'}}">{{allPages.Blog}}</a></li>
+			<li class="FooterItem"><a href="{{language.code+'/legal'}}">{{allPages.TermsAndPrivacy}}</a></li>
+			<li class="FooterItem"><a href="{{language.code+'/status'}}">{{allPages.Status}}</a></li>
+			<li class="FooterItem"><a href="{{language.code+'/contact'}}">{{allPages.Contact}}</a></li>
+			<li class="FooterItem"><a href="{{language.code+'/fin'}}">{{allPages.Fin}}</a></li>
+		</ul>
+		<p class="FooterCopyright">2016 Paybook</p>
+	</footer>
+</body>
+</html>
