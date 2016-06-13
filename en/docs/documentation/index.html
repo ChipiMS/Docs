@@ -3,7 +3,7 @@
 <!-- ASSIGN OUR ANGULAR MODULE -->
 <html lang="en" ng-app="Paybook">
 <head>
-	<base href="../../../">
+	<base href="../../../docs2">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
 
@@ -92,6 +92,10 @@
 					</div>
 				</div>
 				<div id="ContentRight">
+					<div class="VersionButton" ng-click="showVersions($event)">{{"Version: "+selectedVersion}}</div>
+					<ul class="Versions">
+						<li ng-repeat="version in versions" class="NavigationMoreItem" ng-click="selectVersion($index)">{{version}}</li>
+					</ul>
 					<div id="Blue"></div>
 					<div ng-repeat="topic in info">
 						<div class="WhiteBlueGroup">
