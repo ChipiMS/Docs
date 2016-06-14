@@ -552,6 +552,10 @@ main{
 	padding-top: 4px;
 	padding-left: 12px;
 }
+.SubtopicLeft:hover{
+	cursor: pointer;
+	color: #576f7f;
+}
 #TopicsLeft{
 	padding: 36px;
 	width: 175px;
@@ -564,6 +568,10 @@ main{
 .TopicLeft{
 	padding-bottom: 4px;
 	padding-top: 4px;
+}
+.TopicLeft:hover{
+	color: #576f7f;
+	cursor: pointer;
 }
 .TopicsLeftBottom{
 	position: absolute;

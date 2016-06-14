@@ -140,8 +140,14 @@ input{
 .JS .LightBlue{
 	color: #66d9ef;
 }
+.JS .Orange{
+	color: #fcc28c;
+}
 .JS .Purple{
 	color: #ae81ff;
+}
+.JS .Red{
+	color: #d36363;
 }
 .JS .Yellow{
 	color: #e6db74;
