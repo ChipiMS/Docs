@@ -505,43 +505,60 @@ Paybook.controller("main",function main($scope,$http){
 					},
 					{
 						title: "Widget Options",
-						body: '<p>There are some options that would help you to interact with the widget.</p>',
-						blue: '',
+						body: '<table><thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>theme</code> (optional)</td><td>String</td><td>Change theme. Values can be dark or light at the moment.</td></tr><tr><td><code>baseDiv</code> (optional)</td><td>String</td><td>Container div id.</td></tr><tr><td><code>widgetId</code> (optional)</td><td>String</td><td>Widget Id. Useful when more than one widget is required on the same page.</td></tr><tr><td><code>token</code> (optional)</td><td>String</td><td>Session token.</td></tr><tr><td><code>sandbox</code> (optional)</td><td>String</td><td>Set debug mode.</td></tr><tr><td><code>start</code> (optional)</td><td>String</td><td>Set to admin starts widget on list of added accounts or an specific bank if name is specified.</td></tr><tr><td><code>locale</code> (optional)</td><td>String</td><td>Locale defines the user\'s language.</td></tr><tr><td><code>callback</code> (optional)</td><td>String</td><td>Callback called when some actions are successfully executed.</td></tr><tr><td><code>exc</code> (optional)</td><td>Array</td><td>Array of id_site_organization\'s of banks which will be excluded.</td></tr><tr><td><code>inc</code> (optional)</td><td>Array</td><td>Array of id_site_organization\'s of banks which will be included.</td></tr></tbody></table>',
+						blue: '<pre><p><b>Head</b></p><div class="Code Console">https://sync.paybook.com/v1/</div></pre>',
 					},
 					{
-						title: "Change Theme",
-						body: '<p>To switch between Dark and Light themes all you should do is to call syncWidget\'s toogleTheme method (default Light theme).</p>',
-						blue: '<pre><div class="Code JS"><span class="LightBlue">&ltscript&gt</span>syncWidget.toggleTheme()<span class="LightBlue">&lt/script&gt</span></div></pre>',
-					},
-					{
-						title: "Set Token",
-						body: '<p>To set token value all you should do is to call syncWidget\'s setToken method and pass to it your session token.</p>',
-						blue: '<pre><div class="Code JS"><span class="LightBlue">&ltscript&gt</span>syncWidget.setToken(<span class="Green">"*************"</span>)<span class="LightBlue">&lt/script&gt</span> </div></pre>',
-					},
-					{
-						title: "Switch to Development API",
-						body: '<p>To switch to development API all you should do is to call syncWidget\'s setDev method.</p>',
-						blue: '<pre><div class="Code JS"><span class="LightBlue">&ltscript&gt</span>syncWidget.setDev()<span class="LightBlue">&lt/script&gt</span> </div></pre>',
-					},
-					{
-						title: "Switch to Specific Bank",
-						body: '<p>To switch to a specific bank all you should do is to call syncWidget\'s startOn method and pass to it the bank name.</p>',
-						blue: '<pre><div class="Code JS"><span class="LightBlue">&ltscript&gt</span>syncWidget.startOn(<span class="Green">"bank name here"</span>)<span class="LightBlue">&lt/script&gt</span> </div></pre>',
-					},
-					{
-						title: "Switch to Admin",
-						body: '<p>To switch to administration view, you should call syncWidget\'s startOn method and pass it the parameter \'admin\'.</p>',
-						blue: '<pre><div class="Code JS"><span class="LightBlue">&ltscript&gt</span>syncWidget.startOn(<span class="Green">"admin"</span>)<span class="LightBlue">&lt/script&gt</span> </div></pre>',
-					},
-					{
-						title: "Switch to SAT",
-						body: '<p>To switch to SAT view, you should call syncWidget\'s startOn method and pass it the parameter \'sat\'.</p>',
-						blue: '<pre><div class="Code JS"><span class="LightBlue">&ltscript&gt</span>syncWidget.startOn(<span class="Green">"sat"</span>)<span class="LightBlue">&lt/script&gt</span> </div></pre>',
-					},
-					{
-						title: "Switch to Sandbox",
-						body: '<p>To switch to sandbox, you should call syncWidget\'s setTest.</p><p><b>Parameter</b></p><table><thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>theme</code> (optional)</td><td>String</td><td>Change theme. Values can be dark or light at the moment.</td></tr><tr><td><code>baseDiv</code> (optional)</td><td>String</td><td>Container div id.</td></tr><tr><td><code>widgetId</code> (optional)</td><td>String</td><td>Widget Id. Useful when more than one widget is required on the same page.</td></tr><tr><td><code>token</code> (optional)</td><td>String</td><td>Session token.</td></tr><tr><td><code>sandbox</code> (optional)</td><td>String</td><td>Set debug mode.</td></tr><tr><td><code>start</code> (optional)</td><td>String</td><td>Set to admin starts widget on list of added accounts or an specific bank if name is specified.</td></tr><tr><td><code>locale</code> (optional)</td><td>String</td><td>Locale defines the user\'s language.</td></tr></tbody></table>',
-						blue: '<pre><div class="Code JS"><span class="LightBlue">&ltscript&gt</span>syncWidget.setTest()<span class="LightBlue">&lt/script&gt</span> </div></pre><pre><p><b>Head</b></p><div class="Code Console">https://sync.paybook.com/v1/</div></pre>',
+						title: "Widget Actions",
+						body: '<p>There are some actions that would help you to interact with the widget.</p>',
+						blue: '<pre><p><b>Head</b></p><div class="Code Console">https://sync.paybook.com/v1/</div></pre>',
+						subtopics: [
+							{
+								title: "Change Theme",
+								body: '<p>To switch between Dark and Light themes all you should do is to call syncWidget\'s toogleTheme method (default Light theme).</p>',
+								blue: '<pre><div class="Code JS"><span class="LightBlue">&ltscript&gt</span>syncWidget.toggleTheme()<span class="LightBlue">&lt/script&gt</span></div></pre>',
+							},
+							{
+								title: "Set Token",
+								body: '<p>To set token value all you should do is to call syncWidget\'s setToken method and pass to it your session token.</p>',
+								blue: '<pre><div class="Code JS"><span class="LightBlue">&ltscript&gt</span>syncWidget.setToken(<span class="Green">"*************"</span>)<span class="LightBlue">&lt/script&gt</span> </div></pre>',
+							},
+							{
+								title: "Switch to Development API",
+								body: '<p>To switch to development API all you should do is to call syncWidget\'s setDev method.</p>',
+								blue: '<pre><div class="Code JS"><span class="LightBlue">&ltscript&gt</span>syncWidget.setDev()<span class="LightBlue">&lt/script&gt</span> </div></pre>',
+							},
+							{
+								title: "Switch to Specific Bank",
+								body: '<p>To switch to a specific bank all you should do is to call syncWidget\'s startOn method and pass to it the bank name.</p>',
+								blue: '<pre><div class="Code JS"><span class="LightBlue">&ltscript&gt</span>syncWidget.startOn(<span class="Green">"bank name here"</span>)<span class="LightBlue">&lt/script&gt</span> </div></pre>',
+							},
+							{
+								title: "Switch to Admin",
+								body: '<p>To switch to administration view, you should call syncWidget\'s startOn method and pass it the parameter \'admin\'.</p>',
+								blue: '<pre><div class="Code JS"><span class="LightBlue">&ltscript&gt</span>syncWidget.startOn(<span class="Green">"admin"</span>)<span class="LightBlue">&lt/script&gt</span> </div></pre>',
+							},
+							{
+								title: "Switch to SAT",
+								body: '<p>To switch to SAT view, you should call syncWidget\'s startOn method and pass it the parameter \'sat\'.</p>',
+								blue: '<pre><div class="Code JS"><span class="LightBlue">&ltscript&gt</span>syncWidget.startOn(<span class="Green">"sat"</span>)<span class="LightBlue">&lt/script&gt</span> </div></pre>',
+							},
+							{
+								title: "Switch to Sandbox",
+								body: '<p>To switch to sandbox, you should call syncWidget\'s setTest.</p>',
+								blue: '<pre><div class="Code JS"><span class="LightBlue">&ltscript&gt</span>syncWidget.setTest()<span class="LightBlue">&lt/script&gt</span> </div></pre><pre><p>',
+							},
+							{
+								title: "Exclude some institutions",
+								body: '<p>To exclude some institutions, you should call syncWidget\'s filterBy and pass it an object with the elements action="exc" and array, which is an array of id_site_organization\'s.</p>',
+								blue: '<pre><div class="Code JS"><span class="LightBlue">&ltscript&gt</span>syncWidget.filterBy({action: <span class="Green">"exc"</span>,array: [<span class="Green">"id_site_organization1"</span>,<span class="Green">"id_site_organization2"</span>]})<span class="LightBlue">&lt/script&gt</span> </div></pre><pre><p>',
+							},
+							{
+								title: "Include only some institutions",
+								body: '<p>To only include some institutions, you should call syncWidget\'s filterBy and pass it an object with the elements action="inc" and array, which is an array of id_site_organization\'s.</p>',
+								blue: '<pre><div class="Code JS"><span class="LightBlue">&ltscript&gt</span>syncWidget.filterBy({action: <span class="Green">"inc"</span>,array: [<span class="Green">"id_site_organization1"</span>,<span class="Green">"id_site_organization2"</span>]})<span class="LightBlue">&lt/script&gt</span> </div></pre><pre><p>',
+							},
+						]
 					},
 					{
 						title: "Link Bank Account",
@@ -847,43 +864,60 @@ Paybook.controller("main",function main($scope,$http){
 					},
 					{
 						title: "Widget Options",
-						body: '<p>There are some options that would help you to interact with the widget.</p>',
-						blue: '',
+						body: '<table><thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>theme</code> (optional)</td><td>String</td><td>Change theme. Values can be dark or light at the moment.</td></tr><tr><td><code>baseDiv</code> (optional)</td><td>String</td><td>Container div id.</td></tr><tr><td><code>widgetId</code> (optional)</td><td>String</td><td>Widget Id. Useful when more than one widget is required on the same page.</td></tr><tr><td><code>token</code> (optional)</td><td>String</td><td>Session token.</td></tr><tr><td><code>sandbox</code> (optional)</td><td>String</td><td>Set debug mode.</td></tr><tr><td><code>start</code> (optional)</td><td>String</td><td>Set to admin starts widget on list of added accounts or an specific bank if name is specified.</td></tr><tr><td><code>locale</code> (optional)</td><td>String</td><td>Locale defines the user\'s language.</td></tr><tr><td><code>callback</code> (optional)</td><td>String</td><td>Callback called when some actions are successfully executed.</td></tr><tr><td><code>exc</code> (optional)</td><td>Array</td><td>Array of id_site_organization\'s of banks which will be excluded.</td></tr><tr><td><code>inc</code> (optional)</td><td>Array</td><td>Array of id_site_organization\'s of banks which will be included.</td></tr></tbody></table>',
+						blue: '<pre><p><b>Head</b></p><div class="Code Console">https://sync.paybook.com/v1/</div></pre>',
 					},
 					{
-						title: "Change Theme",
-						body: '<p>To switch between Dark and Light themes all you should do is to call syncWidget\'s toogleTheme method (default Light theme).</p>',
-						blue: '<pre><div class="Code JS"><span class="LightBlue">&ltscript&gt</span>syncWidget.toggleTheme()<span class="LightBlue">&lt/script&gt</span></div></pre>',
-					},
-					{
-						title: "Set Token",
-						body: '<p>To set token value all you should do is to call syncWidget\'s setToken method and pass to it your session token.</p>',
-						blue: '<pre><div class="Code JS"><span class="LightBlue">&ltscript&gt</span>syncWidget.setToken(<span class="Green">"*************"</span>)<span class="LightBlue">&lt/script&gt</span> </div></pre>',
-					},
-					{
-						title: "Switch to Development API",
-						body: '<p>To switch to development API all you should do is to call syncWidget\'s setDev method.</p>',
-						blue: '<pre><div class="Code JS"><span class="LightBlue">&ltscript&gt</span>syncWidget.setDev()<span class="LightBlue">&lt/script&gt</span> </div></pre>',
-					},
-					{
-						title: "Switch to Specific Bank",
-						body: '<p>To switch to a specific bank all you should do is to call syncWidget\'s startOn method and pass to it the bank name.</p>',
-						blue: '<pre><div class="Code JS"><span class="LightBlue">&ltscript&gt</span>syncWidget.startOn(<span class="Green">"bank name here"</span>)<span class="LightBlue">&lt/script&gt</span> </div></pre>',
-					},
-					{
-						title: "Switch to Admin",
-						body: '<p>To switch to administration view, you should call syncWidget\'s startOn method and pass it the parameter \'admin\'.</p>',
-						blue: '<pre><div class="Code JS"><span class="LightBlue">&ltscript&gt</span>syncWidget.startOn(<span class="Green">"admin"</span>)<span class="LightBlue">&lt/script&gt</span> </div></pre>',
-					},
-					{
-						title: "Switch to SAT",
-						body: '<p>To switch to SAT view, you should call syncWidget\'s startOn method and pass it the parameter \'sat\'.</p>',
-						blue: '<pre><div class="Code JS"><span class="LightBlue">&ltscript&gt</span>syncWidget.startOn(<span class="Green">"sat"</span>)<span class="LightBlue">&lt/script&gt</span> </div></pre>',
-					},
-					{
-						title: "Switch to Sandbox",
-						body: '<p>To switch to sandbox, you should call syncWidget\'s setTest.</p><p><b>Parameter</b></p><table><thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>theme</code> (optional)</td><td>String</td><td>Change theme. Values can be dark or light at the moment.</td></tr><tr><td><code>baseDiv</code> (optional)</td><td>String</td><td>Container div id.</td></tr><tr><td><code>widgetId</code> (optional)</td><td>String</td><td>Widget Id. Useful when more than one widget is required on the same page.</td></tr><tr><td><code>token</code> (optional)</td><td>String</td><td>Session token.</td></tr><tr><td><code>sandbox</code> (optional)</td><td>String</td><td>Set debug mode.</td></tr><tr><td><code>start</code> (optional)</td><td>String</td><td>Set to admin starts widget on list of added accounts or an specific bank if name is specified.</td></tr><tr><td><code>locale</code> (optional)</td><td>String</td><td>Locale defines the user\'s language.</td></tr></tbody></table>',
-						blue: '<pre><div class="Code JS"><span class="LightBlue">&ltscript&gt</span>syncWidget.setTest()<span class="LightBlue">&lt/script&gt</span> </div></pre><pre><p><b>Head</b></p><div class="Code Console">https://sync.paybook.com/v1/</div></pre>',
+						title: "Widget Actions",
+						body: '<p>There are some actions that would help you to interact with the widget.</p>',
+						blue: '<pre><p><b>Head</b></p><div class="Code Console">https://sync.paybook.com/v1/</div></pre>',
+						subtopics: [
+							{
+								title: "Change Theme",
+								body: '<p>To switch between Dark and Light themes all you should do is to call syncWidget\'s toogleTheme method (default Light theme).</p>',
+								blue: '<pre><div class="Code JS"><span class="LightBlue">&ltscript&gt</span>syncWidget.toggleTheme()<span class="LightBlue">&lt/script&gt</span></div></pre>',
+							},
+							{
+								title: "Set Token",
+								body: '<p>To set token value all you should do is to call syncWidget\'s setToken method and pass to it your session token.</p>',
+								blue: '<pre><div class="Code JS"><span class="LightBlue">&ltscript&gt</span>syncWidget.setToken(<span class="Green">"*************"</span>)<span class="LightBlue">&lt/script&gt</span> </div></pre>',
+							},
+							{
+								title: "Switch to Development API",
+								body: '<p>To switch to development API all you should do is to call syncWidget\'s setDev method.</p>',
+								blue: '<pre><div class="Code JS"><span class="LightBlue">&ltscript&gt</span>syncWidget.setDev()<span class="LightBlue">&lt/script&gt</span> </div></pre>',
+							},
+							{
+								title: "Switch to Specific Bank",
+								body: '<p>To switch to a specific bank all you should do is to call syncWidget\'s startOn method and pass to it the bank name.</p>',
+								blue: '<pre><div class="Code JS"><span class="LightBlue">&ltscript&gt</span>syncWidget.startOn(<span class="Green">"bank name here"</span>)<span class="LightBlue">&lt/script&gt</span> </div></pre>',
+							},
+							{
+								title: "Switch to Admin",
+								body: '<p>To switch to administration view, you should call syncWidget\'s startOn method and pass it the parameter \'admin\'.</p>',
+								blue: '<pre><div class="Code JS"><span class="LightBlue">&ltscript&gt</span>syncWidget.startOn(<span class="Green">"admin"</span>)<span class="LightBlue">&lt/script&gt</span> </div></pre>',
+							},
+							{
+								title: "Switch to SAT",
+								body: '<p>To switch to SAT view, you should call syncWidget\'s startOn method and pass it the parameter \'sat\'.</p>',
+								blue: '<pre><div class="Code JS"><span class="LightBlue">&ltscript&gt</span>syncWidget.startOn(<span class="Green">"sat"</span>)<span class="LightBlue">&lt/script&gt</span> </div></pre>',
+							},
+							{
+								title: "Switch to Sandbox",
+								body: '<p>To switch to sandbox, you should call syncWidget\'s setTest.</p>',
+								blue: '<pre><div class="Code JS"><span class="LightBlue">&ltscript&gt</span>syncWidget.setTest()<span class="LightBlue">&lt/script&gt</span> </div></pre><pre><p>',
+							},
+							{
+								title: "Exclude some institutions",
+								body: '<p>To exclude some institutions, you should call syncWidget\'s filterBy and pass it an object with the elements action="exc" and array, which is an array of id_site_organization\'s.</p>',
+								blue: '<pre><div class="Code JS"><span class="LightBlue">&ltscript&gt</span>syncWidget.filterBy({action: <span class="Green">"exc"</span>,array: [<span class="Green">"id_site_organization1"</span>,<span class="Green">"id_site_organization2"</span>]})<span class="LightBlue">&lt/script&gt</span> </div></pre><pre><p>',
+							},
+							{
+								title: "Include only some institutions",
+								body: '<p>To only include some institutions, you should call syncWidget\'s filterBy and pass it an object with the elements action="inc" and array, which is an array of id_site_organization\'s.</p>',
+								blue: '<pre><div class="Code JS"><span class="LightBlue">&ltscript&gt</span>syncWidget.filterBy({action: <span class="Green">"inc"</span>,array: [<span class="Green">"id_site_organization1"</span>,<span class="Green">"id_site_organization2"</span>]})<span class="LightBlue">&lt/script&gt</span> </div></pre><pre><p>',
+							},
+						]
 					},
 					{
 						title: "Link Bank Account",

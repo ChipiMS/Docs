@@ -107,12 +107,21 @@
 								<div ng-bind-html="topic.blue"></div>
 							</div>
 						</div>
-						<div class="WhiteBlueGroup" ng-repeat="subtopic in topic.subtopics">
-							<div class="White">
-								<h2 class="WhiteSubtopic" id='{{"Topic"+$parent.$index+"_"+$index}}'>{{subtopic.title}}</h2>
-								<div ng-bind-html="subtopic.body"></div>
+						<div ng-repeat="subtopic in topic.subtopics">
+							<div class="WhiteBlueGroup">
+								<div class="White">
+									<h2 class="WhiteSubtopic" id='{{"Topic"+$parent.$index+"_"+$index}}'>{{subtopic.title}}</h2>
+									<div ng-bind-html="subtopic.body"></div>
+								</div>
+								<div class="Blue" ng-bind-html="subtopic.blue" ng-hide="subtopic.blue.length==0"></div>
 							</div>
-							<div class="Blue" ng-bind-html="subtopic.blue" ng-hide="subtopic.blue.length==0"></div>
+							<div class="WhiteBlueGroup" ng-show="subtopic.subtopics" ng-repeat="subsubtopic in subtopic.subtopics">
+								<div class="White">
+									<h2 class="WhiteSubtopic SubSub">{{subsubtopic.title}}</h2>
+									<div ng-bind-html="subsubtopic.body"></div>
+								</div>
+								<div class="Blue" ng-bind-html="subsubtopic.blue" ng-hide="subsubtopic.blue.length==0"></div>
+							</div>
 						</div>
 					</div>
 				</div>

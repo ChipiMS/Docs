@@ -248,6 +248,9 @@ main{
 .SubnavigationSelected{
 	cursor: pointer;
 }
+.SubSub{
+	font-size: 15px !important;
+}
 .SubtopicLeft{
 	font-size: 15px;
 }
